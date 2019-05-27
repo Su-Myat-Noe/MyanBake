@@ -23,7 +23,13 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/css/bootstrap.min.css",
+              "src/assets/css/font-electro.css",
+              "src/assets/css/style.css",
+              "src/assets/css/yellow.css",
+              "src/assets/js/switchstylesheet.js"
+    
             ],
             "scripts": [],
             "es5BrowserSupport": true
