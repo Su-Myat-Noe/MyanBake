@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {RouterModule} from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { homeComponent } from './home/home.component';
@@ -29,137 +29,147 @@ import { SuperDealComponent } from './super-deal/super-deal.component';
 import { FeatureBrandsComponent } from './feature-brands/feature-brands.component';
 import { TreadingComponent } from './treading/treading.component';
 import { FreeShippingComponent } from './free-shipping/free-shipping.component';
+import { HomeHeaderComponent } from './header/home-header/home-header.component';
+import { StyleHeaderComponent } from './header/style-header/style-header.component';
+import { BrandHeaderComponent } from './header/brand-header/brand-header.component';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    homeComponent,
-    HeaderComponent,
-    ItemListComponent,
-    ItemDetailComponent,
-    CartComponent,
-    CheckoutComponent,
-    ConfirmComponent,
-    CategoriesComponent,
-    FooterComponent,
-    RegisterComponent,
-    ContactComponent,
-    AboutComponent,
-    CompareComponent,
-    BlogComponent,
-    FaqComponent,
-    StoredirectoryComponent,
-    TermsComponent,
-    WishlistComponent,
-    ErrorPageComponent,
-    BlogDetailComponent,
-    ShopComponent,
-    SuperDealComponent,
-    FeatureBrandsComponent,
-    TreadingComponent,
-    FreeShippingComponent
- 
-  ],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot([
-      {
-        path:'about',
-        component:AboutComponent
-      },
-      {
-        path:'blog',
-        component:BlogComponent
-      },
-      {
-        path:'cart',
-        component:CartComponent
-      },
-      {
-        path:'categories',
-        component:CategoriesComponent
-      },
-      {
-        path:'checkout',
-        component:CheckoutComponent
-      },
-      {
-        path:'compare',
-        component:CompareComponent
-      },
-      {
-        path:'confirm',
-        component:ConfirmComponent
-      },
-      {
-        path:'contact',
-        component:ContactComponent
-      },
-      {
-        path:'home',
-        component:homeComponent
-      },
-      {
-        path:'itemdetail',
-        component:ItemDetailComponent
-      },
-      {
-        path:'itemlist',
-        component:ItemListComponent
-      },
-      {
-        path:'register',
-        component:RegisterComponent
-      },
-      {
-        path:'faq',
-        component:FaqComponent
-      },
-      {
-        path:'store',
-        component:StoredirectoryComponent
-      },
-      {
-        path:'terms',
-        component:TermsComponent
-      },
-      {
-        path:'wishlist',
-        component:WishlistComponent
-      },
-      {
-        path:'error',
-        component:ErrorPageComponent
-      },
-      {
-        path:'blogdetail',
-        component:BlogDetailComponent
-      },
-      {
-        path:'shop',
-        component:ShopComponent
-      },
-      {
-        path:'deal',
-        component:SuperDealComponent
-      },
-      {
-        path:'brand',
-        component:FeatureBrandsComponent
-      },
-      {
-        path:'treading',
-        component:TreadingComponent
-      },
-      {
-        path:'freeship',
-        component:FreeShippingComponent
-      }
-      
-    ])
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        homeComponent,
+        HeaderComponent,
+        ItemListComponent,
+        ItemDetailComponent,
+        CartComponent,
+        CheckoutComponent,
+        ConfirmComponent,
+        CategoriesComponent,
+        FooterComponent,
+        RegisterComponent,
+        ContactComponent,
+        AboutComponent,
+        CompareComponent,
+        BlogComponent,
+        FaqComponent,
+        StoredirectoryComponent,
+        TermsComponent,
+        WishlistComponent,
+        ErrorPageComponent,
+        BlogDetailComponent,
+        ShopComponent,
+        SuperDealComponent,
+        FeatureBrandsComponent,
+        TreadingComponent,
+        FreeShippingComponent,
+        HomeHeaderComponent,
+        StyleHeaderComponent,
+        BrandHeaderComponent
+
+    ],
+    imports: [
+        BrowserModule,
+        RouterModule.forRoot([
+            {
+                path: '',
+                component: homeComponent
+            },
+            {
+                path: 'about',
+                component: AboutComponent
+            },
+            {
+                path: 'blog',
+                component: BlogComponent
+            },
+            {
+                path: 'cart',
+                component: CartComponent
+            },
+            {
+                path: 'categories',
+                component: CategoriesComponent
+            },
+            {
+                path: 'checkout',
+                component: CheckoutComponent
+            },
+            {
+                path: 'compare',
+                component: CompareComponent
+            },
+            {
+                path: 'confirm',
+                component: ConfirmComponent
+            },
+            {
+                path: 'contact',
+                component: ContactComponent
+            },
+            {
+                path: 'home',
+                component: homeComponent
+            },
+            {
+                path: 'itemdetail',
+                component: ItemDetailComponent
+            },
+            {
+                path: 'itemlist',
+                component: ItemListComponent
+            },
+            {
+                path: 'register',
+                component: RegisterComponent
+            },
+            {
+                path: 'faq',
+                component: FaqComponent
+            },
+            {
+                path: 'store',
+                component: StoredirectoryComponent
+            },
+            {
+                path: 'terms',
+                component: TermsComponent
+            },
+            {
+                path: 'wishlist',
+                component: WishlistComponent
+            },
+            {
+                path: 'error',
+                component: ErrorPageComponent
+            },
+            {
+                path: 'blogdetail',
+                component: BlogDetailComponent
+            },
+            {
+                path: 'shop',
+                component: ShopComponent
+            },
+            {
+                path: 'deal',
+                component: SuperDealComponent
+            },
+            {
+                path: 'brand',
+                component: FeatureBrandsComponent
+            },
+            {
+                path: 'treading',
+                component: TreadingComponent
+            },
+            {
+                path: 'freeship',
+                component: FreeShippingComponent
+            }
+
+        ])
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
