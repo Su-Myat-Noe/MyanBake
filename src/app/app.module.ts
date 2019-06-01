@@ -16,14 +16,12 @@ import { RegisterComponent } from './register/register.component';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { CompareComponent } from './compare/compare.component';
-import { BlogComponent } from './blog/blog.component';
 import { registerContentQuery } from '@angular/core/src/render3';
 import { FaqComponent } from './faq/faq.component';
 import { StoredirectoryComponent } from './storedirectory/storedirectory.component';
 import { TermsComponent } from './terms/terms.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
-import { BlogDetailComponent } from './blog-detail/blog-detail.component';
 import { ShopComponent } from './shop/shop.component';
 import { SuperDealComponent } from './super-deal/super-deal.component';
 import { FeatureBrandsComponent } from './feature-brands/feature-brands.component';
@@ -32,6 +30,8 @@ import { FreeShippingComponent } from './free-shipping/free-shipping.component';
 import { HomeHeaderComponent } from './header/home-header/home-header.component';
 import { StyleHeaderComponent } from './header/style-header/style-header.component';
 import { BrandHeaderComponent } from './header/brand-header/brand-header.component';
+import { TrainingComponent } from './training/training.component';
+import { TrainingDetailComponent } from './training-detail/training-detail.component';
 
 
 @NgModule({
@@ -50,13 +50,11 @@ import { BrandHeaderComponent } from './header/brand-header/brand-header.compone
         ContactComponent,
         AboutComponent,
         CompareComponent,
-        BlogComponent,
         FaqComponent,
         StoredirectoryComponent,
         TermsComponent,
         WishlistComponent,
         ErrorPageComponent,
-        BlogDetailComponent,
         ShopComponent,
         SuperDealComponent,
         FeatureBrandsComponent,
@@ -64,7 +62,9 @@ import { BrandHeaderComponent } from './header/brand-header/brand-header.compone
         FreeShippingComponent,
         HomeHeaderComponent,
         StyleHeaderComponent,
-        BrandHeaderComponent
+        BrandHeaderComponent,
+        TrainingComponent,
+        TrainingDetailComponent
 
     ],
     imports: [
@@ -79,8 +79,8 @@ import { BrandHeaderComponent } from './header/brand-header/brand-header.compone
                 component: AboutComponent
             },
             {
-                path: 'blog',
-                component: BlogComponent
+                path: 'training',
+                component: TrainingComponent
             },
             {
                 path: 'cart',
@@ -143,8 +143,8 @@ import { BrandHeaderComponent } from './header/brand-header/brand-header.compone
                 component: ErrorPageComponent
             },
             {
-                path: 'blogdetail',
-                component: BlogDetailComponent
+                path: 'trainingdetail',
+                component: TrainingDetailComponent
             },
             {
                 path: 'shop',

@@ -28,8 +28,7 @@
               "src/assets/css/font-electro.css",
               "src/assets/css/style.css",
               "src/assets/css/yellow.css",
-              "src/assets/js/switchstylesheet.js"
-    
+              "src/assets/js/switchstylesheet.js"    
             ],
             "scripts": [],
             "es5BrowserSupport": true
