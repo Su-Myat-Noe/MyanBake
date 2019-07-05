@@ -1,17 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Product } from './../services/model/product';
+import { RestApiService } from 'src/app/services/rest-api.service';
 @Component({
   selector: 'app-super-deal',
   templateUrl: './super-deal.component.html',
   styleUrls: ['./super-deal.component.css']
 })
 export class SuperDealComponent implements OnInit {
-
-  constructor() {
+  products: Product[]=[];
+  constructor(private rest: RestApiService) {
     new Promise((resolve) => {
       this.loadScript();
       resolve(true);
     });
+    this.getproducts();
+  }
+  getproducts() {
+    this.rest.getProducts()
+      .subscribe(res => {
+        console.log(res);
+        this.products = res;
+        new Promise((resolve) => {
+          this.loadScript();
+          resolve(true);           
+        });
+      });
   }
 
   ngOnInit() {

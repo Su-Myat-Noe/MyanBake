@@ -65,15 +65,16 @@
     <main id="main" class="site-main">
       <section>
         <header>
-          <h2 class="h1">Laptops &amp; Computers Categories</h2>
+          <h2 class="h1">Baking Machine Categories</h2>
         </header>
         <div class="woocommerce columns-4">
           <ul class="product-loop-categories">
-            <li class="product-category product first"><a routerLink="/cart"><img
-                  src="assets/images/product-category/7.jpg" alt="Accessories" width="250" height="232" />
-                <h3>Accessories <mark class="count">(2)</mark></h3>
-              </a></li>
-            <li class="product-category product"><a routerLink="/cart"><img
+            <li class="product-category product first"*ngFor="let category of categories"><a routerLink="/cart">
+              <img  src="{{category.image}}" alt="Accessories" width="250" height="232" />
+                <h3>{{category.name}} <mark class="count">(2)</mark></h3>
+              </a>
+            </li>
+            <!-- <li class="product-category product"><a routerLink="/cart"><img
                   src="assets/images/product-category/8.jpg" alt="All in One" width="250" height="232" />
                 <h3>All in One <mark class="count">(1)</mark></h3>
               </a></li>
@@ -100,7 +101,7 @@
             <li class="product-category product last"><a routerLink="/cart"><img
                   src="assets/images/product-category/14.jpg" alt="Ultrabooks" width="250" height="232" />
                 <h3>Ultrabooks <mark class="count">(1)</mark></h3>
-              </a></li>
+              </a></li> -->
           </ul>
         </div>
       </section>

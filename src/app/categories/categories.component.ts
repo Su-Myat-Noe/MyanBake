@@ -1,4 +1,6 @@
+import { Category } from './../services/model/category';
 import { Component, OnInit } from '@angular/core';
+import { RestApiService } from 'src/app/services/rest-api.service';
 
 @Component({
   selector: 'app-categories',
@@ -7,13 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoriesComponent implements OnInit {
 
-  constructor() {
+  categories: Category[] = [];
+
+  constructor(private rest: RestApiService) {
     new Promise((resolve) => {
       this.loadScript();
       resolve(true);
     });
+    this.getCategories();
   }
-
+  getCategories() {
+    this.rest.getCategories()
+        .subscribe(res => {
+          console.log(res);
+          this.categories = res;
+        });
+  }
   ngOnInit() {
   }
 

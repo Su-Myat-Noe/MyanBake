@@ -16,7 +16,6 @@ import { RegisterComponent } from './register/register.component';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { CompareComponent } from './compare/compare.component';
-import { registerContentQuery } from '@angular/core/src/render3';
 import { FaqComponent } from './faq/faq.component';
 import { StoredirectoryComponent } from './storedirectory/storedirectory.component';
 import { TermsComponent } from './terms/terms.component';
@@ -32,6 +31,8 @@ import { StyleHeaderComponent } from './header/style-header/style-header.compone
 import { BrandHeaderComponent } from './header/brand-header/brand-header.component';
 import { TrainingComponent } from './training/training.component';
 import { TrainingDetailComponent } from './training-detail/training-detail.component';
+import { RestApiService } from './services/rest-api.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -64,11 +65,12 @@ import { TrainingDetailComponent } from './training-detail/training-detail.compo
         StyleHeaderComponent,
         BrandHeaderComponent,
         TrainingComponent,
-        TrainingDetailComponent
+        TrainingDetailComponent,
 
     ],
     imports: [
         BrowserModule,
+        HttpClientModule,
         RouterModule.forRoot([
             {
                 path: '',
@@ -169,7 +171,9 @@ import { TrainingDetailComponent } from './training-detail/training-detail.compo
 
         ])
     ],
-    providers: [],
+    providers: [
+        RestApiService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

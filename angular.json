@@ -30,7 +30,8 @@
               "src/assets/css/yellow.css",
               "src/assets/js/switchstylesheet.js"    
             ],
-            "scripts": [],
+            "scripts": [
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {

@@ -1,19 +1,38 @@
+import { Subcategory } from 'src/app/services/model/subcategory';
+import { Category } from './../services/model/category';
 import { Component, OnInit } from '@angular/core';
-
+import { RestApiService } from 'src/app/services/rest-api.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() {
+  categories: Category[] = [];
+  subcategories: Subcategory[]=[];
+  constructor(private rest: RestApiService) {
     new Promise((resolve) => {
       this.loadScript();
       resolve(true);
     });
-  }
 
+    this.getCategories();
+    this.getSubCategories();
+  }
+  getCategories() {
+    this.rest.getCategories()
+        .subscribe(res => {
+          console.log(res);
+          this.categories = res;
+        });
+  }
+  getSubCategories() {
+    this.rest.getSubCategories()
+        .subscribe(res => {
+          console.log(res);
+          this.subcategories = res;
+        });
+  }
   ngOnInit() {
   }
 
@@ -22,7 +41,7 @@ export class HeaderComponent implements OnInit {
     var scripts = document.getElementsByTagName("script")
     for (var i = 0; i < scripts.length; ++i) {
       if (scripts[i].getAttribute('src') != null && scripts[i].getAttribute('src').includes("electro")) {
-        // isFound = true;
+        isFound = true;
       }
     }
 

@@ -1,5 +1,7 @@
+import { Category } from './../services/model/category';
 import { Component, OnInit } from '@angular/core';
-
+import { Product } from './../services/model/product';
+import { RestApiService } from 'src/app/services/rest-api.service';
 @Component({
   selector: 'app-feature-brands',
   templateUrl: './feature-brands.component.html',
@@ -7,11 +9,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeatureBrandsComponent implements OnInit {
 
-  constructor() {
+  products: Product[]=[];
+  categories:Category[]=[];
+  constructor(private rest: RestApiService) {
     new Promise((resolve) => {
       this.loadScript();
       resolve(true);
     });
+    this.getproducts();
+    this.getCategories();
+  }
+  getCategories() {
+    this.rest.getCategories()
+        .subscribe(res => {
+          console.log(res);
+          this.categories = res;
+        });
+  }
+  getproducts() {
+    this.rest.getProducts()
+      .subscribe(res => {
+        console.log(res);
+        this.products = res;
+        new Promise((resolve) => {
+          this.loadScript();
+          resolve(true);           
+        });
+      });
   }
 
   ngOnInit() {

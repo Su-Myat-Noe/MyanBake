@@ -1,19 +1,28 @@
+import { Product } from './../services/model/product';
 import { Component, OnInit } from '@angular/core';
-
+import { RestApiService } from 'src/app/services/rest-api.service';
 @Component({
   selector: 'app-item-list',
   templateUrl: './item-list.component.html',
   styleUrls: ['./item-list.component.css']
 })
 export class ItemListComponent implements OnInit {
-
-  constructor() {
+  products: Product[]=[];
+   
+  constructor(private rest: RestApiService) {
     new Promise((resolve) => {
       this.loadScript();
       resolve(true);
     });
+    this.getproduct();
   }
-
+  getproduct() {
+    this.rest.getProducts()
+        .subscribe(res => {
+          console.log(res);
+          this.products= res;
+        });
+  }
   ngOnInit() {
   }
 
