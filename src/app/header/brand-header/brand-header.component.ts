@@ -1,4 +1,4 @@
-import { Subcategory } from 'src/app/services/model/subcategory';
+import { Brand } from './../../services/model/brand';
 import { Category } from './../../services/model/category';
 import { Component, OnInit } from '@angular/core';
 import { RestApiService } from 'src/app/services/rest-api.service';
@@ -9,10 +9,10 @@ import { RestApiService } from 'src/app/services/rest-api.service';
 })
 export class BrandHeaderComponent implements OnInit {
   categories: Category[] = [];
-  subcategories: Subcategory[]=[];
+  brands:Brand[]=[];
   constructor(private rest: RestApiService) { 
     this.getCategories();
-    this.getSubCategories();
+    this.getbrands();
   }
   getCategories() {
     this.rest.getCategories()
@@ -21,13 +21,27 @@ export class BrandHeaderComponent implements OnInit {
           this.categories = res;
         });
   }
-  getSubCategories() {
-    this.rest.getSubCategories()
-        .subscribe(res => {
-          console.log(res);
-          this.subcategories = res;
-        });
+  // getSubCategories() {
+  //   this.rest.getSubCategories()
+  //       .subscribe(res => {
+  //         console.log(res);
+  //         this.subcategories = res;
+  //       });
+  // }
+  getbrands(){
+    this.rest.getBrand()
+      .subscribe(res=>{
+        console.log(res);
+        this.brands=res;
+      });
   }
+  // getproducts(){
+  //   this.rest.getProducts()
+  //     .subscribe(res=>{
+  //       console.log(res);
+  //       this.products=res;
+  //     });
+  // }
   ngOnInit() {
   }
 

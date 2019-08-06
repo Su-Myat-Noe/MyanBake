@@ -1,8 +1,9 @@
-import { Productdetail } from './../services/model/productdetail';
+// import { ShoppingCartService } from './../services/shopping-cart.service';
+import { Brand } from './../services/model/brand';
+import { Category } from './../services/model/category';
 import { Product } from './../services/model/product';
 import { RestApiService } from 'src/app/services/rest-api.service';
-import { Component, OnInit } from '@angular/core';;
-
+import { Component, OnInit } from '@angular/core';
 declare let $: any;
 @Component({
   selector: 'app-shop',
@@ -11,12 +12,36 @@ declare let $: any;
 })
 export class ShopComponent implements OnInit {
   products: Product[] = [];
-  productdetails:Productdetail[]=[];
-  
+  productDesc:Product[]=[];
+  categories:Category[]=[]; 
+  brands:Brand[]=[];
+  cart=[];
+
   constructor(private rest: RestApiService) {
-this.getproductdetail();
+
     this.getProducts();
+    this.getProductdesc();  
+    this.getCategorylimit();
+    this.getshopBrand();
+
   }
+  
+   addToCart(products){
+    for(var i in this.cart){
+      if(this.cart[i][0]===products){
+        this.cart[i][1]++;
+        console.log(this.cart);
+        return;
+      }
+    }
+    let item=[products,1];
+    this.cart.push(item);
+    console.log(this.cart);
+  }
+
+
+
+
   getProducts() {
     this.rest.getProducts()
       .subscribe(res => {
@@ -24,20 +49,48 @@ this.getproductdetail();
         this.products = res;
         new Promise((resolve) => {
           this.loadScript('recommended-product');
-          resolve(true);
-           
+          resolve(true);           
         });
-
       });
   }
-
-  getproductdetail() {
-    this.rest.getProductDetails()
+  getProductdesc() {
+    this.rest.getProductDesc()
+      .subscribe(res => {
+        console.log(res);
+        this.productDesc = res;
+        new Promise((resolve) => {
+          this.loadScript('recommended-product');
+          resolve(true);           
+        });
+      });
+  }
+  getCategorylimit() {
+    this.rest.getCategorylimit()
         .subscribe(res => {
           console.log(res);
-          this.productdetails = res;
+          this.categories = res;
+          new Promise((resolve) => {
+            this.loadScript('recommended-product');
+            resolve(true);           
+          });
+        });
+  }
+  getshopBrand(){
+    this.rest.getshopBrand()
+        .subscribe(res => {
+          console.log(res);
+          this.brands = res;
+          new Promise((resolve) => {
+            this.loadScript('recommended-product');
+            resolve(true);           
+          });
         });
   } 
+//  public addToCart(product: Product[]): void {
+//   this.products(product, 1);
+// }
+
+
   ngOnInit() {
 
   }

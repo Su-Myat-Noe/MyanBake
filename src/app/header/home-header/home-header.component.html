@@ -2,23 +2,20 @@
 	<div class="container">
 		<nav>
 			<ul id="menu-top-bar-left" class="nav nav-inline pull-left animate-dropdown flip">
-				<li class="menu-item animate-dropdown"><a title="Welcome to Myan Bake Store" href="#">Welcome to
-						Myan Bake Store</a></li>
+				<li class="menu-item animate-dropdown"><a title="Welcome to Myan Bake Store" href="#">Welcome to Myan
+						Bake Store</a></li>
 			</ul>
 		</nav>
-
 		<nav>
 			<ul id="menu-top-bar-right" class="nav nav-inline pull-right animate-dropdown flip">
 				<li class="menu-item animate-dropdown"><a title="Store Locator" href="#"><i
-							class="ec ec-map-pointer"></i>Store
-						Locator</a></li>
+							class="ec ec-map-pointer"></i>Store Locator</a></li>
 				<li class="menu-item animate-dropdown"><a title="Track Your Order" routerLink="/confirm"><i
 							class="ec ec-transport"></i>Track Your Order</a></li>
 				<li class="menu-item animate-dropdown"><a title="Shop" routerLink="/shop"><i
 							class="ec ec-shopping-bag"></i>Shop</a></li>
 				<li class="menu-item animate-dropdown"><a title="My Account" routerLink="/register"><i
-							class="ec ec-user"></i>My
-						Account</a></li>
+							class="ec ec-user"></i>My Account</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -26,17 +23,12 @@
 <header id="masthead" class="site-header header-v1">
 	<div class="container">
 		<div class="row">
-
-			<!-- ============================================================= Header Logo ============================================================= -->
 			<div class="header-logo">
 				<a routerLink="/" class="header-logo-link">
 					<img src="./assets/images/logo.png" />
 				</a>
 			</div>
-			<!-- ============================================================= Header Logo : End============================================================= -->
-
 			<form class="navbar-search" method="get" action="http://transvelo.github.io/">
-				<!-- <label class="sr-only screen-reader-text" for="search">Search dfsdfdfdfsdfor:</label> -->
 				<div class="input-group">
 					<input type="text" id="search" class="form-control search-field" dir="ltr" value="" name="s"
 						placeholder="Search for products" />
@@ -55,19 +47,17 @@
 			</form>
 			<ul class="navbar-mini-cart navbar-nav animate-dropdown nav pull-right flip">
 				<li class="nav-item dropdown">
-					<a routerLink="/cart" class="nav-link" data-toggle="dropdown">
+					<a routerLink="#" class="nav-link" data-toggle="dropdown">
 						<i class="ec ec-shopping-bag"></i>
 						<span class="cart-items-count count">4</span>
-						<span class="cart-items-total-price total-price"><span
-								class="amount">&#36;1,215.00</span></span>
+						<span class="cart-items-total-price total-price">
+							<span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">£</span>2,600.00</span>
+						</span>
 					</a>
 					<ul class="dropdown-menu dropdown-menu-mini-cart">
 						<li>
 							<div class="widget_shopping_cart_content">
-
 								<ul class="cart_list product_list_widget ">
-
-
 									<li class="mini_cart_item">
 										<a title="Remove this item" class="remove" href="#">×</a>
 										<a routerLink="/itemdetail">
@@ -75,22 +65,16 @@
 												src="assets/images/products/mini-cart1.jpg" alt="">White lumia
 											9001&nbsp;
 										</a>
-
 										<span class="quantity">2 × <span class="amount">£150.00</span></span>
 									</li>
-
-
 									<li class="mini_cart_item">
 										<a title="Remove this item" class="remove" href="#">×</a>
 										<a routerLink="/itemdetail">
 											<img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image"
-												src="assets/images/products/mini-cart2.jpg" alt="">PlayStation
-											4&nbsp;
+												src="assets/images/products/mini-cart2.jpg" alt="">PlayStation 4&nbsp;
 										</a>
-
 										<span class="quantity">1 × <span class="amount">£399.99</span></span>
 									</li>
-
 									<li class="mini_cart_item">
 										<a data-product_sku="" data-product_id="34" title="Remove this item"
 											class="remove" href="#">×</a>
@@ -98,57 +82,51 @@
 											<img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image"
 												src="assets/images/products/mini-cart3.jpg" alt="">POV Action Cam
 											HDR-AS100V&nbsp;
-
 										</a>
-
 										<span class="quantity">1 × <span class="amount">£269.99</span></span>
 									</li>
-
-
-								</ul><!-- end product list -->
-
-
-								<p class="total"><strong>Subtotal:</strong> <span class="amount">£969.98</span></p>
-
-
-								<p class="buttons">
-									<a class="button wc-forward" routerLink="/cart">View Cart</a>
-									<a class="button checkout wc-forward" routerLink="/checkout">Checkout</a>
+								</ul>
+								<p class="woocommerce-mini-cart__total total">
+									<strong>Subtotal:</strong>
+									<span class="woocommerce-Price-amount amount">
+										<span class="woocommerce-Price-currencySymbol">£</span>2,600.00</span>
+								</p>
+								<p class="woocommerce-mini-cart__buttons buttons">
+									<a routerLink="/cart" class="button wc-forward">View cart</a>
+									<a routerLink="/checkout" class="button checkout wc-forward">Checkout</a>
 								</p>
 							</div>
 						</li>
 					</ul>
-				</li>
+					</li>
 			</ul>
-
-			<ul class="navbar-wishlist nav navbar-nav pull-right flip">
-				<li class="nav-item">
-					<a routerLink="/wishlist" class="nav-link"><i class="ec ec-favorites"></i></a>
-				</li>
-			</ul>
-			<ul class="navbar-compare nav navbar-nav pull-right flip">
-				<li class="nav-item">
-					<a routerLink="/compare" class="nav-link"><i class="ec ec-compare"></i></a>
-				</li>
-			</ul>
+					<ul class="navbar-wishlist nav navbar-nav pull-right flip">
+						<li class="nav-item">
+							<a routerLink="/wishlist" class="nav-link"><i class="ec ec-favorites"></i></a>
+						</li>
+					</ul>
+					<ul class="navbar-compare nav navbar-nav pull-right flip">
+						<li class="nav-item"><a routerLink="/compare" class="nav-link"><i class="ec ec-compare"></i></a>
+						</li>
+					</ul>
 		</div>
 		<div class="row">
 			<div class="col-xs-12 col-lg-3">
 				<nav>
 					<ul class="list-group vertical-menu yamm make-absolute">
 						<li class="list-group-item"><span><i class="fa fa-list-ul"></i> All Categories</span></li>
-
 						<li class="highlight menu-item animate-dropdown"><a title="Value of the Day"
 								routerLink="/deal">Value of the Day</a></li>
-
 						<li class="highlight menu-item animate-dropdown"><a title="Top 100 Offers"
-								routerLink="/brand">Top 100 Offers</a></li>
-
+								outerLink="/brand">Top 100 Offers</a></li>
 						<li class="highlight menu-item animate-dropdown"><a title="New Arrivals"
 								routerLink="/treading">New Arrivals</a></li>
 
-						<li class="yamm-tfw menu-item menu-item-has-children animate-dropdown dropdown"data-hover-pane="true" *ngFor="let category of categories">
-							<a title="{{category.name}}" data-hover="dropdown"  routerLink="#"data-toggle="dropdown" class="dropdown-toggle"aria-haspopup="true">{{category.name}}</a>
+						<li class="yamm-tfw menu-item menu-item-has-children animate-dropdown dropdown"
+							data-hover-pane="true" *ngFor="let category of categories">
+							<a title="{{category.name}}" data-hover="dropdown" routerLink="#" data-toggle="dropdown"
+								class="dropdown-toggle" aria-haspopup="true">{{category.name}}</a>
+
 							<ul role="menu" class="dropdown-menu">
 								<li class="menu-item animate-dropdown menu-item-object-static_block">
 									<div class="yamm-content">
@@ -159,7 +137,9 @@
 														<div class="wpb_single_image wpb_content_element vc_align_left">
 															<figure class="wpb_wrapper vc_figure">
 																<div class="vc_single_image-wrapper vc_box_border_grey">
-																	<img src="assets/images/cake-baking-1.png"class="vc_single_image-img attachment-full"alt="">
+																	<img src="assets/images/cake-baking-1.png"
+																		class="vc_single_image-img attachment-full"
+																		alt="">
 																</div>
 															</figure>
 														</div>
@@ -174,8 +154,10 @@
 														<div class="wpb_text_column wpb_content_element ">
 															<div class="wpb_wrapper">
 																<ul>
-																	<li class="nav-title"><em><u>{{category.name}}</u></em></li>
-																	<li><a href="#"*ngFor="let subcategory of category.subcategories"><b>{{subcategory.name}}</b></a>
+																	<li class="nav-title">
+																		<em><u>{{category.name}}</u></em></li>
+																	<li><a routerLink='/shop'
+																			*ngFor="let subcategory of category.subcategories"><b>{{subcategory.name}}</b></a>
 																	</li>
 																</ul>
 															</div>
@@ -188,10 +170,15 @@
 								</li>
 							</ul>
 						</li>
+						<li class="yamm-tfw menu-item menu-item-has-children animate-dropdown dropdown"
+							data-hover-pane="true">
+							<a title="Click to see more categoies" data-hover="dropdown"
+								routerLink="/categories"><strong>More Categories </strong></a>
+						</li>
 					</ul>
+
 				</nav>
 			</div>
-
 			<div class="col-xs-12 col-lg-9">
 				<nav>
 					<ul id="menu-secondary-nav" class="secondary-nav">

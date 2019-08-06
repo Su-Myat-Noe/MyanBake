@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
+import { CountdownModule } from 'ngx-countdown';
 import { AppComponent } from './app.component';
 import { homeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
@@ -33,8 +33,8 @@ import { TrainingComponent } from './training/training.component';
 import { TrainingDetailComponent } from './training-detail/training-detail.component';
 import { RestApiService } from './services/rest-api.service';
 import { HttpClientModule } from '@angular/common/http';
-
-
+import { ProductCategoryComponent } from './product-category/product-category.component';
+import {ShoppingCartModule} from 'ng-shopping-cart';
 @NgModule({
     declarations: [
         AppComponent,
@@ -66,11 +66,21 @@ import { HttpClientModule } from '@angular/common/http';
         BrandHeaderComponent,
         TrainingComponent,
         TrainingDetailComponent,
+        ProductCategoryComponent,
 
     ],
     imports: [
         BrowserModule,
         HttpClientModule,
+        CountdownModule,
+        ShoppingCartModule.forRoot({ // <-- Add the cart module to your root module
+            itemType: MyCartItemClass, // <-- Configuration is optional
+            serviceType: 'localStorage',
+            serviceOptions: {
+              storageKey: 'NgShoppingCart',
+              clearOnError: true
+            }
+          }), 
         RouterModule.forRoot([
             {
                 path: '',
@@ -113,7 +123,7 @@ import { HttpClientModule } from '@angular/common/http';
                 component: homeComponent
             },
             {
-                path: 'itemdetail',
+                path: 'itemdetail/:id',
                 component: ItemDetailComponent
             },
             {
@@ -167,6 +177,10 @@ import { HttpClientModule } from '@angular/common/http';
             {
                 path: 'freeship',
                 component: FreeShippingComponent
+            },
+            {
+                path: 'productcategory/:id',
+                component: ProductCategoryComponent
             }
 
         ])

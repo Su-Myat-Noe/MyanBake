@@ -5,7 +5,6 @@
 			<div id="primary" class="content-area">
 				<main id="main" class="site-main">
 					<div class="home-v1-slider">
-						<!-- ========================================== SECTION – HERO : END========================================= -->
 						<div id="owl-main" class="owl-carousel owl-inner-nav owl-ui-sm">
 							<div class="item" style="background-image: url(assets/images/slider/banner-2.jpg);">
 								<div class="container">
@@ -18,11 +17,11 @@
 												<div class="hero-action-btn fadeInDown-4">
 													<a routerLink="/shop" class="big le-button ">Start Buying</a>
 												</div>
-											</div><!-- /.caption -->
+											</div>
 										</div>
 									</div>
-								</div><!-- /.container -->
-							</div><!-- /.item -->
+								</div>
+							</div>
 							
 							<div class="item" style="background-image: url(assets/images/slider/banner-1.jpg);">
 								<div class="container">
@@ -34,12 +33,11 @@
 												<div class="hero-action-btn fadeInDown-3">
 													<a routerLink="/shop" class="big le-button ">Start Buying</a>
 												</div>
-											</div><!-- /.caption -->
+											</div>
 										</div>
 									</div>
-								</div><!-- /.container -->
-							</div><!-- /.item -->
-
+								</div>
+							</div>
 							<div class="item" style="background-image: url(assets/images/slider/banner-3.jpg);">
 								<div class="container">
 									<div class="row">
@@ -48,13 +46,13 @@
 												<div class="hero-subtitle-v2 fadeInLeft-1">shop to get what you loves</div>
 												<div class="hero-2 fadeInRight-1">Timepieces that make a statement up to <strong>40% Off</strong></div>
 												<div class="hero-action-btn fadeInLeft-2"><a routerLink="/shop" class="big le-button ">Start Buying</a></div>
-											</div><!-- /.caption -->
+											</div>
 										</div>
 									</div>
-								</div><!-- /.container -->
-							</div><!-- /.item -->
-						</div><!-- /.owl-carousel -->			
-					</div><!-- /.home-v1-slider -->
+								</div>
+							</div>
+						</div>			
+					</div>
 
 					<div class="home-v1-ads-block animate-in-view fadeIn animated" data-animation="fadeIn">
 						<div class="ads-block row">
@@ -71,7 +69,6 @@
 									</div>
 								</div>
 							</div>
-
 							<div class="ad col-xs-12 col-sm-4">
 								<div class="media">
 									<div class="media-left media-middle">
@@ -85,7 +82,6 @@
 									</div>
 								</div>
 							</div>
-
 							<div class="ad col-xs-12 col-sm-4">
 								<div class="media">
 									<div class="media-left media-middle">
@@ -99,7 +95,6 @@
 							</div>
 						</div>
 					</div>
-
 					<div class="home-v1-deals-and-tabs deals-and-tabs row animate-in-view fadeIn animated"data-animation="fadeIn">
 						<div class="deals-block col-lg-4">
 							<section class="section-onsale-product">
@@ -108,11 +103,10 @@
 									<div class="savings">
 										<span class="savings-text">Save <span class="amount">$20.00</span></span>
 									</div>
-								</header><!-- /header -->
-
+								</header>
 								<div class="onsale-products">
 									<div class="onsale-product">
-										<a routerLink="/shop">
+										<a routerLink="/itemdetail/2">
 											<div class="product-thumbnail">
 												<img class="wp-post-image" data-echo="assets/images/onsale-product.jpg"src="assets/images/blank.gif" alt="">
 											</div>
@@ -123,8 +117,7 @@
 												<ins><span class="amount">$79.00</span></ins>
 												<del><span class="amount">$99.00</span></del>
 											</span>
-										</span><!-- /.price -->
-
+										</span>
 										<div class="deal-progress">
 											<div class="deal-stock">
 												<span class="stock-sold">Already Sold:<strong>2</strong></span>
@@ -133,17 +126,16 @@
 											<div class="progress">
 												<span class="progress-bar" style="width:8%">8</span>
 											</div>
-										</div><!-- /.deal-progress -->
-
+										</div>
 										<div class="deal-countdown-timer">
 											<div class="marketing-text text-xs-center">Hurry Up! Offer ends in: </div>
-											<div id="deal-countdown" class="countdown">
+											<div  class="deal-countdown countdown">
 												<span data-value="0" class="days"><span class="value">0</span><b>Days</b></span>
 												<span class="hours"><span class="value">7</span><b>Hours</b></span>
 												<span class="minutes"><span class="value">29</span><b>Mins</b></span>
 												<span class="seconds"><span class="value">13</span><b>Secs</b></span>
 											</div>
-											<span class="deal-end-date" style="display:none;">2019-5-31</span>
+											<span class="deal-end-date" style="display:none;">2019-10-31</span>
 											<script>
 												// set the date we're counting down to
 												var deal_end_date = document.querySelector(".deal-end-date").textContent;
@@ -178,11 +170,11 @@
 
 												}, 1000);
 											</script>
-										</div><!-- /.deal-countdown-timer -->
-									</div><!-- /.onsale-product -->
-								</div><!-- /.onsale-products -->
-							</section><!-- /.section-onsale-product -->
-						</div><!-- /.col -->
+										</div>
+									</div>
+								</div>
+							</section>
+						</div>
 
 						<div class="tabs-block col-lg-8">
 							<div class="products-carousel-tabs">
@@ -196,11 +188,11 @@
 									<div class="tab-pane active" id="tab-products-1" role="tabpanel">
 										<div class="woocommerce columns-3">
 											<ul class="products columns-3">
-												<li class="product "*ngFor="let product of products">
+												<li class="product "*ngFor="let product of productAsc">
 													<div class="product-outer">
 														<div class="product-inner">
-															<span class="loop-product-categories"><a routerLink="/itemlist" rel="tag">Laptops</a></span>
-															<a routerLink="/itemdetail">
+															<span class="loop-product-categories"><a routerLink="/itemlist" rel="tag">{{product.productCategory.name}}</a></span>
+															<a routerLink="/itemdetail/{{product.id}}">
 																<h3>{{product.name}}</h3>
 																<div class="product-thumbnail">
 																	<img src="{{product.image}}" class="img-responsive" alt="">
@@ -211,11 +203,11 @@
 																<span class="price"*ngFor="let pd of product.ProductDetail">
 																	<span class="electro-price">
 																		<ins><span class="amount">${{pd.price}}</span></ins>
-																		<!-- <del><span class="amount">$2,299.00</span></del> -->
+																		<del><span class="amount">$2,299.00</span></del>
 																		<span class="amount"> </span>
 																	</span>
 																</span>
-																<a rel="nofollow" routerLink="/itemdetail"class="button add_to_cart_button">Add to cart</a>
+																<a rel="nofollow" routerLink="/itemdetail/{{product.id}}"class="button add_to_cart_button">Add to cart</a>
 															</div>
 															<div class="hover-area">
 																<div class="action-buttons">
@@ -233,11 +225,11 @@
 									<div class="tab-pane" id="tab-products-2" role="tabpanel">
 										<div class="woocommerce columns-3">
 											<ul class="products columns-3">
-												<li class="product"*ngFor="let product of products">
+												<li class="product"*ngFor="let product of productAsc">
 													<div class="product-outer">
 														<div class="product-inner">
-															<span class="loop-product-categories"><a routerLink="/itemlist" rel="tag">Smartphones</a></span>
-															<a routerLink="/itemdetail">
+															<span class="loop-product-categories"><a routerLink="/itemlist" rel="tag">{{product.productCategory.name}}</a></span>
+															<a routerLink="/itemdetail/{{product.id}}">
 																<h3>{{product.name}}</h3>
 																<div class="product-thumbnail">
 																	<img src="{{product.image}}" alt="">
@@ -247,10 +239,10 @@
 																<span class="price"*ngFor="let pd of product.ProductDetail">
 																	<span class="electro-price">
 																		<ins><span class="amount">${{pd.price}}</span></ins>
-																		<!-- <del><span class="amount">&#036;2,299.00</span></del> -->
+																		<del><span class="amount">&#036;2,299.00</span></del>
 																	</span>
 																</span>
-																<a rel="nofollow" routerLink="/itemdetail" class="button add_to_cart_button">Add to cart</a>
+																<a rel="nofollow" routerLink="/itemdetail/{{product.id}}" class="button add_to_cart_button">Add to cart</a>
 															</div><!-- /.price-add-to-cart -->
 															<div class="hover-area">
 																<div class="action-buttons">
@@ -268,25 +260,25 @@
 									<div class="tab-pane" id="tab-products-3" role="tabpanel">
 										<div class="woocommerce columns-3">
 											<ul class="products columns-3">
-												<li class="product"*ngFor="let product of products">
+												<li class="product"*ngFor="let product of productDesc">
 													<div class="product-outer">
 														<div class="product-inner">
-															<span class="loop-product-categories"><a routerLink="/itemlist" rel="tag">Laptops</a></span>
-															<a routerLink="/itemdetail">
+															<span class="loop-product-categories"><a routerLink="/itemlist" rel="tag">{{product.productCategory.name}}</a></span>
+															<a routerLink="/itemdetail/{{product.id}}">
 																<h3>{{product.name}}</h3>
 																<div class="product-thumbnail">
-																	<img src="{{product.image}}"class="img-responsive" alt="">
+																	<img src="{{product.image}}" class="img-responsive" alt="">
 																</div>
 															</a>
 															<div class="price-add-to-cart">
 																<span class="price"*ngFor="let pd of product.ProductDetail">
 																	<span class="electro-price">
 																		<ins><span class="amount">${{pd.price}}</span></ins>
-																		<!-- <del><span class="amount">$2,299.00</span></del> -->
+																		<del><span class="amount">$2,299.00</span></del>
 																		<span class="amount"></span>
 																	</span>
 																</span>
-																<a rel="nofollow" routerLink="/itemdetail"
+																<a rel="nofollow" routerLink="/itemdetail/{{product.id}}"
 																	class="button add_to_cart_button">Add
 																	to cart</a>
 															</div><!-- /.price-add-to-cart -->
@@ -321,142 +313,75 @@
 
 							<ul class="nav nav-inline nav-justified">
 
-								<li class="nav-item"><a routerLink="/shop" class="active nav-link">Best
-										Deals</a></li>
-								<li class="nav-item"><a class="nav-link" routerLink="/shop">TV &amp;
-										Audio</a></li>
-								<li class="nav-item"><a class="nav-link" routerLink="/shop">Cameras</a>
-								</li>
-								<li class="nav-item"><a class="nav-link" routerLink="/shop">Audio</a></li>
-								<li class="nav-item"><a class="nav-link" routerLink="/shop">Smartphones</a></li>
-								<li class="nav-item"><a class="nav-link" routerLink="/shop">GPS &amp;
-										Navi</a></li>
-								<li class="nav-item"><a class="nav-link" routerLink="/shop">Computers</a>
-								</li>
-								<li class="nav-item"><a class="nav-link" routerLink="/shop">Portable
-										Audio</a></li>
-								<li class="nav-item"><a class="nav-link" routerLink="/shop">Accessories</a></li>
-
+								<li class="nav-item"><a routerLink="/shop" class="active nav-link">Best Deals</a></li>
+								<li class="nav-item"*ngFor="let category of categories"><a class="nav-link" routerLink="/productcategory/{{category.id}}">{{category.name}}</a></li>								
 							</ul>
 
 
 
 							<div class="columns-2-1-2">
 								<ul class="products exclude-auto-height">
-									<li class="product">
+									<li class="product"*ngFor="let p of product">
 										<div class="product-outer">
 											<div class="product-inner">
 												<span class="loop-product-categories"><a routerLink="/itemlist"
-														rel="tag">Smartphones</a></span>
-												<a routerLink="/itemdetail">
-													<h3>Notebook Black Spire V Nitro VN7-591G</h3>
+														rel="tag">{{p.productCategory.name}}</a></span>
+												<a routerLink="/itemdetail/{{p.id}}">
+													<h3>{{p.name}}</h3>
 													<div class="product-thumbnail">
 
-														<img data-echo="assets/images/products/mini-cart1.jpg"
-															src="assets/images/blank.gif" alt="">
+														<img src="{{p.image}}" alt="">
 
 													</div>
 												</a>
-
 												<div class="price-add-to-cart">
-													<span class="price">
+													<span class="price"*ngFor="let pd of p.ProductDetail">
 														<span class="electro-price">
-															<ins><span class="amount">&#036;1,999.00</span></ins>
-															<del><span class="amount">&#036;2,299.00</span></del>
+															<ins><span class="amount">${{pd.price}}</span></ins>
+															<del><span class="amount">$2,299.00</span></del>
 														</span>
 													</span>
-													<a rel="nofollow" routerLink="/itemdetail"
-														class="button add_to_cart_button">Add to
-														cart</a>
-												</div><!-- /.price-add-to-cart -->
+													<a rel="nofollow" routerLink="/itemdetail/{{p.id}}"
+														class="button add_to_cart_button">Add to cart</a>
+												</div>
 
 												<div class="hover-area">
 													<div class="action-buttons">
-
-														<a href="#" rel="nofollow" class="add_to_wishlist">
-															Wishlist</a>
-
+														<a href="#" rel="nofollow" class="add_to_wishlist">Wishlist</a>
 														<a href="#" class="add-to-compare-link">Compare</a>
 													</div>
 												</div>
-											</div><!-- /.product-inner -->
-										</div><!-- /.product-outer -->
+											</div>
+										</div>
 									</li>
-									<li class="product">
-										<div class="product-outer">
-											<div class="product-inner">
-												<span class="loop-product-categories"><a routerLink="/itemlist"
-														rel="tag">Smartphones</a></span>
-												<a routerLink="/itemdetail">
-													<h3>Notebook Black Spire V Nitro VN7-591G</h3>
-													<div class="product-thumbnail">
-
-														<img data-echo="assets/images/products/6.jpg"
-															src="assets/images/blank.gif" alt="">
-
-													</div>
-												</a>
-
-												<div class="price-add-to-cart">
-													<span class="price">
-														<span class="electro-price">
-															<ins><span class="amount">&#036;1,999.00</span></ins>
-															<del><span class="amount">&#036;2,299.00</span></del>
-														</span>
-													</span>
-													<a rel="nofollow" routerLink="/itemdetail"
-														class="button add_to_cart_button">Add to
-														cart</a>
-												</div><!-- /.price-add-to-cart -->
-
-												<div class="hover-area">
-													<div class="action-buttons">
-
-														<a href="#" rel="nofollow" class="add_to_wishlist">
-															Wishlist</a>
-
-														<a href="#" class="add-to-compare-link">Compare</a>
-													</div>
-												</div>
-											</div><!-- /.product-inner -->
-										</div><!-- /.product-outer -->
-									</li>
+								
 								</ul>
 
 								<ul class="products exclude-auto-height product-main-2-1-2">
 									<li class="last product">
 										<div class="product-outer">
 											<div class="product-inner">
-												<span class="loop-product-categories"><a routerLink="/itemlist"
-														rel="tag">Smartphones</a></span>
-												<a routerLink="/itemdetail">
-													<h3>Notebook Black Spire V Nitro VN7-591G</h3>
+												<span class="loop-product-categories">
+												<a routerLink="/itemlist"rel="tag">{{oneProduct.productCategory.name}}</a></span>
+												<a routerLink="/itemdetail/{{oneProduct.id}}">
+													<h3>{{oneProduct.name}}</h3>
 													<div class="product-thumbnail">
-														<img class="wp-post-image"
-															data-echo="assets/images/products/s1.jpg"
-															src="assets/images/blank.gif" alt="">
-
+														<img class="wp-post-image"src="{{oneProduct.image}}" alt="">
 													</div>
 												</a>
-
 												<div class="price-add-to-cart">
 													<span class="price">
 														<span class="electro-price">
-															<ins><span class="amount">&#036;1,999.00</span></ins>
-															<del><span class="amount">&#036;2,299.00</span></del>
+															<ins><span class="amount">$1,999.00</span></ins>
+															<del><span class="amount">$2,299.00</span></del>
 														</span>
 													</span>
-													<a rel="nofollow" routerLink="/itemdetail"
-														class="button add_to_cart_button">Add to
-														cart</a>
+													<a rel="nofollow" routerLink="/itemdetail/{{oneProduct.id}}"
+														class="button add_to_cart_button">Add to cart</a>
 												</div><!-- /.price-add-to-cart -->
-
 												<div class="hover-area">
 													<div class="action-buttons">
-
-														<a href="#" rel="nofollow" class="add_to_wishlist">
-															Wishlist</a>
-
+														<a href="#" rel="nofollow" class="add_to_wishlist">Wishlist</a>
 														<a href="#" class="add-to-compare-link">Compare</a>
 													</div>
 												</div>
@@ -467,82 +392,29 @@
 								</ul>
 
 								<ul class="products exclude-auto-height">
-									<li class="product">
+									<li class="product"*ngFor="let pdes of productDescLimit">
 										<div class="product-outer">
 											<div class="product-inner">
-												<span class="loop-product-categories"><a routerLink="/itemlist"
-														rel="tag">Smartphones</a></span>
-												<a routerLink="/itemdetail">
-													<h3>Notebook Black Spire V Nitro VN7-591G</h3>
+												<span class="loop-product-categories"><a routerLink="/itemdetail/{{pdes.id}}"rel="tag">{{pdes.productCategory.name}}</a></span>
+												<a routerLink="/itemdetail/{{pdes.id}}">
+													<h3>{{pdes.name}}</h3>
 													<div class="product-thumbnail">
-
-														<img class="wp-post-image"
-															data-echo="assets/images/products/mini-cart2.jpg"
-															src="assets/images/blank.gif" alt="">
-
-
+														<img class="wp-post-image"src="{{pdes.image}}" alt="">
 													</div>
 												</a>
-
 												<div class="price-add-to-cart">
-													<span class="price">
+													<span class="price"*ngFor="let pd of pdes.ProductDetail">
 														<span class="electro-price">
-															<ins><span class="amount">&#036;1,999.00</span></ins>
-															<del><span class="amount">&#036;2,299.00</span></del>
+															<ins><span class="amount">${{pd.price}}</span></ins>
+															<del><span class="amount">$2,299.00</span></del>
 														</span>
 													</span>
-													<a rel="nofollow" routerLink="/itemdetail"
-														class="button add_to_cart_button">Add to
-														cart</a>
+													<a rel="nofollow" routerLink="/itemdetail/{{pdes.id}}"
+														class="button add_to_cart_button">Add to cart</a>
 												</div><!-- /.price-add-to-cart -->
-
 												<div class="hover-area">
 													<div class="action-buttons">
-
-														<a href="#" rel="nofollow" class="add_to_wishlist">
-															Wishlist</a>
-
-														<a href="#" class="add-to-compare-link">Compare</a>
-													</div>
-												</div>
-											</div><!-- /.product-inner -->
-										</div><!-- /.product-outer -->
-									</li>
-									<li class="product">
-										<div class="product-outer">
-											<div class="product-inner">
-												<span class="loop-product-categories"><a routerLink="/itemlist"
-														rel="tag">Smartphones</a></span>
-												<a routerLink="/itemdetail">
-													<h3>Notebook Black Spire V Nitro VN7-591G</h3>
-													<div class="product-thumbnail">
-
-														<img class="wp-post-image"
-															data-echo="assets/images/products/2.jpg"
-															src="assets/images/blank.gif" alt="">
-
-
-													</div>
-												</a>
-
-												<div class="price-add-to-cart">
-													<span class="price">
-														<span class="electro-price">
-															<ins><span class="amount">&#036;1,999.00</span></ins>
-															<del><span class="amount">&#036;2,299.00</span></del>
-														</span>
-													</span>
-													<a rel="nofollow" routerLink="/itemdetail"
-														class="button add_to_cart_button">Add to
-														cart</a>
-												</div><!-- /.price-add-to-cart -->
-
-												<div class="hover-area">
-													<div class="action-buttons">
-
-														<a href="#" rel="nofollow" class="add_to_wishlist">
-															Wishlist</a>
-
+														<a href="#" rel="nofollow" class="add_to_wishlist">Wishlist</a>
 														<a href="#" class="add-to-compare-link">Compare</a>
 													</div>
 												</div>
@@ -550,7 +422,6 @@
 										</div><!-- /.product-outer -->
 									</li>
 								</ul>
-
 							</div>
 						</div>
 					</section>
@@ -560,22 +431,7 @@
 						data-animation="fadeIn">
 
 						<header>
-
-							<h2 class="h1">Best Sellers</h2>
-
-							<ul class="nav nav-inline">
-
-								<li class="nav-item active"><span class="nav-link">Top 20</span></li>
-
-								<li class="nav-item"><a class="nav-link" routerLink="/itemlist">Smart Phones &amp;
-										Tablets</a></li>
-
-								<li class="nav-item"><a class="nav-link" routerLink="/itemlist">Laptops &amp;
-										Computers</a></li>
-
-								<li class="nav-item"><a class="nav-link" routerLink="/itemlist">Video Cameras</a>
-								</li>
-							</ul>
+							<h2 class="h1">Best Sellers</h2>							
 						</header>
 
 						<div id="home-v1-product-cards-careousel">
@@ -587,17 +443,17 @@
 										<div class="product-outer">
 											<div class="media product-inner">
 
-												<a class="media-left" routerLink="/itemdetail"
+												<a class="media-left" routerLink="/itemdetail/{{product.id}}"
 													title="Pendrive USB 3.0 Flash 64 GB">
 													<img class="media-object wp-post-image img-responsive"src="{{product.image}}" alt="">
 												</a>
 
 												<div class="media-body">
 													<span class="loop-product-categories">
-														<a routerLink="/itemlist" rel="tag">Headphone Cases</a>
+														<a routerLink="/itemlist" rel="tag">{{product.productCategory.name}}</a>
 													</span>
 
-													<a routerLink="/itemdetail">
+													<a routerLink="/itemdetail/{{product.id}}">
 														<h3>{{product.name}}</h3>
 													</a>
 
@@ -611,13 +467,9 @@
 
 														<a routerLink="/cart" class="button add_to_cart_button">Add to cart</a> 
 													</div><!-- /.price-add-to-cart -->
-
 													<div class="hover-area">
 														<div class="action-buttons">
-
-															<a href="#" class="add_to_wishlist">
-																Wishlist</a>
-
+															<a href="#" class="add_to_wishlist">Wishlist</a>
 															<a href="#" class="add-to-compare-link">Compare</a>
 														</div>
 													</div>
@@ -632,7 +484,7 @@
 										<div class="product-outer">
 											<div class="media product-inner">
 
-												<a class="media-left" routerLink="/itemdetail" title="Pendrive USB 3.0 Flash 64 GB">
+												<a class="media-left" routerLink="/itemdetail/{{product.id}}" title="Pendrive USB 3.0 Flash 64 GB">
 													<img class="media-object wp-post-image img-responsive" src="{{product.image}}"  alt="">
 												</a>
 
@@ -641,7 +493,7 @@
 														<a routerLink="/itemlist" rel="tag">Headphone Cases</a>
 													</span>
 
-													<a routerLink="/itemdetail">
+													<a routerLink="/itemdetail/{{product.id}}">
 														<h3>{{product.name}}</h3>
 													</a>
 
@@ -693,30 +545,27 @@
 						<div id="recently-added-products-carousel">
 							<div class="woocommerce columns-6">
 								<div class="products owl-carousel recently-added-products products-carousel columns-6">
-									<div class="product">
+									<div class="product"*ngFor="let product of products">
 										<div class="product-outer">
 											<div class="product-inner">
 												<span class="loop-product-categories"><a routerLink="/itemlist"
-														rel="tag">Smartphones</a></span>
-												<a routerLink="/itemdetail">
-													<h3>Laptop Yoga 21 80JH0035GE W8.1 (Copy)</h3>
+													rel="tag">{{product.productCategory.name}}</a></span>
+												<a routerLink="/itemdetail/{{product.id}}">
+													<h3>{{product.name}}</h3>
 													<div class="product-thumbnail">
-														<img src="assets/images/blank.gif"
-															data-echo="assets/images/product-category/5.jpg"
-															class="img-responsive" alt="">
+														<img src="{{product.image}}" class="img-responsive" alt="">
 													</div>
 												</a>
 
 												<div class="price-add-to-cart">
-													<span class="price">
+													<span class="price"*ngFor="let pd of product.ProductDetail">
 														<span class="electro-price">
 															<ins><span class="amount"> </span></ins>
-															<span class="amount"> $1,999.00</span>
+															<span class="amount"> ${{pd.price}}</span>
 														</span>
 													</span>
-													<a rel="nofollow" routerLink="/itemdetail"
-														class="button add_to_cart_button">Add to
-														cart</a>
+													<a rel="nofollow" routerLink="/itemdetail/{{product.id}}"
+														class="button add_to_cart_button">Add to cart</a>
 												</div><!-- /.price-add-to-cart -->
 
 												<div class="hover-area">
@@ -724,301 +573,13 @@
 
 														<a href="#" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
 
-														<a routerLink="/compare" class="add-to-compare-link">
-															Compare</a>
+														<a routerLink="/compare" class="add-to-compare-link">Compare</a>
 													</div>
 												</div>
 											</div><!-- /.product-inner -->
 										</div><!-- /.product-outer -->
 									</div><!-- /.products -->
-									<div class="product">
-										<div class="product-outer">
-											<div class="product-inner">
-												<span class="loop-product-categories"><a routerLink="/itemlist"
-														rel="tag">Smartphones</a></span>
-												<a routerLink="/itemdetail">
-													<h3>Notebook Purple G952VX-T7008T</h3>
-													<div class="product-thumbnail">
-														<img src="assets/images/blank.gif"
-															data-echo="assets/images/product-category/4.jpg"
-															class="img-responsive" alt="">
-													</div>
-												</a>
-
-												<div class="price-add-to-cart">
-													<span class="price">
-														<span class="electro-price">
-															<ins><span class="amount"> </span></ins>
-															<span class="amount"> $1,999.00</span>
-														</span>
-													</span>
-													<a rel="nofollow" routerLink="/itemdetail"
-														class="button add_to_cart_button">Add to
-														cart</a>
-												</div><!-- /.price-add-to-cart -->
-
-												<div class="hover-area">
-													<div class="action-buttons">
-
-														<a href="#" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
-
-														<a routerLink="/compare" class="add-to-compare-link">
-															Compare</a>
-													</div>
-												</div>
-											</div><!-- /.product-inner -->
-										</div><!-- /.product-outer -->
-									</div><!-- /.products -->
-
-
-
-									<div class="product">
-										<div class="product-outer">
-											<div class="product-inner">
-												<span class="loop-product-categories"><a routerLink="/itemlist"
-														rel="tag">Smartphones</a></span>
-												<a routerLink="/itemdetail">
-													<h3>Notebook Widescreen Z51-70 40K6013UPB</h3>
-													<div class="product-thumbnail">
-														<img src="assets/images/blank.gif"
-															data-echo="assets/images/product-category/3.jpg"
-															class="img-responsive" alt="">
-													</div>
-												</a>
-
-												<div class="price-add-to-cart">
-													<span class="price">
-														<span class="electro-price">
-															<ins><span class="amount">
-																	$1,999.00</span></ins>
-															<del><span class="amount">$2,299.00</span></del>
-															<span class="amount"> </span>
-														</span>
-													</span>
-													<a rel="nofollow" routerLink="/itemdetail"
-														class="button add_to_cart_button">Add to
-														cart</a>
-												</div><!-- /.price-add-to-cart -->
-
-												<div class="hover-area">
-													<div class="action-buttons">
-
-														<a href="#" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
-
-														<a routerLink="/compare" class="add-to-compare-link">
-															Compare</a>
-													</div>
-												</div>
-											</div><!-- /.product-inner -->
-										</div><!-- /.product-outer -->
-									</div><!-- /.products -->
-
-
-
-									<div class="product">
-										<div class="product-outer">
-											<div class="product-inner">
-												<span class="loop-product-categories"><a routerLink="/itemlist"
-														rel="tag">Smartphones</a></span>
-												<a routerLink="/itemdetail">
-													<h3>Smartphone 6S 128GB LTE</h3>
-													<div class="product-thumbnail">
-														<img src="assets/images/blank.gif"
-															data-echo="assets/images/product-category/6.jpg"
-															class="img-responsive" alt="">
-													</div>
-												</a>
-
-												<div class="price-add-to-cart">
-													<span class="price">
-														<span class="electro-price">
-															<ins><span class="amount"> </span></ins>
-															<span class="amount"> $200.00</span>
-														</span>
-													</span>
-													<a rel="nofollow" routerLink="/itemdetail"
-														class="button add_to_cart_button">Add to
-														cart</a>
-												</div><!-- /.price-add-to-cart -->
-
-												<div class="hover-area">
-													<div class="action-buttons">
-
-														<a href="#" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
-
-														<a routerLink="/compare" class="add-to-compare-link">
-															Compare</a>
-													</div>
-												</div>
-											</div><!-- /.product-inner -->
-										</div><!-- /.product-outer -->
-									</div><!-- /.products -->
-
-
-
-									<div class="product">
-										<div class="product-outer">
-											<div class="product-inner">
-												<span class="loop-product-categories"><a routerLink="/itemlist"
-														rel="tag">Smartphones</a></span>
-												<a routerLink="/itemdetail">
-													<h3>Tablet Thin EliteBook Revolve 810 G6</h3>
-													<div class="product-thumbnail">
-														<img src="assets/images/blank.gif"
-															data-echo="assets/images/product-category/2.jpg"
-															class="img-responsive" alt="">
-													</div>
-												</a>
-
-												<div class="price-add-to-cart">
-													<span class="price">
-														<span class="electro-price">
-															<ins><span class="amount"> </span></ins>
-															<span class="amount"> $1,999.00</span>
-														</span>
-													</span>
-													<a rel="nofollow" routerLink="/itemdetail"
-														class="button add_to_cart_button">Add to
-														cart</a>
-												</div><!-- /.price-add-to-cart -->
-
-												<div class="hover-area">
-													<div class="action-buttons">
-
-														<a href="#" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
-
-														<a routerLink="/compare" class="add-to-compare-link">
-															Compare</a>
-													</div>
-												</div>
-											</div><!-- /.product-inner -->
-										</div><!-- /.product-outer -->
-									</div><!-- /.products -->
-
-
-
-									<div class="product">
-										<div class="product-outer">
-											<div class="product-inner">
-												<span class="loop-product-categories"><a routerLink="/itemlist"
-														rel="tag">Smartphones</a></span>
-												<a routerLink="/itemdetail">
-													<h3>Notebook Purple G952VX-T7008T</h3>
-													<div class="product-thumbnail">
-														<img src="assets/images/blank.gif"
-															data-echo="assets/images/product-category/3.jpg"
-															class="img-responsive" alt="">
-													</div>
-												</a>
-
-												<div class="price-add-to-cart">
-													<span class="price">
-														<span class="electro-price">
-															<ins><span class="amount"> </span></ins>
-															<span class="amount"> $1,999.00</span>
-														</span>
-													</span>
-													<a rel="nofollow" routerLink="/itemdetail"
-														class="button add_to_cart_button">Add to
-														cart</a>
-												</div><!-- /.price-add-to-cart -->
-
-												<div class="hover-area">
-													<div class="action-buttons">
-
-														<a href="#" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
-
-														<a routerLink="/compare" class="add-to-compare-link">
-															Compare</a>
-													</div>
-												</div>
-											</div><!-- /.product-inner -->
-										</div><!-- /.product-outer -->
-									</div><!-- /.products -->
-
-
-
-									<div class="product">
-										<div class="product-outer">
-											<div class="product-inner">
-												<span class="loop-product-categories"><a routerLink="/itemlist"
-														rel="tag">Smartphones</a></span>
-												<a routerLink="/itemdetail">
-													<h3>Notebook Black Spire V Nitro VN7-591G</h3>
-													<div class="product-thumbnail">
-														<img src="assets/images/blank.gif"
-															data-echo="assets/images/product-category/1.jpg"
-															class="img-responsive" alt="">
-													</div>
-												</a>
-
-												<div class="price-add-to-cart">
-													<span class="price">
-														<span class="electro-price">
-															<ins><span class="amount"> </span></ins>
-															<span class="amount"> $1,999.00</span>
-														</span>
-													</span>
-													<a rel="nofollow" routerLink="/itemdetail"
-														class="button add_to_cart_button">Add to
-														cart</a>
-												</div><!-- /.price-add-to-cart -->
-
-												<div class="hover-area">
-													<div class="action-buttons">
-
-														<a href="#" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
-
-														<a routerLink="/compare" class="add-to-compare-link">
-															Compare</a>
-													</div>
-												</div>
-											</div><!-- /.product-inner -->
-										</div><!-- /.product-outer -->
-									</div><!-- /.products -->
-
-
-
-									<div class="product">
-										<div class="product-outer">
-											<div class="product-inner">
-												<span class="loop-product-categories"><a routerLink="/itemlist"
-														rel="tag">Smartphones</a></span>
-												<a routerLink="/itemdetail">
-													<h3>Tablet Thin EliteBook Revolve 810 G6</h3>
-													<div class="product-thumbnail">
-														<img src="assets/images/blank.gif"
-															data-echo="assets/images/product-category/2.jpg"
-															class="img-responsive" alt="">
-													</div>
-												</a>
-
-												<div class="price-add-to-cart">
-													<span class="price">
-														<span class="electro-price">
-															<ins><span class="amount">
-																	$1,999.00</span></ins>
-															<del><span class="amount">$2,299.00</span></del>
-															<span class="amount"> </span>
-														</span>
-													</span>
-													<a rel="nofollow" routerLink="/itemdetail"
-														class="button add_to_cart_button">Add to
-														cart</a>
-												</div><!-- /.price-add-to-cart -->
-
-												<div class="hover-area">
-													<div class="action-buttons">
-
-														<a href="#" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
-
-														<a routerLink="/compare" class="add-to-compare-link">
-															Compare</a>
-													</div>
-												</div>
-											</div><!-- /.product-inner -->
-										</div><!-- /.product-outer -->
-									</div><!-- /.products -->
+									
 
 
 								</div>

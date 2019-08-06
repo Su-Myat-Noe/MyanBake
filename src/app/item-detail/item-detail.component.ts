@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from './../services/model/product';
 import { RestApiService } from 'src/app/services/rest-api.service';
+import { ActivatedRoute } from '@angular/router';
+import { Router, Event,NavigationEnd} from '@angular/router';
 @Component({
   selector: 'app-item-detail',
   templateUrl: './item-detail.component.html',
@@ -8,13 +10,28 @@ import { RestApiService } from 'src/app/services/rest-api.service';
 })
 export class ItemDetailComponent implements OnInit {
 
-  products: Product[]=[];
-  constructor(private rest: RestApiService) {
+
+  products: Product[] = [];
+  productdetail: Product;
+  item: Product[] = [];
+  productLimit: Product[] = [];
+  id: any;
+  constructor(private rest: RestApiService, private route: ActivatedRoute, private router: Router) {
     new Promise((resolve) => {
       this.loadScript();
       resolve(true);
     });
-    this.getproducts();
+    
+    router.events.subscribe( (event: Event) =>{ 
+            if (event instanceof NavigationEnd) {
+              this.id = this.route.snapshot.paramMap.get("id")
+              this.getproducts();
+              this.getProductDetail(this.id);
+              this.getitem();
+              this.getprolimits();
+              window.scrollTo(0, 0);
+            }
+        });          
   }
   getproducts() {
     this.rest.getProducts()
@@ -23,12 +40,48 @@ export class ItemDetailComponent implements OnInit {
         this.products = res;
         new Promise((resolve) => {
           this.loadScript();
-          resolve(true);           
+          resolve(true);
+        });
+      });
+  }
+
+  getprolimits() {
+    this.rest.getprolimit()
+      .subscribe(res => {
+        console.log(res);
+        this.productLimit = res;
+        new Promise((resolve) => {
+          this.loadScript();
+          resolve(true);
+        });
+      });
+  }
+  getitem() {
+    this.rest.getItemlimit()
+      .subscribe(res => {
+        console.log(res);
+        this.item = res;
+        new Promise((resolve) => {
+          this.loadScript();
+          resolve(true);
+        });
+      });
+  }
+
+  getProductDetail(id: number) {
+    this.rest.getProductDetail(id)
+      .subscribe(res => {
+        console.log(res);
+        this.productdetail = res;
+        new Promise((resolve) => {
+          this.loadScript();
+          resolve(true);
         });
       });
   }
 
   ngOnInit() {
+    
   }
 
   public loadScript() {

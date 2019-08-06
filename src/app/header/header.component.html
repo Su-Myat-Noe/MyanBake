@@ -139,8 +139,7 @@
             <ul id="menu-vertical-menu" class="dropdown-menu yamm departments-menu-dropdown">
               <li class="highlight menu-item animate-dropdown active"><a title="Value of the Day"
                   routerLink="/itemlist">Value of the Day</a></li>
-              <li class="highlight menu-item animate-dropdown"><a title="Top 100 Offers" routerLink="/brand">Top
-                  100 Offers</a></li>
+              <li class="highlight menu-item animate-dropdown"><a title="Top 100 Offers" routerLink="/brand">Top 100 Offers</a></li>
               <li class="highlight menu-item animate-dropdown"><a title="New Arrivals" routerLink="/treading">New
                   Arrivals</a></li>
               <li class="yamm-tfw menu-item menu-item-has-children animate-dropdown dropdown"
@@ -157,9 +156,7 @@
                               <div class="wpb_single_image wpb_content_element vc_align_left">
                                 <figure class="wpb_wrapper vc_figure">
                                   <div class="vc_single_image-wrapper vc_box_border_grey">
-
-                                    <img src="assets/images/cake-baking-1.png"
-                                      class="vc_single_image-img attachment-full" alt="">
+                                      <img width="540" height="460" src="assets/images/cake-baking-1.png" class="vc_single_image-img attachment-full" alt="megamenu-2"/>
                                   </div>
                                 </figure>
                               </div>
@@ -175,7 +172,7 @@
                                 <div class="wpb_wrapper">
                                   <ul>
                                     <li class="nav-title"><em><u>{{category.name}}</u></em></li>
-                                    <li><a href="#"
+                                    <li><a routerLink="/shop"
                                         *ngFor="let subcategory of category.subcategories"><b>{{subcategory.name}}</b></a>
                                     </li>
                                   </ul>
@@ -188,6 +185,9 @@
                     </div>
                   </li>
                 </ul>
+              </li>
+              <li class="yamm-tfw menu-item menu-item-has-children animate-dropdown dropdown"data-hover-pane="true">
+                  <a title="Click to see more categoies" data-hover="dropdown"  routerLink="/categories"><strong>More Categories </strong></a>
               </li>
             </ul>
           </li>
@@ -212,7 +212,7 @@
         </form>
         <ul class="navbar-mini-cart navbar-nav animate-dropdown nav pull-right flip">
           <li class="nav-item dropdown">
-            <a routerLink="/cart" class="nav-link" data-toggle="dropdown">
+            <a routerLink="#" class="nav-link" data-toggle="dropdown">
               <i class="ec ec-shopping-bag"></i>
               <span class="cart-items-count count">4</span>
               <span class="cart-items-total-price total-price"><span class="amount">&#36;1,215.00</span></span>

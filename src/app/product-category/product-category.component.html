@@ -1,0 +1,276 @@
+<app-header></app-header>
+<div id="content" class="site-content" tabindex="-1">
+	<div class="container">
+		<nav class="woocommerce-breadcrumb"><a routerLink="/">Home</a><span class="delimiter"><i
+					class="fa fa-angle-right"></i></span>Smart Phones &amp; Tablets</nav>
+
+		<!-- <div id="primary" class="content-area"> -->
+			<!-- <main id="main" class="site-main"> -->
+				<header class="page-header">
+					<h1 class="page-title">Baking Machine List</h1>
+				</header>
+
+				<div class="shop-control-bar">
+					<ul class="shop-view-switcher nav nav-tabs" role="tablist">
+						<li class="nav-item"><a class="nav-link active" data-toggle="tab" title="Grid View"
+								href="#grid"><i class="fa fa-th"></i></a></li>
+						<li class="nav-item"><a class="nav-link " data-toggle="tab" title="Grid Extended View"
+								href="#grid-extended"><i class="fa fa-align-justify"></i></a></li>
+						<li class="nav-item"><a class="nav-link " data-toggle="tab" title="List View"
+								href="#list-view"><i class="fa fa-list"></i></a></li>
+						<li class="nav-item"><a class="nav-link " data-toggle="tab" title="List View Small"
+								href="#list-view-small"><i class="fa fa-th-list"></i></a></li>
+					</ul>
+					<form class="woocommerce-ordering" method="get">
+						<select name="orderby" class="orderby">
+							<option value="menu_order" selected='selected'>Default sorting</option>
+							<option value="popularity">Sort by popularity</option>
+							<option value="rating">Sort by average rating</option>
+							<option value="date">Sort by newness</option>
+							<option value="price">Sort by price: low to high</option>
+							<option value="price-desc">Sort by price: high to low</option>
+						</select>
+					</form>
+				</div>
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active" id="grid" aria-expanded="true">
+						<ul class="products columns-3">
+							<li class="product" *ngFor="let cat of catdetail.CategoryDetail">
+								<div class="product-outer">
+									<div class="product-inner">
+										<a routerLink="/itemdetail/{{cat.id}}">
+											<h3>{{cat.name}}</h3>
+											<div class="product-thumbnail">
+												<img src="{{cat.image}}" alt="">
+											</div>
+										</a>
+										<div class="price-add-to-cart">
+											<span class="price">
+												<span class="electro-price">
+													<a routerLink="/itemdetail/{{cat.id}}">
+														<ins><span class="amount">View Detail</span></ins>
+													</a>
+												</span>
+											</span>
+											<a rel="nofollow" routerLink="/itemdetail"
+												class="button add_to_cart_button">Add to cart</a>
+										</div>
+
+										<div class="hover-area">
+											<div class="action-buttons">
+												<a href="#" rel="nofollow" class="add_to_wishlist">Wishlist</a>
+												<a href="#" class="add-to-compare-link">Compare</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+
+					<div role="tabpanel" class="tab-pane" id="grid-extended" aria-expanded="true">
+						<ul class="products columns-3">
+							<li class="product" *ngFor="let cat of catdetail.CategoryDetail">
+								<div class="product-outer">
+									<div class="product-inner">
+										<!-- <span class="loop-product-categories">
+												<a routerLink="/itemdetail/{{category.id}}"rel="tag">{{product.productCategory.name}}</a>
+										</span> -->
+										<a routerLink="/itemdetail/{{cat.id}}">
+											<h3>{{cat.name}}</h3>
+											<div class="product-thumbnail">
+												<img class="wp-post-image" src="{{cat.image}}" alt="">
+											</div>
+											<div class="product-rating">
+												<div title="Rated 4 out of 5" class="star-rating"><span
+														style="width:80%"><strong class="rating">4</strong> out of
+														5</span></div> (3)
+											</div>
+
+											<div class="product-short-description">
+												<ul>
+													<li><span class="a-list-item">Intel Core i5 processors (13-inch
+															model)</span></li>
+													<li><span class="a-list-item">Intel Iris Graphics 6100 (13-inch
+															model)</span></li>
+													<li><span class="a-list-item">Flash storage</span></li>
+													<li><span class="a-list-item">Up to 10 hours of battery life2
+															(13-inch model)</span></li>
+													<li><span class="a-list-item">Force Touch trackpad (13-inch
+															model)</span></li>
+												</ul>
+											</div>
+
+											<!-- <div class="product-sku"*ngFor="let pd of product.ProductDetail">{{pd.sku}}</div> -->
+										</a>
+										<div class="price-add-to-cart">
+											<span class="price">
+												<span class="electro-price">
+													<a routerLink="/itemdetail/{{cat.id}}">
+														<ins><span class="amount">View Detail</span></ins>
+													</a>
+												</span>
+											</span>
+											<a rel="nofollow" routerLink="/itemdetail/{{cat.id}}"
+												class="button add_to_cart_button">Add to cart</a>
+										</div>
+										<div class="hover-area">
+											<div class="action-buttons">
+												<a href="#" rel="nofollow" class="add_to_wishlist">Wishlist</a>
+												<a href="#" class="add-to-compare-link">Compare</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+
+					<div role="tabpanel" class="tab-pane" id="list-view" aria-expanded="true">
+						<ul class="products columns-3">
+							<li class="product list-view" *ngFor="let cat of catdetail.CategoryDetail">
+								<div class="media">
+									<div class="media-left">
+										<a routerLink="/itemdetail/{{cat.id}}">
+											<img class="wp-post-image" src="{{cat.image}}" alt="">
+										</a>
+									</div>
+									<div class="media-body media-middle">
+										<div class="row">
+											<div class="col-xs-12">
+												<!-- <span class="loop-product-categories"><a rel="tag" href="#">{{pro.productCategory.name}}</a></span> -->
+												<a routerLink="/itemdetail/{{cat.id}}">
+													<h3>{{cat.name}}</h3>
+													<div class="product-rating">
+														<div title="Rated 4 out of 5" class="star-rating"><span
+																style="width:80%"><strong class="rating">4</strong>Out
+																of 5</span></div> (3)
+													</div>
+													<div class="product-short-description">
+														<ul style="padding-left: 18px;">
+															<li>4.5 inch HD Screen</li>
+															<li>Android 4.4 KitKat OS</li>
+															<li>1.4 GHz Quad Core&trade; Processor</li>
+															<li>20 MP front Camera</li>
+														</ul>
+													</div>
+												</a>
+											</div>
+											<div class="col-xs-12">
+												<div class="availability in-stock"> Availablity: <span>In stock</span>
+												</div>
+												<span class="price">
+													<span class="electro-price">
+														<a routerLink="/itemdetail/{{cat.id}}">
+															<ins><span class="amount">View Detail</span></ins>
+														</a>
+													</span>
+												</span>
+												<a class="button product_type_simple add_to_cart_button ajax_add_to_cart"
+													data-product_sku="5487FB8/35" data-product_id="2706"
+													data-quantity="1" routerLink="/itemdetail/{{cat.id}}"
+													rel="nofollow">Add to cart</a>
+												<div class="hover-area">
+													<div class="action-buttons">
+														<div class="yith-wcwl-add-to-wishlist add-to-wishlist-2706">
+															<a class="add_to_wishlist" data-product-type="simple"
+																data-product-id="2706" rel="nofollow"
+																href="#">Wishlist</a>
+
+															<div style="display:none;"
+																class="yith-wcwl-wishlistaddedbrowse hide">
+																<span class="feedback">Product added!</span>
+																<a rel="nofollow" href="#">Wishlist</a>
+															</div>
+
+															<div style="display:none"
+																class="yith-wcwl-wishlistexistsbrowse hide">
+																<span class="feedback">The product is already in the
+																	wishlist!</span>
+																<a rel="nofollow" href="#">Wishlist</a>
+															</div>
+
+															<div style="clear:both"></div>
+															<div class="yith-wcwl-wishlistaddresponse"></div>
+
+														</div>
+														<div class="clear"></div>
+														<a data-product_id="2706" class="add-to-compare-link"
+															href="#">Compare</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</li>
+
+						</ul>
+					</div>
+
+					<div role="tabpanel" class="tab-pane" id="list-view-small" aria-expanded="true">
+						<ul class="products columns-3">
+							<li class="product list-view list-view-small"*ngFor="let category of catdetail.CategoryDetail">
+								<div class="media">
+									<div class="media-left">
+										<a routerLink="/itemdetail/{{category.id}}">
+											<img class="wp-post-image" src="{{category.image}}" alt="">
+										</a>
+									</div>
+									<div class="media-body media-middle">
+										<div class="row">
+											<div class="col-xs-12">
+												<!-- <span class="loop-product-categories">
+													<a rel="tag"routerLink="/itemlist">{{category.productCategory.name}}</a>
+												</span> -->
+												<a routerLink="/itemlist">
+													<h3>{{category.name}}</h3>
+													<div class="product-short-description">
+														<ul style="padding-left: 18px;">
+															<li>4.5 inch HD Screen</li>
+															<li>Android 4.4 KitKat OS</li>
+															<li>1.4 GHz Quad Core&trade; Processor</li>
+															<li>20 MP front Camera</li>
+														</ul>
+													</div>
+													<div class="product-rating">
+														<div title="Rated 4 out of 5" class="star-rating">
+															<span style="width:80%"><strong class="rating">4</strong>out of 5</span></div> (3)
+														</div>
+												</a>
+											</div>
+											<div class="col-xs-12">
+												<div class="price-add-to-cart">
+													<span class="price">
+														<span class="electro-price">
+															<a routerLink="/itemdetail/{{category.id}}">
+																<ins><span class="amount">View Detail</span></ins>
+															</a>
+														</span>
+													</span>
+													<a class="button add_to_cart_button" routerLink="/cart"
+														rel="nofollow">Add to cart</a>
+												</div>
+												<div class="hover-area">
+													<div class="action-buttons">
+
+														<a href="#" rel="nofollow" class="add_to_wishlist">Wishlist</a>
+
+														<a routerLink="/compare" class="add-to-compare-link">Compare</a>
+													</div>
+												</div>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+	
+
+	</div><!-- .container -->
+</div><!-- #content -->
+<app-footer></app-footer>

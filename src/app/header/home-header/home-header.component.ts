@@ -1,4 +1,3 @@
-import { Subcategory } from './../../services/model/subcategory';
 import { Category } from './../../services/model/category';
 import { RestApiService } from 'src/app/services/rest-api.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,57 +9,74 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeHeaderComponent implements OnInit {
   categories: Category[] = [];
-  subcategories: Subcategory[]=[];
   constructor(private rest: RestApiService) {
     new Promise((resolve) => {
-      this.loadScript();
+      // this.loadScript();
       resolve(true);
     });
 
-    this.getCategories();
-    this.getSubCategories();
+    this.getCategoryheader();
   }
-  getCategories() {
-    this.rest.getCategories()
+  getCategoryheader() {
+    this.rest.getCategoryheader()
         .subscribe(res => {
-          console.log(res);
+          console.log(res);          
           this.categories = res;
+          new Promise((resolve) => {
+            this.loadScript('menu-item-has-children');
+            resolve(true);           
+          });         
         });
   }
-  getSubCategories() {
-    this.rest.getSubCategories()
-        .subscribe(res => {
-          console.log(res);
-          this.subcategories = res;
-        });
-  }
+ 
  
   ngOnInit() {
   }
 
-
-  public loadScript() {
+ public loadScript(script: string = 'electro') {
     var isFound = false;
     var scripts = document.getElementsByTagName("script")
     for (var i = 0; i < scripts.length; ++i) {
-      if (scripts[i].getAttribute('src') != null && scripts[i].getAttribute('src').includes("electro")) {
+      if (scripts[i].getAttribute('src') != null && scripts[i].getAttribute('src').includes(script)) {
         isFound = true;
       }
     }
 
-    if (!isFound) {
-      var dynamicScripts = ["../assets/js/electro.js"];
 
+    if (!isFound) {
+      var dynamicScripts = ["../assets/js/"+script+".js"];
       for (var i = 0; i < dynamicScripts.length; i++) {
         let node = document.createElement('script');
         node.src = dynamicScripts[i];
         node.type = 'text/javascript';
         node.async = false;
         node.charset = 'utf-8';
-        document.getElementsByTagName('head')[0].appendChild(node);
+        document.getElementsByTagName('body')[0].appendChild(node);
       }
-
     }
   }
+  // public loadScript() {
+  //   var isFound = false;
+  //   var scripts = document.getElementsByTagName("script")
+  //   for (var i = 0; i < scripts.length; ++i) {
+  //     if (scripts[i].getAttribute('src') != null && scripts[i].getAttribute('src').includes("electro")) {
+  //       isFound = true;
+  //     }
+  //   }
+
+  //   if (!isFound) {
+  //     var dynamicScripts = ["../assets/js/electro.js"];
+
+  //     for (var i = 0; i < dynamicScripts.length; i++) {
+  //       let node = document.createElement('script');
+  //       node.src = dynamicScripts[i];
+  //       node.type = 'text/javascript';
+  //       node.async = false;
+  //       node.charset = 'utf-8';
+  //       document.getElementsByTagName('head')[0].appendChild(node);
+  //     }
+
+  //   }
+  // }
 
 }

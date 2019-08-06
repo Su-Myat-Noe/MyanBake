@@ -1,4 +1,3 @@
-import { Category } from './category';
 export class Product{
     id: number;
     name:string;
@@ -10,8 +9,9 @@ export class Product{
     subcategory_id:number;
     brand_id: number;
     shop_id: number;
-    ProductDetail:any[]; 
-    Category:any[];
+    ProductDetail:any[];
+    productCategory:string;
+    productbrand:string;
     created_at: string;
     updated_at: string
 }

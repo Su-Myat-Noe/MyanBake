@@ -22,15 +22,15 @@
 					<div id="recommended-product">
 						<div class="woocommerce columns-4">
 							<div class="products owl-carousel products-carousel columns-4 owl-loaded owl-drag">
-								<div class="product" *ngFor="let product of products">
+								<div class="product" *ngFor="let product of products;let i=index">
 									<div class="product-outer">
 										<div class="product-inner">
 											<span class="loop-product-categories"><a routerLink="/itemlist"
-													rel="tag">Smartphones</a></span>
-											<a routerLink="/itemdetail">
+													rel="tag">{{product.productCategory.name}}</a></span>
+											<a routerLink="/itemdetail/{{product.id}}">
 												<h3>{{product.name}}</h3>
 												<div class="product-thumbnail">
-													<img src="{{product.image}}"class="img-responsive" alt="">
+													<img src="{{product.image}}"width='500px' height='500px'class="img-responsive" alt="">
 												</div>
 											</a>
 
@@ -40,9 +40,9 @@
 														<ins><span class="amount"> </span></ins>
 														<span class="amount"*ngFor="let pd of product.ProductDetail">${{pd.price}}</span>
 													</span>
-												</span>
-												<a rel="nofollow" routerLink="/itemdetail"
-													class="button add_to_cart_button">Add to cart</a>
+												</span>												
+												<a rel="nofollow" class="button add_to_cart_button"(click)="addToCart(product.id)">Add to cart</a>
+												
 											</div>
 
 											<div class="hover-area">
@@ -65,7 +65,7 @@
 				</section>
 
 				<header class="page-header">
-					<h1 class="page-title">Smart Phones &amp; Tablets</h1>
+					<h1 class="page-title">Baking Machine List</h1>
 					<p class="woocommerce-result-count">Showing 1&ndash;15 of 20 results</p>
 				</header>
 
@@ -113,64 +113,52 @@
 						</script>
 					</nav>
 				</div>
-
 				<div class="tab-content">
-
 					<div role="tabpanel" class="tab-pane active" id="grid" aria-expanded="true">
 						<ul class="products columns-3">
 							<li class="product"*ngFor="let product of products">
 								<div class="product-outer">
 									<div class="product-inner">
 										<span class="loop-product-categories"><a routerLink="/itemlist"
-												rel="tag">Smartphones</a></span>
+												rel="tag">{{product.productCategory.name}}</a></span>
 										<a routerLink="/itemdetail">
 											<h3>{{product.name}}</h3>
 											<div class="product-thumbnail">
-
-												<img src="{{product.image}}" alt="">
-
+												<img src="{{product.image}}"width='500px' height='500px' alt="">
 											</div>
 										</a>
-
 										<div class="price-add-to-cart">
 											<span class="price"*ngFor="let pd of product.ProductDetail">
 												<span class="electro-price">
 													<ins><span class="amount">${{pd.price}}</span></ins>
-													<!-- <del><span class="amount">&#036;2,299.00</span></del> -->
+													<del><span class="amount">&#036;2,299.00</span></del>
 												</span>
 											</span>
-											<a rel="nofollow" routerLink="/itemdetail"
-												class="button add_to_cart_button">Add to cart</a>
+											<a rel="nofollow"class="button add_to_cart_button"(click)="addToCart(product.id)">Add to cart</a>
 										</div>
 
 										<div class="hover-area">
 											<div class="action-buttons">
-
-												<a href="#" rel="nofollow" class="add_to_wishlist">
-													Wishlist</a>
-
+												<a href="#" rel="nofollow" class="add_to_wishlist">Wishlist</a>
 												<a href="#" class="add-to-compare-link">Compare</a>
 											</div>
 										</div>
 									</div>
 								</div>
 							</li>
-							
-
 						</ul>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="grid-extended" aria-expanded="true">
-
 						<ul class="products columns-3">
 							<li class="product"*ngFor="let product of products">
 								<div class="product-outer">
 									<div class="product-inner">
 										<span class="loop-product-categories"><a routerLink="/itemlist"
-												rel="tag">Smartphones</a></span>
-										<a routerLink="/itemdetail">
+												rel="tag">{{product.productCategory.name}}</a></span>
+										<a routerLink="/itemdetail/{{product.id}}">
 											<h3>{{product.name}}</h3>
 											<div class="product-thumbnail">
-												<img class="wp-post-image" src="{{product.image}}" alt="">
+												<img class="wp-post-image" src="{{product.image}}" width='500px' height='500px'alt="">
 											</div>
 											<div class="product-rating">
 												<div title="Rated 4 out of 5" class="star-rating"><span style="width:80%"><strong class="rating">4</strong> out of 5</span></div> (3)
@@ -196,25 +184,20 @@
 											<span class="price"*ngFor="let pd of product.ProductDetail">
 												<span class="electro-price">
 													<ins><span class="amount">${{pd.price}}</span></ins>
-													<!-- <del><span class="amount">&#036;2,299.00</span></!--> 
+													<del><span class="amount">&#036;2,299.00</span> </del>
 												</span>
 											</span>
-											<a rel="nofollow" routerLink="/itemdetail"
-												class="button add_to_cart_button">Add to cart</a>
+											<a rel="nofollow" class="button add_to_cart_button"(click)="addToCart(product.id)">Add to cart</a>
 										</div>
 										<div class="hover-area">
 											<div class="action-buttons">
-
-												<a href="#" rel="nofollow" class="add_to_wishlist">
-													Wishlist</a>
-
+												<a href="#" rel="nofollow" class="add_to_wishlist">Wishlist</a>
 												<a href="#" class="add-to-compare-link">Compare</a>
 											</div>
 										</div>
-									</div><!-- /.product-inner -->
-								</div><!-- /.product-outer -->
-							</li>
-							
+									</div>
+								</div>
+							</li>							
 						</ul>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="list-view" aria-expanded="true">
@@ -222,17 +205,17 @@
 							<li class="product list-view"*ngFor="let pro of products">
 								<div class="media">
 									<div class="media-left">
-										<a routerLink="/itemdetail">
-											<img class="wp-post-image" src="{{pro.image}}" alt="">
+										<a routerLink="/itemdetail/{{pro.id}}">
+											<img class="wp-post-image" src="{{pro.image}}"width='500px' height='500px' alt="">
 										</a>
 									</div>
 									<div class="media-body media-middle">
 										<div class="row">
 											<div class="col-xs-12">
-												<span class="loop-product-categories"><a rel="tag" href="#">Tablets</a></span><a routerLink="/itemdetail">
+												<span class="loop-product-categories"><a rel="tag" href="#">{{pro.productCategory.name}}</a></span><a routerLink="/itemdetail/{{pro.id}}">
 													<h3>{{pro.name}}</h3>
 													<div class="product-rating">
-														<div title="Rated 4 out of 5" class="star-rating"><span style="width:80%"><strong class="rating">4</strong> out of 5</span></div> (3)
+														<div title="Rated 4 out of 5" class="star-rating"><span style="width:80%"><strong class="rating">4</strong>Out of 5</span></div> (3)
 													</div>
 													<div class="product-short-description">
 														<ul style="padding-left: 18px;">
@@ -248,7 +231,7 @@
 												<div class="availability in-stock"> Availablity: <span>In stock</span> </div>
 												<span class="price"*ngFor="let pd of pro.ProductDetail"><span class="electro-price"><span class="amount">${{pd.price}}</span></span></span>
 												<a class="button product_type_simple add_to_cart_button ajax_add_to_cart"data-product_sku="5487FB8/35" data-product_id="2706"
-													data-quantity="1" routerLink="/itemdetail" rel="nofollow">Add to cart</a>
+													data-quantity="1" rel="nofollow"(click)="addToCart(pro.id)">Add to cart</a>
 												<div class="hover-area">
 													<div class="action-buttons">
 														<div class="yith-wcwl-add-to-wishlist add-to-wishlist-2706">
@@ -292,7 +275,7 @@
 							<li class="product list-view list-view-small"*ngFor="let product of products">
 								<div class="media">
 									<div class="media-left">
-										<a routerLink="/itemdetail">
+										<a routerLink="/itemdetail/{{product.id}}">
 											<img class="wp-post-image"src="{{product.image}}" alt="">
 										</a>
 									</div>
@@ -300,7 +283,7 @@
 										<div class="row">
 											<div class="col-xs-12">
 												<span class="loop-product-categories"><a rel="tag"
-														routerLink="/itemlist">Smartphones</a></span><a
+														routerLink="/itemlist">{{product.productCategory.name}}</a></span><a
 													routerLink="/itemlist">
 													<h3>{{product.name}}</h3>
 													<div class="product-short-description">
@@ -312,17 +295,19 @@
 														</ul>
 													</div>
 													<div class="product-rating">
-														<div title="Rated 4 out of 5" class="star-rating"><span
-																style="width:80%"><strong class="rating">4</strong> out of 5</span></div> (3)
+														<div title="Rated 4 out of 5" class="star-rating">
+															<span style="width:80%"><strong class="rating">4</strong> out of 5</span></div>
 													</div>
 												</a>
 											</div>
 											<div class="col-xs-12">
 												<div class="price-add-to-cart">
-													<span class="price"*ngFor="let pd of product.ProductDetail"><span class="electro-price"><span
-																class="amount">${{pd.price}}</span></span></span>
-													<a class="button add_to_cart_button" routerLink="/cart"
-														rel="nofollow">Add to cart</a>
+													<span class="price"*ngFor="let pd of product.ProductDetail">
+														<span class="electro-price">
+															<span class="amount">${{pd.price}}</span>
+														</span>
+													</span>
+													<a class="button add_to_cart_button"rel="nofollow"(click)="addToCart(product.id)">Add to cart</a>
 												</div>
 												<div class="hover-area">
 													<div class="action-buttons">
@@ -337,721 +322,7 @@
 										</div>
 									</div>
 								</div>
-							</li>
-							<!-- <li class="product list-view list-view-small">
-								<div class="media">
-									<div class="media-left">
-										<a routerLink="/itemdetail">
-											<img class="wp-post-image" data-echo="assets/images/products/2.jpg"
-												src="assets/images/blank.gif" alt="">
-										</a>
-									</div>
-									<div class="media-body media-middle">
-										<div class="row">
-											<div class="col-xs-12">
-												<span class="loop-product-categories"><a rel="tag"
-														routerLink="/itemlist">Smartphones</a></span><a
-													routerLink="/itemlist">
-													<h3>Ultrabook UX605CA-FC050T</h3>
-													<div class="product-short-description">
-														<ul style="padding-left: 18px;">
-															<li>4.5 inch HD Screen</li>
-															<li>Android 4.4 KitKat OS</li>
-															<li>1.4 GHz Quad Core&trade; Processor</li>
-															<li>20 MP front Camera</li>
-														</ul>
-													</div>
-													<div class="product-rating">
-														<div title="Rated 4 out of 5" class="star-rating"><span
-																style="width:80%"><strong class="rating">4</strong> out
-																of 5</span></div> (3)
-													</div>
-												</a>
-											</div>
-											<div class="col-xs-12">
-												<div class="price-add-to-cart">
-													<span class="price"><span class="electro-price"><span
-																class="amount">$1,218.00</span></span></span>
-													<a class="button add_to_cart_button" routerLink="/cart"
-														rel="nofollow">Add to cart</a>
-												</div>
-												<div class="hover-area">
-													<div class="action-buttons">
-
-														<a href="#" rel="nofollow" class="add_to_wishlist">Wishlist</a>
-
-														<a routerLink="/compare" class="add-to-compare-link">Compare</a>
-													</div>
-												</div>
-
-											</div>
-										</div>
-									</div>
-								</div>
-							</li>
-							<li class="product list-view list-view-small">
-								<div class="media">
-									<div class="media-left">
-										<a routerLink="/itemdetail">
-											<img class="wp-post-image" data-echo="assets/images/products/3.jpg"
-												src="assets/images/blank.gif" alt="">
-										</a>
-									</div>
-									<div class="media-body media-middle">
-										<div class="row">
-											<div class="col-xs-12">
-												<span class="loop-product-categories"><a rel="tag"
-														routerLink="/itemlist">Smartphones</a></span><a
-													routerLink="/itemlist">
-													<h3>Ultrabook UX605CA-FC050T</h3>
-													<div class="product-short-description">
-														<ul style="padding-left: 18px;">
-															<li>4.5 inch HD Screen</li>
-															<li>Android 4.4 KitKat OS</li>
-															<li>1.4 GHz Quad Core&trade; Processor</li>
-															<li>20 MP front Camera</li>
-														</ul>
-													</div>
-													<div class="product-rating">
-														<div title="Rated 4 out of 5" class="star-rating"><span
-																style="width:80%"><strong class="rating">4</strong> out
-																of 5</span></div> (3)
-													</div>
-												</a>
-											</div>
-											<div class="col-xs-12">
-												<div class="price-add-to-cart">
-													<span class="price"><span class="electro-price"><span
-																class="amount">$1,218.00</span></span></span>
-													<a class="button add_to_cart_button" routerLink="/cart"
-														rel="nofollow">Add to cart</a>
-												</div>
-												<div class="hover-area">
-													<div class="action-buttons">
-
-														<a href="#" rel="nofollow" class="add_to_wishlist">Wishlist</a>
-
-														<a routerLink="/compare" class="add-to-compare-link">Compare</a>
-													</div>
-												</div>
-
-											</div>
-										</div>
-									</div>
-								</div>
-							</li>
-							<li class="product list-view list-view-small">
-								<div class="media">
-									<div class="media-left">
-										<a routerLink="/itemdetail">
-											<img class="wp-post-image" data-echo="assets/images/products/4.jpg"
-												src="assets/images/blank.gif" alt="">
-										</a>
-									</div>
-									<div class="media-body media-middle">
-										<div class="row">
-											<div class="col-xs-12">
-												<span class="loop-product-categories"><a rel="tag"
-														routerLink="/itemlist">Smartphones</a></span><a
-													routerLink="/itemlist">
-													<h3>Ultrabook UX605CA-FC050T</h3>
-													<div class="product-short-description">
-														<ul style="padding-left: 18px;">
-															<li>4.5 inch HD Screen</li>
-															<li>Android 4.4 KitKat OS</li>
-															<li>1.4 GHz Quad Core&trade; Processor</li>
-															<li>20 MP front Camera</li>
-														</ul>
-													</div>
-													<div class="product-rating">
-														<div title="Rated 4 out of 5" class="star-rating"><span
-																style="width:80%"><strong class="rating">4</strong> out
-																of 5</span></div> (3)
-													</div>
-												</a>
-											</div>
-											<div class="col-xs-12">
-												<div class="price-add-to-cart">
-													<span class="price"><span class="electro-price"><span
-																class="amount">$1,218.00</span></span></span>
-													<a class="button add_to_cart_button" routerLink="/cart"
-														rel="nofollow">Add to cart</a>
-												</div>
-												<div class="hover-area">
-													<div class="action-buttons">
-
-														<a href="#" rel="nofollow" class="add_to_wishlist">Wishlist</a>
-
-														<a routerLink="/compare" class="add-to-compare-link">Compare</a>
-													</div>
-												</div>
-
-											</div>
-										</div>
-									</div>
-								</div>
-							</li>
-							<li class="product list-view list-view-small">
-								<div class="media">
-									<div class="media-left">
-										<a routerLink="/itemdetail">
-											<img class="wp-post-image" data-echo="assets/images/products/5.jpg"
-												src="assets/images/blank.gif" alt="">
-										</a>
-									</div>
-									<div class="media-body media-middle">
-										<div class="row">
-											<div class="col-xs-12">
-												<span class="loop-product-categories"><a rel="tag"
-														routerLink="/itemlist">Smartphones</a></span><a
-													routerLink="/itemlist">
-													<h3>Ultrabook UX605CA-FC050T</h3>
-													<div class="product-short-description">
-														<ul style="padding-left: 18px;">
-															<li>4.5 inch HD Screen</li>
-															<li>Android 4.4 KitKat OS</li>
-															<li>1.4 GHz Quad Core&trade; Processor</li>
-															<li>20 MP front Camera</li>
-														</ul>
-													</div>
-													<div class="product-rating">
-														<div title="Rated 4 out of 5" class="star-rating"><span
-																style="width:80%"><strong class="rating">4</strong> out
-																of 5</span></div> (3)
-													</div>
-												</a>
-											</div>
-											<div class="col-xs-12">
-												<div class="price-add-to-cart">
-													<span class="price"><span class="electro-price"><span
-																class="amount">$1,218.00</span></span></span>
-													<a class="button add_to_cart_button" routerLink="/cart"
-														rel="nofollow">Add to cart</a>
-												</div>
-												<div class="hover-area">
-													<div class="action-buttons">
-
-														<a href="#" rel="nofollow" class="add_to_wishlist">Wishlist</a>
-
-														<a routerLink="/compare" class="add-to-compare-link">Compare</a>
-													</div>
-												</div>
-
-											</div>
-										</div>
-									</div>
-								</div>
-							</li>
-							<li class="product list-view list-view-small">
-								<div class="media">
-									<div class="media-left">
-										<a routerLink="/itemdetail">
-											<img class="wp-post-image" data-echo="assets/images/products/6.jpg"
-												src="assets/images/blank.gif" alt="">
-										</a>
-									</div>
-									<div class="media-body media-middle">
-										<div class="row">
-											<div class="col-xs-12">
-												<span class="loop-product-categories"><a rel="tag"
-														routerLink="/itemlist">Smartphones</a></span><a
-													routerLink="/itemlist">
-													<h3>Ultrabook UX605CA-FC050T</h3>
-													<div class="product-short-description">
-														<ul style="padding-left: 18px;">
-															<li>4.5 inch HD Screen</li>
-															<li>Android 4.4 KitKat OS</li>
-															<li>1.4 GHz Quad Core&trade; Processor</li>
-															<li>20 MP front Camera</li>
-														</ul>
-													</div>
-													<div class="product-rating">
-														<div title="Rated 4 out of 5" class="star-rating"><span
-																style="width:80%"><strong class="rating">4</strong> out
-																of 5</span></div> (3)
-													</div>
-												</a>
-											</div>
-											<div class="col-xs-12">
-												<div class="price-add-to-cart">
-													<span class="price"><span class="electro-price"><span
-																class="amount">$1,218.00</span></span></span>
-													<a class="button add_to_cart_button" routerLink="/cart"
-														rel="nofollow">Add to cart</a>
-												</div>
-												<div class="hover-area">
-													<div class="action-buttons">
-
-														<a href="#" rel="nofollow" class="add_to_wishlist">Wishlist</a>
-
-														<a routerLink="/compare" class="add-to-compare-link">Compare</a>
-													</div>
-												</div>
-
-											</div>
-										</div>
-									</div>
-								</div>
-							</li>
-							<li class="product list-view list-view-small">
-								<div class="media">
-									<div class="media-left">
-										<a routerLink="/itemdetail">
-											<img class="wp-post-image" data-echo="assets/images/products/4.jpg"
-												src="assets/images/blank.gif" alt="">
-										</a>
-									</div>
-									<div class="media-body media-middle">
-										<div class="row">
-											<div class="col-xs-12">
-												<span class="loop-product-categories"><a rel="tag"
-														routerLink="/itemlist">Smartphones</a></span><a
-													routerLink="/itemlist">
-													<h3>Ultrabook UX605CA-FC050T</h3>
-													<div class="product-short-description">
-														<ul style="padding-left: 18px;">
-															<li>4.5 inch HD Screen</li>
-															<li>Android 4.4 KitKat OS</li>
-															<li>1.4 GHz Quad Core&trade; Processor</li>
-															<li>20 MP front Camera</li>
-														</ul>
-													</div>
-													<div class="product-rating">
-														<div title="Rated 4 out of 5" class="star-rating"><span
-																style="width:80%"><strong class="rating">4</strong> out
-																of 5</span></div> (3)
-													</div>
-												</a>
-											</div>
-											<div class="col-xs-12">
-												<div class="price-add-to-cart">
-													<span class="price"><span class="electro-price"><span
-																class="amount">$1,218.00</span></span></span>
-													<a class="button add_to_cart_button" routerLink="/cart"
-														rel="nofollow">Add to cart</a>
-												</div>
-												<div class="hover-area">
-													<div class="action-buttons">
-
-														<a href="#" rel="nofollow" class="add_to_wishlist">Wishlist</a>
-
-														<a routerLink="/compare" class="add-to-compare-link">Compare</a>
-													</div>
-												</div>
-
-											</div>
-										</div>
-									</div>
-								</div>
-							</li>
-							<li class="product list-view list-view-small">
-								<div class="media">
-									<div class="media-left">
-										<a routerLink="/itemdetail">
-											<img class="wp-post-image" data-echo="assets/images/products/2.jpg"
-												src="assets/images/blank.gif" alt="">
-										</a>
-									</div>
-									<div class="media-body media-middle">
-										<div class="row">
-											<div class="col-xs-12">
-												<span class="loop-product-categories"><a rel="tag"
-														routerLink="/itemlist">Smartphones</a></span><a
-													routerLink="/itemlist">
-													<h3>Ultrabook UX605CA-FC050T</h3>
-													<div class="product-short-description">
-														<ul style="padding-left: 18px;">
-															<li>4.5 inch HD Screen</li>
-															<li>Android 4.4 KitKat OS</li>
-															<li>1.4 GHz Quad Core&trade; Processor</li>
-															<li>20 MP front Camera</li>
-														</ul>
-													</div>
-													<div class="product-rating">
-														<div title="Rated 4 out of 5" class="star-rating"><span
-																style="width:80%"><strong class="rating">4</strong> out
-																of 5</span></div> (3)
-													</div>
-												</a>
-											</div>
-											<div class="col-xs-12">
-												<div class="price-add-to-cart">
-													<span class="price"><span class="electro-price"><span
-																class="amount">$1,218.00</span></span></span>
-													<a class="button add_to_cart_button" routerLink="/cart"
-														rel="nofollow">Add to cart</a>
-												</div>
-												<div class="hover-area">
-													<div class="action-buttons">
-
-														<a href="#" rel="nofollow" class="add_to_wishlist">Wishlist</a>
-
-														<a routerLink="/compare" class="add-to-compare-link">Compare</a>
-													</div>
-												</div>
-
-											</div>
-										</div>
-									</div>
-								</div>
-							</li>
-							<li class="product list-view list-view-small">
-								<div class="media">
-									<div class="media-left">
-										<a routerLink="/itemdetail">
-											<img class="wp-post-image" data-echo="assets/images/products/5.jpg"
-												src="assets/images/blank.gif" alt="">
-										</a>
-									</div>
-									<div class="media-body media-middle">
-										<div class="row">
-											<div class="col-xs-12">
-												<span class="loop-product-categories"><a rel="tag"
-														routerLink="/itemlist">Smartphones</a></span><a
-													routerLink="/itemlist">
-													<h3>Ultrabook UX605CA-FC050T</h3>
-													<div class="product-short-description">
-														<ul style="padding-left: 18px;">
-															<li>4.5 inch HD Screen</li>
-															<li>Android 4.4 KitKat OS</li>
-															<li>1.4 GHz Quad Core&trade; Processor</li>
-															<li>20 MP front Camera</li>
-														</ul>
-													</div>
-													<div class="product-rating">
-														<div title="Rated 4 out of 5" class="star-rating"><span
-																style="width:80%"><strong class="rating">4</strong> out
-																of 5</span></div> (3)
-													</div>
-												</a>
-											</div>
-											<div class="col-xs-12">
-												<div class="price-add-to-cart">
-													<span class="price"><span class="electro-price"><span
-																class="amount">$1,218.00</span></span></span>
-													<a class="button add_to_cart_button" routerLink="/cart"
-														rel="nofollow">Add to cart</a>
-												</div>
-												<div class="hover-area">
-													<div class="action-buttons">
-
-														<a href="#" rel="nofollow" class="add_to_wishlist">Wishlist</a>
-
-														<a routerLink="/compare" class="add-to-compare-link">Compare</a>
-													</div>
-												</div>
-
-											</div>
-										</div>
-									</div>
-								</div>
-							</li>
-							<li class="product list-view list-view-small">
-								<div class="media">
-									<div class="media-left">
-										<a routerLink="/itemdetail">
-											<img class="wp-post-image" data-echo="assets/images/products/1.jpg"
-												src="assets/images/blank.gif" alt="">
-										</a>
-									</div>
-									<div class="media-body media-middle">
-										<div class="row">
-											<div class="col-xs-12">
-												<span class="loop-product-categories"><a rel="tag"
-														routerLink="/itemlist">Smartphones</a></span><a
-													routerLink="/itemlist">
-													<h3>Ultrabook UX605CA-FC050T</h3>
-													<div class="product-short-description">
-														<ul style="padding-left: 18px;">
-															<li>4.5 inch HD Screen</li>
-															<li>Android 4.4 KitKat OS</li>
-															<li>1.4 GHz Quad Core&trade; Processor</li>
-															<li>20 MP front Camera</li>
-														</ul>
-													</div>
-													<div class="product-rating">
-														<div title="Rated 4 out of 5" class="star-rating"><span
-																style="width:80%"><strong class="rating">4</strong> out
-																of 5</span></div> (3)
-													</div>
-												</a>
-											</div>
-											<div class="col-xs-12">
-												<div class="price-add-to-cart">
-													<span class="price"><span class="electro-price"><span
-																class="amount">$1,218.00</span></span></span>
-													<a class="button add_to_cart_button" routerLink="/cart"
-														rel="nofollow">Add to cart</a>
-												</div>
-												<div class="hover-area">
-													<div class="action-buttons">
-
-														<a href="#" rel="nofollow" class="add_to_wishlist">Wishlist</a>
-
-														<a routerLink="/compare" class="add-to-compare-link">Compare</a>
-													</div>
-												</div>
-
-											</div>
-										</div>
-									</div>
-								</div>
-							</li>
-							<li class="product list-view list-view-small">
-								<div class="media">
-									<div class="media-left">
-										<a routerLink="/itemdetail">
-											<img class="wp-post-image" data-echo="assets/images/products/6.jpg"
-												src="assets/images/blank.gif" alt="">
-										</a>
-									</div>
-									<div class="media-body media-middle">
-										<div class="row">
-											<div class="col-xs-12">
-												<span class="loop-product-categories"><a rel="tag"
-														routerLink="/itemlist">Smartphones</a></span><a
-													routerLink="/itemlist">
-													<h3>Ultrabook UX605CA-FC050T</h3>
-													<div class="product-short-description">
-														<ul style="padding-left: 18px;">
-															<li>4.5 inch HD Screen</li>
-															<li>Android 4.4 KitKat OS</li>
-															<li>1.4 GHz Quad Core&trade; Processor</li>
-															<li>20 MP front Camera</li>
-														</ul>
-													</div>
-													<div class="product-rating">
-														<div title="Rated 4 out of 5" class="star-rating"><span
-																style="width:80%"><strong class="rating">4</strong> out
-																of 5</span></div> (3)
-													</div>
-												</a>
-											</div>
-											<div class="col-xs-12">
-												<div class="price-add-to-cart">
-													<span class="price"><span class="electro-price"><span
-																class="amount">$1,218.00</span></span></span>
-													<a class="button add_to_cart_button" routerLink="/cart"
-														rel="nofollow">Add to cart</a>
-												</div>
-												<div class="hover-area">
-													<div class="action-buttons">
-
-														<a href="#" rel="nofollow" class="add_to_wishlist">Wishlist</a>
-
-														<a routerLink="/compare" class="add-to-compare-link">Compare</a>
-													</div>
-												</div>
-
-											</div>
-										</div>
-									</div>
-								</div>
-							</li>
-							<li class="product list-view list-view-small">
-								<div class="media">
-									<div class="media-left">
-										<a routerLink="/itemdetail">
-											<img class="wp-post-image" data-echo="assets/images/products/3.jpg"
-												src="assets/images/blank.gif" alt="">
-										</a>
-									</div>
-									<div class="media-body media-middle">
-										<div class="row">
-											<div class="col-xs-12">
-												<span class="loop-product-categories"><a rel="tag"
-														routerLink="/itemlist">Smartphones</a></span><a
-													routerLink="/itemlist">
-													<h3>Ultrabook UX605CA-FC050T</h3>
-													<div class="product-short-description">
-														<ul style="padding-left: 18px;">
-															<li>4.5 inch HD Screen</li>
-															<li>Android 4.4 KitKat OS</li>
-															<li>1.4 GHz Quad Core&trade; Processor</li>
-															<li>20 MP front Camera</li>
-														</ul>
-													</div>
-													<div class="product-rating">
-														<div title="Rated 4 out of 5" class="star-rating"><span
-																style="width:80%"><strong class="rating">4</strong> out
-																of 5</span></div> (3)
-													</div>
-												</a>
-											</div>
-											<div class="col-xs-12">
-												<div class="price-add-to-cart">
-													<span class="price"><span class="electro-price"><span
-																class="amount">$1,218.00</span></span></span>
-													<a class="button add_to_cart_button" routerLink="/cart"
-														rel="nofollow">Add to cart</a>
-												</div>
-												<div class="hover-area">
-													<div class="action-buttons">
-
-														<a href="#" rel="nofollow" class="add_to_wishlist">Wishlist</a>
-
-														<a routerLink="/compare" class="add-to-compare-link">Compare</a>
-													</div>
-												</div>
-
-											</div>
-										</div>
-									</div>
-								</div>
-							</li>
-							<li class="product list-view list-view-small">
-								<div class="media">
-									<div class="media-left">
-										<a routerLink="/itemdetail">
-											<img class="wp-post-image" data-echo="assets/images/products/5.jpg"
-												src="assets/images/blank.gif" alt="">
-										</a>
-									</div>
-									<div class="media-body media-middle">
-										<div class="row">
-											<div class="col-xs-12">
-												<span class="loop-product-categories"><a rel="tag"
-														routerLink="/itemlist">Smartphones</a></span><a
-													routerLink="/itemlist">
-													<h3>Ultrabook UX605CA-FC050T</h3>
-													<div class="product-short-description">
-														<ul style="padding-left: 18px;">
-															<li>4.5 inch HD Screen</li>
-															<li>Android 4.4 KitKat OS</li>
-															<li>1.4 GHz Quad Core&trade; Processor</li>
-															<li>20 MP front Camera</li>
-														</ul>
-													</div>
-													<div class="product-rating">
-														<div title="Rated 4 out of 5" class="star-rating"><span
-																style="width:80%"><strong class="rating">4</strong> out
-																of 5</span></div> (3)
-													</div>
-												</a>
-											</div>
-											<div class="col-xs-12">
-												<div class="price-add-to-cart">
-													<span class="price"><span class="electro-price"><span
-																class="amount">$1,218.00</span></span></span>
-													<a class="button add_to_cart_button" routerLink="/cart"
-														rel="nofollow">Add to cart</a>
-												</div>
-												<div class="hover-area">
-													<div class="action-buttons">
-
-														<a href="#" rel="nofollow" class="add_to_wishlist">Wishlist</a>
-
-														<a routerLink="/compare" class="add-to-compare-link">Compare</a>
-													</div>
-												</div>
-
-											</div>
-										</div>
-									</div>
-								</div>
-							</li>
-							<li class="product list-view list-view-small">
-								<div class="media">
-									<div class="media-left">
-										<a routerLink="/itemdetail">
-											<img class="wp-post-image" data-echo="assets/images/products/4.jpg"
-												src="assets/images/blank.gif" alt="">
-										</a>
-									</div>
-									<div class="media-body media-middle">
-										<div class="row">
-											<div class="col-xs-12">
-												<span class="loop-product-categories"><a rel="tag"
-														routerLink="/itemlist">Smartphones</a></span><a
-													routerLink="/itemlist">
-													<h3>Ultrabook UX605CA-FC050T</h3>
-													<div class="product-short-description">
-														<ul style="padding-left: 18px;">
-															<li>4.5 inch HD Screen</li>
-															<li>Android 4.4 KitKat OS</li>
-															<li>1.4 GHz Quad Core&trade; Processor</li>
-															<li>20 MP front Camera</li>
-														</ul>
-													</div>
-													<div class="product-rating">
-														<div title="Rated 4 out of 5" class="star-rating"><span
-																style="width:80%"><strong class="rating">4</strong> out
-																of 5</span></div> (3)
-													</div>
-												</a>
-											</div>
-											<div class="col-xs-12">
-												<div class="price-add-to-cart">
-													<span class="price"><span class="electro-price"><span
-																class="amount">$1,218.00</span></span></span>
-													<a class="button add_to_cart_button" routerLink="/cart"
-														rel="nofollow">Add to cart</a>
-												</div>
-												<div class="hover-area">
-													<div class="action-buttons">
-
-														<a href="#" rel="nofollow" class="add_to_wishlist">Wishlist</a>
-
-														<a routerLink="/compare" class="add-to-compare-link">Compare</a>
-													</div>
-												</div>
-
-											</div>
-										</div>
-									</div>
-								</div>
-							</li>
-							<li class="product list-view list-view-small">
-								<div class="media">
-									<div class="media-left">
-										<a routerLink="/itemdetail">
-											<img class="wp-post-image" data-echo="assets/images/products/2.jpg"
-												src="assets/images/blank.gif" alt="">
-										</a>
-									</div>
-									<div class="media-body media-middle">
-										<div class="row">
-											<div class="col-xs-12">
-												<span class="loop-product-categories"><a rel="tag"
-														routerLink="/itemlist">Smartphones</a></span><a
-													routerLink="/itemlist">
-													<h3>Ultrabook UX605CA-FC050T</h3>
-													<div class="product-short-description">
-														<ul style="padding-left: 18px;">
-															<li>4.5 inch HD Screen</li>
-															<li>Android 4.4 KitKat OS</li>
-															<li>1.4 GHz Quad Core&trade; Processor</li>
-															<li>20 MP front Camera</li>
-														</ul>
-													</div>
-													<div class="product-rating">
-														<div title="Rated 4 out of 5" class="star-rating"><span
-																style="width:80%"><strong class="rating">4</strong> out
-																of 5</span></div> (3)
-													</div>
-												</a>
-											</div>
-											<div class="col-xs-12">
-												<div class="price-add-to-cart">
-													<span class="price"><span class="electro-price"><span
-																class="amount">$1,218.00</span></span></span>
-													<a class="button add_to_cart_button" routerLink="/cart"
-														rel="nofollow">Add to cart</a>
-												</div>
-												<div class="hover-area">
-													<div class="action-buttons">
-
-														<a href="#" rel="nofollow" class="add_to_wishlist">Wishlist</a>
-
-														<a routerLink="/compare" class="add-to-compare-link">Compare</a>
-													</div>
-												</div>
-
-											</div>
-										</div>
-									</div>
-								</div>
-							</li> -->
+							</li>							
 						</ul>
 					</div>
 				</div>
@@ -1080,27 +351,9 @@
 				<ul class="product-categories category-single">
 					<li class="product_cat">
 						<ul>
-							<li class="cat-item current-cat"><a href="product-category.html">Laptops &amp; Computers</a>
-								<span class="count">(13)</span>
-								<ul class='children'>
-									<li class="cat-item"><a href="product-category.html">Laptops</a> <span
-											class="count">(6)</span></li>
-									<li class="cat-item"><a href="product-category.html">Ultrabooks</a> <span
-											class="count">(1)</span></li>
-									<li class="cat-item"><a href="product-category.html">Computers</a> <span
-											class="count">(0)</span></li>
-									<li class="cat-item"><a href="product-category.html">Mac Computers</a> <span
-											class="count">(1)</span></li>
-									<li class="cat-item"><a href="product-category.html">All in One</a> <span
-											class="count">(1)</span></li>
-									<li class="cat-item"><a href="product-category.html">Servers</a> <span
-											class="count">(1)</span></li>
-									<li class="cat-item"><a href="product-category.html">Peripherals</a> <span
-											class="count">(1)</span></li>
-									<li class="cat-item"><a href="product-category.html">Gaming</a> <span
-											class="count">(1)</span></li>
-									<li class="cat-item"><a href="product-category.html">Accessories</a> <span
-											class="count">(2)</span></li>
+							<li class="cat-item current-cat"><a routerLink="product-category.html">Categories</a>
+								<ul class='children'*ngFor="let category of categories">
+									<li class="cat-item"><a routerLink="product-category.html">{{category.name}}</a></li>									
 								</ul>
 							</li>
 						</ul>
@@ -1111,14 +364,10 @@
 				<h3 class="widget-title">Filters</h3>
 				<aside class="widget woocommerce widget_layered_nav">
 					<h3 class="widget-title">Brands</h3>
-					<ul>
-						<li style=""><a href="#">Apple</a> <span class="count">(4)</span></li>
-						<li style=""><a href="#">Gionee</a> <span class="count">(2)</span></li>
-						<li style=""><a href="#">HTC</a> <span class="count">(2)</span></li>
-						<li style=""><a href="#">LG</a> <span class="count">(2)</span></li>
-						<li style=""><a href="#">Micromax</a> <span class="count">(1)</span></li>
+					<ul >
+						<li style=""*ngFor="let brand of brands"><a href="#">{{brand.name}}</a></li>						
 					</ul>
-					<p class="maxlist-more"><a href="#">+ Show more</a></p>
+					<p class="maxlist-more"><a routerLink="/brand">+ Show more</a></p>
 				</aside>
 				<aside class="widget woocommerce widget_layered_nav">
 					<h3 class="widget-title">Color</h3>
@@ -1135,8 +384,7 @@
 					<h3 class="widget-title">Price</h3>
 					<form action="#">
 						<div class="price_slider_wrapper">
-							<div style=""
-								class="price_slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+							<div style=""class="price_slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
 								<div class="ui-slider-range ui-widget-header ui-corner-all"
 									style="left: 0%; width: 100%;"></div>
 								<span tabindex="0" class="ui-slider-handle ui-state-default ui-corner-all"
@@ -1163,41 +411,16 @@
 			<aside class="widget widget_products">
 				<h3 class="widget-title">Latest Products</h3>
 				<ul class="product_list_widget">
-					<li>
-						<a href="single-product.html" title="Notebook Black Spire V Nitro  VN7-591G">
-							<img width="180" height="180" src="assets/images/product-category/1.jpg" alt=""
-								class="wp-post-image" /><span class="product-title">Notebook Black Spire V Nitro
-								VN7-591G</span>
-						</a>
-						<span class="electro-price"><ins><span class="amount">&#36;1,999.00</span></ins> <del><span
-									class="amount">&#36;2,299.00</span></del></span>
-					</li>
-
-					<li>
-						<a href="single-product.html" title="Tablet Thin EliteBook  Revolve 810 G6">
-							<img width="180" height="180" src="assets/images/product-category/2.jpg" alt=""
-								class="wp-post-image" /><span class="product-title">Tablet Thin EliteBook Revolve 810
-								G6</span>
-						</a>
-						<span class="electro-price"><span class="amount">&#36;1,300.00</span></span>
-					</li>
-
-					<li>
-						<a href="single-product.html" title="Notebook Widescreen Z51-70  40K6013UPB">
-							<img width="180" height="180" src="assets/images/product-category/3.jpg" alt=""
-								class="wp-post-image" /><span class="product-title">Notebook Widescreen Z51-70
-								40K6013UPB</span>
-						</a>
-						<span class="electro-price"><span class="amount">&#36;1,100.00</span></span>
-					</li>
-
-					<li>
-						<a href="single-product.html" title="Notebook Purple G952VX-T7008T">
-							<img width="180" height="180" src="assets/images/product-category/4.jpg" alt=""
-								class="wp-post-image" /><span class="product-title">Notebook Purple G952VX-T7008T</span>
-						</a>
-						<span class="electro-price"><span class="amount">&#36;2,780.00</span></span>
-					</li>
+						<li *ngFor="let product of productDesc">
+								<a routerLink="/itemdetail/{{product.id}}"title="Notebook Black Spire V Nitro  VN7-591G">
+									<img width="180" height="180" src="{{product.image}}" width='500px' height='500px'alt=""
+										class="wp-post-image" /><span class="product-title">{{product.name}}</span>
+								</a>
+								<span class="electro-price"*ngFor="let pd of product.ProductDetail">
+									<ins><span class="amount">${{pd.price}}</span></ins> 
+									<del><span class="amount">$2,299.00</span></del>
+								</span>
+						</li>	
 				</ul>
 			</aside>
 		</div>

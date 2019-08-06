@@ -1665,7 +1665,8 @@ li.product .product-thumbnail, .section-onsale-product .onsale-product .product-
   width: 100%;
   padding-bottom: 93.01%;
   float: left;
-  height: 0; }
+  height: 0;
+  overflow: hidden;  }
   li.product .product-thumbnail img, .section-onsale-product .onsale-product .product-thumbnail img, .section-onsale-product-carousel .onsale-product-carousel .onsale-product .onsale-product-content .product-thumbnail img, .products-carousel .owl-item .product .product-thumbnail img {
     transform-style: flat; }
 
@@ -1710,7 +1711,8 @@ li.product .wp-post-image, .section-onsale-product .onsale-product .wp-post-imag
   height: auto;
   margin: 0 auto;
   vertical-align: middle;
-  max-height: 100%; }
+  max-height: 100%;
+  }
 
 li.product .price-add-to-cart, .section-onsale-product .onsale-product .price-add-to-cart, .section-onsale-product-carousel .onsale-product-carousel .onsale-product .onsale-product-content .price-add-to-cart, .products-carousel .owl-item .product .price-add-to-cart {
   clear: both;
@@ -3259,7 +3261,8 @@ div.quantity.buttons_added {
   .yamm .yamm-content .bg-yamm-content {
     position: absolute;
     right: 0;
-    bottom: 0; }
+    bottom: 0;
+    top:0; }
 
 .yamm h1, .yamm h2, .yamm h3, .yamm h4, .yamm h5, .yamm h6, .yamm .nav-title {
   font-weight: bold;

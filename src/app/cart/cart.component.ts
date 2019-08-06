@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
+  cart=[];
 
   constructor() {
     new Promise((resolve) => {
@@ -18,6 +19,28 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
   }
+// ----------------------------------Total Amount--------------------------------------------
+  // getTotalAmount(): Observable<number> {
+  //   return this.itemsInCartSubject.map((items: Product[]) => {
+  //     return items.reduce((prev, curr: Product) => {
+  //       return prev + curr.price;
+  //     }, 0);
+  //   });
+  // }
+// ----------------------------------Total Amount--------------------------------------------
+
+addToCart(products){
+  for(var i in this.cart){
+    if(this.cart[i][0]===products){
+      this.cart[i][1]++;
+      console.log(this.cart);
+      return;
+    }
+  }
+  let item=[products,1];
+  this.cart.push(item);
+  console.log(this.cart);
+}
 
   public loadScript() {
     var isFound = false;

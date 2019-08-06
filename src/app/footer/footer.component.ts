@@ -9,7 +9,7 @@ export class FooterComponent implements OnInit {
 
   constructor() {
     new Promise((resolve) => {
-      this.loadScript();
+      // this.loadScript();
       resolve(true);
     });
   }
@@ -35,7 +35,7 @@ export class FooterComponent implements OnInit {
         node.type = 'text/javascript';
         node.async = false;
         node.charset = 'utf-8';
-        document.getElementsByTagName('head')[0].appendChild(node);
+        document.getElementsByTagName('body')[0].appendChild(node);
       }
 
     }

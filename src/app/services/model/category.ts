@@ -3,6 +3,7 @@ export class Category {
     name: string;
     image: string;
     subcategories: any[];
+    CategoryDetail:any[];
     created_at: string;
     updated_at: string
 }
