@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, FormsModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CountdownModule } from 'ngx-countdown';
 import { AppComponent } from './app.component';
 import { homeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
@@ -34,7 +33,9 @@ import { TrainingDetailComponent } from './training-detail/training-detail.compo
 import { RestApiService } from './services/rest-api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductCategoryComponent } from './product-category/product-category.component';
-import {ShoppingCartModule} from 'ng-shopping-cart';
+import { ShoppingCartModule, CartService } from 'ng-shopping-cart';
+import {CART_ITEM_CLASS, CART_SERVICE_CONFIGURATION, SessionStorageCartService} from 'ng-shopping-cart';
+import { APP_BASE_HREF } from '@angular/common';
 @NgModule({
     declarations: [
         AppComponent,
@@ -72,15 +73,11 @@ import {ShoppingCartModule} from 'ng-shopping-cart';
     imports: [
         BrowserModule,
         HttpClientModule,
-        CountdownModule,
-        ShoppingCartModule.forRoot({ // <-- Add the cart module to your root module
-            itemType: MyCartItemClass, // <-- Configuration is optional
+        FormsModule,
+        ShoppingCartModule.forRoot({
             serviceType: 'localStorage',
-            serviceOptions: {
-              storageKey: 'NgShoppingCart',
-              clearOnError: true
-            }
-          }), 
+            serviceOptions: { storageKey: 'MyanBakeAppCart', clearOnError: true }
+          }),
         RouterModule.forRoot([
             {
                 path: '',
@@ -186,7 +183,8 @@ import {ShoppingCartModule} from 'ng-shopping-cart';
         ])
     ],
     providers: [
-        RestApiService
+        RestApiService,
+        {provide: APP_BASE_HREF, useValue: '/'}
     ],
     bootstrap: [AppComponent]
 })

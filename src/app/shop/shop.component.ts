@@ -38,10 +38,6 @@ export class ShopComponent implements OnInit {
     this.cart.push(item);
     console.log(this.cart);
   }
-
-
-
-
   getProducts() {
     this.rest.getProducts()
       .subscribe(res => {

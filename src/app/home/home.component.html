@@ -59,7 +59,7 @@
 							<div class="ad col-xs-12 col-sm-4">
 								<div class="media">
 									<div class="media-left media-middle">
-										<img data-echo="assets/images/banner/pizza-oven.jpg"src="assets/images/blank.gif" alt="">
+										<img data-echo="../../assets/images/banner/pizza-oven.jpg"src="../../assets/images/blank.gif" alt="">
 									</div>
 									<div class="media-body media-middle">
 										<div class="ad-text">Let's <br><strong>Bake</strong> yummy <br>Pizza</div>
@@ -72,7 +72,7 @@
 							<div class="ad col-xs-12 col-sm-4">
 								<div class="media">
 									<div class="media-left media-middle">
-										<img data-echo="assets/images/banner/waffle-baker.jpg"src="assets/images/blank.gif" alt="">
+										<img data-echo="../../assets/images/banner/waffle-baker.jpg"src="../../assets/images/blank.gif" alt="">
 									</div>
 									<div class="media-body media-middle">
 										<div class="ad-text">waffle<br> baker<br> <strong>and more</strong></div>
@@ -85,7 +85,7 @@
 							<div class="ad col-xs-12 col-sm-4">
 								<div class="media">
 									<div class="media-left media-middle">
-										<img data-echo="assets/images/banner/fast-food.jpg"src="assets/images/blank.gif" alt="">
+										<img data-echo="../../assets/images/banner/fast-food.jpg"src="../../assets/images/blank.gif" alt="">
 									</div>
 									<div class="media-body media-middle">
 										<div class="ad-text">Shop the <br><strong>Hottest</strong><br> Products</div>
@@ -108,7 +108,7 @@
 									<div class="onsale-product">
 										<a routerLink="/itemdetail/2">
 											<div class="product-thumbnail">
-												<img class="wp-post-image" data-echo="assets/images/onsale-product.jpg"src="assets/images/blank.gif" alt="">
+												<img class="wp-post-image" data-echo="../../assets/images/onsale-product.jpg"src="../../assets/images/blank.gif" alt="">
 											</div>
 											<h3>Game Console Controller<br>+ USB 3.0 Cable</h3>
 										</a>
@@ -360,7 +360,7 @@
 								<ul class="products exclude-auto-height product-main-2-1-2">
 									<li class="last product">
 										<div class="product-outer">
-											<div class="product-inner">
+											<div class="product-inner" *ngIf="oneProduct">
 												<span class="loop-product-categories">
 												<a routerLink="/itemlist"rel="tag">{{oneProduct.productCategory.name}}</a></span>
 												<a routerLink="/itemdetail/{{oneProduct.id}}">
@@ -527,7 +527,7 @@
 
 						<div class="home-v1-fullbanner-ad fullbanner-ad" style="margin-bottom: 70px">
 							<a href="#">
-								<img src="assets/images/blank.gif" data-echo="assets/images/banner/home-v1-banner.png"class="img-responsive" alt="">
+								<img src="../../assets/images/blank.gif" data-echo="../../assets/images/banner/home-v1-banner.png"class="img-responsive" alt="">
 							</a>
 						</div>
 					</div><!-- /.home-v1-banner-block -->

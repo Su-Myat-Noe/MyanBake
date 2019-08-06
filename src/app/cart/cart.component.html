@@ -25,36 +25,36 @@
             </thead>
             <tbody>
 
-              <tr class="cart_item">
+              <tr class="cart_item"*ngFor="let cart of carts ;index as id">
 
                 <td class="product-remove">
-                  <a class="remove" href="#">×</a>
+                  <a class="remove"(click)="remove()" ><i class="far fa-times-circle"></i></a>
                 </td>
 
                 <td class="product-thumbnail">
                   <a routerLink="/itemdetail"><img width="180" height="180"
-                      src="assets/images/products/2.jpg" alt=""></a>
+                      src="{{cart.image}}" alt=""></a>
                 </td>
 
                 <td data-title="Product" class="product-name">
-                  <a routerLink="itemdetail">Wireless Audio System Multiroom 360</a>
+                  <a routerLink="/itemdetail">{{cart.name}}</a>
                 </td>
 
                 <td data-title="Price" class="product-price">
-                  <span class="amount">$1,999.00</span>
+                  <span class="amount">${{cart.price}}</span>
                 </td>
-
+                
                 <td data-title="Quantity" class="product-quantity">
-                  <div class="quantity buttons_added"><input type="button" class="minus" value="-">
-                    <label>Quantity:</label>
-                    <input type="number" size="4" class="input-text qty text" title="Qty" value="1"
-                      name="cart[92f54963fc39a9d87c2253186808ea61][qty]" max="29" min="0" step="1">
-                    <input type="button" class="plus" value="+">
-                  </div>
+                    <div class="quantity buttons_added">													
+                      <input type="button"(click)="plus(cart.id)" name="quantity" value="1" title="Qty"class="plus" value="+">
+                      <label>Quantity:</label>
+                      <input type="number" name="quantity" [(ngModel)]="cart.quantity" title="Qty" class="input-text qty text"max="29" min="0" step="1" />									
+                      <input type="button"(click)="minus(cart.id)"name="quantity" value="1" title="Qty" class="minus" value="-">
+                    </div>
                 </td>
 
                 <td data-title="Total" class="product-subtotal">
-                  <span class="amount">$1,999.00</span>
+                  <span class="amount">${{cart.price*quant[id]}}</span>
                 </td>
               </tr>
               
@@ -73,7 +73,7 @@
 
                   <div class="wc-proceed-to-checkout">
 
-                    <a class="checkout-button button alt wc-forward" routerLink="checkout">Proceed to Checkout</a>
+                    <a class="checkout-button button alt wc-forward" routerLink="/checkout">Proceed to Checkout</a>
                   </div>
 
                   <input type="hidden" value="1eafc42c5e" name="_wpnonce" id="_wpnonce"><input type="hidden"
@@ -413,9 +413,7 @@
 
                         <p><button class="button" value="1" name="calc_shipping" type="submit">Update Totals</button>
                         </p>
-
-                        <input type="hidden" value="1eafc42c5e" name="_wpnonce"><input type="hidden"
-                          value="/electro/cart/" name="_wp_http_referer">
+                        <input type="hidden" value="1eafc42c5e" name="_wpnonce"><input type="hidden"value="/electro/cart/" name="_wp_http_referer">
                       </div>
                     </form>
                   </td>
@@ -427,10 +425,8 @@
                 </tr>
               </tbody>
             </table>
-
             <div class="wc-proceed-to-checkout">
-
-              <a class="checkout-button button alt wc-forward" routerLink="checkout">Proceed to Checkout</a>
+              <button><a class="checkout-button button alt wc-forward" routerLink="/checkout">Proceed to Checkout</a></button>
             </div>
           </div>
         </div>

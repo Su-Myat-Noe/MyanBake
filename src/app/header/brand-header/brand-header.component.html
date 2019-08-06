@@ -27,7 +27,7 @@
         <div class="row">
             <div class="header-logo">
                 <a routerLink="/" class="header-logo-link">
-                    <img src="./assets/images/logo.png" />
+                    <img src="../../assets/images/logo.png" />
                 </a>
             </div>
             <form class="navbar-search" method="get" action="http://transvelo.github.io/">
@@ -56,44 +56,17 @@
                                 class="amount">&#36;1,215.00</span></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-mini-cart">
-                        <li>
+                        <li >
                             <div class="widget_shopping_cart_content">
                                 <ul class="cart_list product_list_widget ">
-                                    <li class="mini_cart_item">
-                                        <a title="Remove this item" class="remove" href="#">×</a>
+                                    <li class="mini_cart_item"*ngFor="let cart of carts ;index as i">
+                                        <a class="remove"(click)="remove(cart.i)"><i class="far fa-times-circle"></i></a>
                                         <a routerLink="/itemdetail">
                                             <img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image"
-                                                src="assets/images/products/mini-cart1.jpg" alt="">White lumia 9001&nbsp;
+                                                src="{{cart.image}}" alt="">{{cart.name}}
                                         </a>
-                                        <span class="quantity">2 × <span class="amount">£150.00</span></span>
+                                        <span class="quantity ">{{qty}}× <span class="amount">${{cart.price}}</span></span>
                                     </li>
-
-
-                                    <li class="mini_cart_item">
-                                        <a title="Remove this item" class="remove" routerLink="#">×</a>
-                                        <a routerLink="/itemdetail">
-                                            <img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image"
-                                                src="assets/images/products/mini-cart2.jpg" alt="">PlayStation
-                                            4&nbsp;
-                                        </a>
-
-                                        <span class="quantity">1 × <span class="amount">£399.99</span></span>
-                                    </li>
-
-                                    <li class="mini_cart_item">
-                                        <a data-product_sku="" data-product_id="34" title="Remove this item"
-                                            class="remove" routerLink="#">×</a>
-                                        <a routerLink="/itemdetail">
-                                            <img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image"
-                                                src="assets/images/products/mini-cart3.jpg" alt="">POV Action
-                                            Cam HDR-AS100V&nbsp;
-
-                                        </a>
-
-                                        <span class="quantity">1 × <span class="amount">£269.99</span></span>
-                                    </li>
-
-
                                 </ul>
 
 

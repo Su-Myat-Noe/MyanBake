@@ -1,46 +1,101 @@
-import { FooterComponent } from './../footer/footer.component';
-import { HeaderComponent } from '../header/header.component';
-import { Component, OnInit } from '@angular/core';
-
+import { Product } from './../services/model/product';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RestApiService } from 'src/app/services/rest-api.service';
+import { CartService, BaseCartItem} from 'ng-shopping-cart';
+import { Component, OnInit ,ViewEncapsulation,Input,Output,EventEmitter} from '@angular/core';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  cart=[];
-
-  constructor() {
+  
+  productdetail: Product;
+  qty:any;
+  carts:any;
+  id:any;
+  quant:any[];  
+  amount:number=0;
+  cgst:number=0;
+  sgst:number=0;
+  bill:number=0;
+  @Input()private percent:number;
+  @Output()grandtotal=new EventEmitter();
+// index:any;
+  constructor(
+    private rest: RestApiService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private cartService: CartService<BaseCartItem>
+    )
+  {
     new Promise((resolve) => {
       this.loadScript();
-      resolve(true);
+      resolve(true);      
     });
-  }
-
+    // this.qty = 1;
+    this.getCart();  
+    // this.increaseQty();
+    let arr:any[] =new Array(this.carts.length).fill(0);
+    this.quant=arr;
+  }  
   ngOnInit() {
   }
-// ----------------------------------Total Amount--------------------------------------------
-  // getTotalAmount(): Observable<number> {
-  //   return this.itemsInCartSubject.map((items: Product[]) => {
-  //     return items.reduce((prev, curr: Product) => {
-  //       return prev + curr.price;
-  //     }, 0);
-  //   });
-  // }
-// ----------------------------------Total Amount--------------------------------------------
 
-addToCart(products){
-  for(var i in this.cart){
-    if(this.cart[i][0]===products){
-      this.cart[i][1]++;
-      console.log(this.cart);
-      return;
-    }
+   minus(i){
+    if(this.quant[i]==0){
+       alert("you can't select less than zero")
+       this.quant[i]=0;
+      }
+    else{
+      for(let v=0;v<=10;v++){
+      if( this.quant[i]==v){
+      this.quant[i]=--v;
+      } 
+      }
+    }  
   }
-  let item=[products,1];
-  this.cart.push(item);
-  console.log(this.cart);
-}
+   plus(i){
+    if(this.quant[i]==10){
+        alert("you can't select more than 10")
+        this.quant[i]=10;       
+       }
+        else{
+     for(let v=0;v<=10;v++){
+     if( this.quant[i]==v){
+     this.quant[i]=++v;
+     } 
+     }
+     }      
+   }
+    remove(){
+      this.carts=this.cartService.onItemRemoved;
+    }     
+  // decrementQty(id:any) 
+  // {
+  //   if(this.qty-1 < 1 )
+  //     {
+  //     this.qty = 1
+  //     console.log('1->'+this.qty);
+  //     }
+  //   else
+  //     {
+  //     this.qty -= 1;
+  //     console.log('2->'+this.qty);
+  //     }
+  // } 
+  // increaseQty(){
+  //   this.carts=this.cartService.onItemAdded;
+  // }
+  getCart(){
+    this.carts = this.cartService.getItems();
+    console.log(this.carts);
+  }
+  // removeItem(index:any) 
+  // {
+  //         this.carts=this.cartService.removeItem(index);
+  // }
+
 
   public loadScript() {
     var isFound = false;
@@ -68,3 +123,12 @@ addToCart(products){
 
 }
 
+// ----------------------------------Total Amount--------------------------------------------
+  // getTotalAmount(): Observable<number> {
+  //   return this.itemsInCartSubject.map((items: Product[]) => {
+  //     return items.reduce((prev, curr: Product) => {
+  //       return prev + curr.price;
+  //     }, 0);
+  //   });
+  // }
+// ----------------------------------Total Amount--------------------------------------------

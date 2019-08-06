@@ -1,8 +1,9 @@
+import { CartService, BaseCartItem } from 'ng-shopping-cart';
 import { Component, OnInit } from '@angular/core';
 import { Product } from './../services/model/product';
 import { RestApiService } from 'src/app/services/rest-api.service';
 import { ActivatedRoute } from '@angular/router';
-import { Router, Event,NavigationEnd} from '@angular/router';
+import { Router, Event, NavigationEnd } from '@angular/router';
 @Component({
   selector: 'app-item-detail',
   templateUrl: './item-detail.component.html',
@@ -16,22 +17,28 @@ export class ItemDetailComponent implements OnInit {
   item: Product[] = [];
   productLimit: Product[] = [];
   id: any;
-  constructor(private rest: RestApiService, private route: ActivatedRoute, private router: Router) {
+  qty:any;
+  constructor(
+    private rest: RestApiService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private cartService: CartService<BaseCartItem>
+  ) {
     new Promise((resolve) => {
       this.loadScript();
-      resolve(true);
+      resolve(true);      
     });
-    
-    router.events.subscribe( (event: Event) =>{ 
-            if (event instanceof NavigationEnd) {
-              this.id = this.route.snapshot.paramMap.get("id")
-              this.getproducts();
-              this.getProductDetail(this.id);
-              this.getitem();
-              this.getprolimits();
-              window.scrollTo(0, 0);
-            }
-        });          
+    this.qty = 1;
+    router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        this.id = this.route.snapshot.paramMap.get("id")
+        this.getproducts();
+        this.getProductDetail(this.id);
+        this.getitem();
+        this.getprolimits();
+        window.scrollTo(0, 0);
+      }
+    });
   }
   getproducts() {
     this.rest.getProducts()
@@ -81,9 +88,38 @@ export class ItemDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    
-  }
 
+  }  
+  // -----------------------------------------------------------------------------
+  // increment product qty
+  incrementQty() {
+  console.log(this.qty+1);
+  this.qty += 1;
+  }
+  
+  // decrement product qty
+  decrementQty() {
+  if(this.qty-1 < 1 ){
+  this.qty = 1
+  console.log('1->'+this.qty);
+  }else{
+  this.qty -= 1;
+  console.log('2->'+this.qty);
+  }
+  } 
+
+  addToCart() {
+    const item = new BaseCartItem(
+      {id: this.productdetail.id, 
+      name: this.productdetail.name,
+      price: this.productdetail.ProductDetail[0].price, 
+      image: this.productdetail.image, 
+      quantity: this.qty
+      });
+    this.cartService.addItem(item);
+    console.log(this.cartService.getItems());
+  }
+// ---------------------------------------------------------------------------------------
   public loadScript() {
     var isFound = false;
     var scripts = document.getElementsByTagName("script")

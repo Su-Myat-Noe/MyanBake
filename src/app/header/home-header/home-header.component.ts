@@ -1,3 +1,4 @@
+import { CartService, BaseCartItem } from 'ng-shopping-cart';
 import { Category } from './../../services/model/category';
 import { RestApiService } from 'src/app/services/rest-api.service';
 import { Component, OnInit } from '@angular/core';
@@ -9,12 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeHeaderComponent implements OnInit {
   categories: Category[] = [];
-  constructor(private rest: RestApiService) {
+  qty:any;
+  carts:any;
+  constructor(private rest: RestApiService,private cartService: CartService<BaseCartItem>) {
     new Promise((resolve) => {
       // this.loadScript();
       resolve(true);
     });
-
+    this.getCart();
+    this.qty = 1;
     this.getCategoryheader();
   }
   getCategoryheader() {
@@ -29,7 +33,13 @@ export class HomeHeaderComponent implements OnInit {
         });
   }
  
- 
+  getCart(){
+    this.carts = this.cartService.getItems();
+  }
+  remove(){
+    const item = new BaseCartItem(this.carts);
+        this.cartService.removeItem(item.id);
+  }
   ngOnInit() {
   }
 

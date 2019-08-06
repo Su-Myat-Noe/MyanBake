@@ -82,6 +82,7 @@ export class homeComponent implements OnInit {
     this.rest.getoneProduct()
       .subscribe(res => {
         console.log(res);
+
         this.oneProduct = res;
         new Promise((resolve) => {
           this.loadScript();

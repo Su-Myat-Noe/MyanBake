@@ -120,24 +120,21 @@
 									<div class="single_variation_wrap">
 										<div class="woocommerce-variation single_variation"></div>
 										<div class="woocommerce-variation-add-to-cart variations_button">
-											<div class="quantity">
+											<div class="quantity buttons_added">													
+												<input type="button"(click)="incrementQty()" name="quantity" value="1" title="Qty"class="plus" value="+">
 												<label>Quantity:</label>
-												<input type="number" name="quantity" value="1" title="Qty"
-													class="input-text qty text" />
+												<input type="number"name="quantity" value={{qty}} title="Qty" class="input-text qty text"max="29" min="0" step="1" />									
+												<input type="button"(click)="decrementQty()"name="quantity" value="1" title="Qty" class="minus" value="-">
 											</div>
-											<button type="submit" class="single_add_to_cart_button button">Add to
-												cart</button>
+											<button type="button" (click)="addToCart()"  class="single_add_to_cart_button button">Add to cart</button>
 											<input type="hidden" name="add-to-cart" value="2452" />
 											<input type="hidden" name="product_id" value="2452" />
 											<input type="hidden" name="variation_id" class="variation_id" value="0" />
 										</div>
 									</div>
 								</form>
-
-
 							</div>
 						</div>
-
 
 						<div class="woocommerce-tabs wc-tabs-wrapper">
 							<ul class="nav nav-tabs electro-nav-tabs tabs wc-tabs" role="tablist">
@@ -413,7 +410,7 @@
 											<ol class="commentlist">
 												<li itemprop="review" class="comment even thread-even depth-1">
 													<div id="comment-390" class="comment_container">
-														<img alt='' src="assets/images/blog/avatar.jpg" class='avatar'height='60' width='60' />
+														<img alt='' src="../../assets/images/blog/avatar.jpg" class='avatar'height='60' width='60' />
 														<div class="comment-text">
 															<div class="star-rating" title="Rated 4 out of 5">
 																<span style="width:80%"><strong itemprop="ratingValue">4</strong> out of 5</span>
@@ -439,7 +436,7 @@
 												</li>
 												<li class="comment odd alt thread-odd thread-alt depth-1">
 													<div class="comment_container">
-														<img alt='' src="assets/images/blog/avatar.jpg" class='avatar'
+														<img alt='' src="../../assets/images/blog/avatar.jpg" class='avatar'
 															height='60' width='60'/>
 														<div class="comment-text">
 															<div itemprop="reviewRating" itemscope	itemtype="http://schema.org/Rating" class="star-rating"
@@ -471,7 +468,7 @@
 												</li>
 												<li class="comment odd alt thread-odd thread-alt depth-1">
 													<div class="comment_container">
-														<img alt='' src="assets/images/blog/avatar.jpg" class='avatar'
+														<img alt='' src="../../assets/images/blog/avatar.jpg" class='avatar'
 															height='60' width='60' />
 														<div class="comment-text">
 															<div itemprop="reviewRating" class="star-rating"
