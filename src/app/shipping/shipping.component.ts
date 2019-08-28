@@ -1,31 +1,39 @@
 import { Router } from '@angular/router';
-import { RestApiService } from 'src/app/services/rest-api.service';
+import { RestApiService } from './../services/rest-api.service';
 import { Component, OnInit } from '@angular/core';
+
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'app-shipping',
+  templateUrl: './shipping.component.html',
+  styleUrls: ['./shipping.component.css']
 })
-export class RegisterComponent implements OnInit {
-  registerData: any;
+export class ShippingComponent implements OnInit {
+  saveData: any;
   disableSubmit: boolean = false;
   error: any;
+  user:any;
   constructor(private rest: RestApiService, private router: Router) {
     new Promise((resolve) => {
       this.loadScript();
       resolve(true);
     });
-    this.registerData = {};
+    this.saveData = {};
     this.error = {};
+    this.getLogin();
+  }
+  getLogin() 
+  {
+    this.user = this.rest.getStoreUser();
+    this.saveData.userid=this.user.id;
   }
   register() {
     if (this.validForm()) {
       this.disableSubmit = true;
-      this.registerData.first_name = 'a';
-      this.registerData.last_name = 'b';
-      this.registerData.active = 1;
-      this.registerData.phone = this.registerData.country + ' ' + (this.registerData.phone) ? this.registerData.phone : '';
-      this.rest.register(this.registerData).subscribe((results) => {
+      this.saveData.first_name = 'a';
+      this.saveData.last_name = 'b';
+      this.saveData.active = 1;
+      this.saveData.phone = this.saveData.country + ' ' + (this.saveData.phone) ? this.saveData.phone : '';
+      this.rest.register(this.saveData).subscribe((results) => {
         // this.storage.set('remember', true);
         // this.storage.set('user', results);
         alert('You have successfully register and log-in');
@@ -44,31 +52,31 @@ export class RegisterComponent implements OnInit {
     var valid = true;
     this.error = [];
 
-    if(this.registerData.username == '' || this.registerData.username == null){
+    if(this.saveData.username == '' || this.saveData.username == null){
       this.error.username = 'The username field is require';
       valid = false
     }
-    else if(this.registerData.phone=='' || this.registerData.phone==null){
+    else if(this.saveData.phone=='' || this.saveData.phone==null){
       this.error.phone = 'The phone field is require';
       valid = false
     }
-    else if(this.registerData.country=='' || this.registerData.country==null){
+    else if(this.saveData.country=='' || this.saveData.country==null){
       this.error.country = 'The country field is require';
       valid = false
     }    
-    else if(this.registerData.email=='' || this.registerData.email==null){
+    else if(this.saveData.email=='' || this.saveData.email==null){
       this.error.email = 'The email field is require';
       valid = false
     }
-    else if(this.registerData.password=='' || this.registerData.password==null ){
+    else if(this.saveData.password=='' || this.saveData.password==null ){
       this.error.password = 'The password field is require';
       valid = false
     }
-    else if(this.registerData.confirmpassword=='' || this.registerData.confirmpassword==null ){
+    else if(this.saveData.confirmpassword=='' || this.saveData.confirmpassword==null ){
       this.error.confirmpassword = 'The confirmpassword field is require';
       valid = false
     }
-    else if(this.registerData.password!==this.registerData.confirmpassword){
+    else if(this.saveData.password!==this.saveData.confirmpassword){
       this.error.confirmpassword = 'The password and confirm password must be same';
       valid = false
     }  
@@ -106,3 +114,4 @@ export class RegisterComponent implements OnInit {
   }
 
 }
+

@@ -1,3 +1,5 @@
+import { Product } from './../services/model/product';
+import { CartService, BaseCartItem } from 'ng-shopping-cart';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./wishlist.component.css']
 })
 export class WishlistComponent implements OnInit {
-
-  constructor() {
+  productdetail: Product;
+  constructor(private cartService: CartService<BaseCartItem>) {
     new Promise((resolve) => {
       this.loadScript();
       resolve(true);
@@ -16,7 +18,16 @@ export class WishlistComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  addToWishlist() {
+    const item = new BaseCartItem(
+      {id: this.productdetail.id, 
+      name: this.productdetail.name,
+      // price: this.productdetail.ProductDetail[0].price, 
+      image: this.productdetail.image,
+      });
+    this.cartService.addItem(item);
+    console.log(this.cartService.getItems());
+  }
   public loadScript() {
     var isFound = false;
     var scripts = document.getElementsByTagName("script")

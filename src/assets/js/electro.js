@@ -561,18 +561,18 @@
 
         // });
 
-        $('.home-carousel-tabs').owlCarousel({
-            "items":4,
-            "nav":false,
-            "slideSpeed":300,
-            "dots":true,
-            "rtl":false,
-            "paginationSpeed":400,
-            "navText":["",""],
-            "margin":0,
-            "touchDrag":true
+        // $('.home-carousel-tabs').owlCarousel({
+        //     "items":4,
+        //     "nav":false,
+        //     "slideSpeed":300,
+        //     "dots":true,
+        //     "rtl":false,
+        //     "paginationSpeed":400,
+        //     "navText":["",""],
+        //     "margin":0,
+        //     "touchDrag":true
 
-        });
+        // });
 
 
         $('#owl-brands').owlCarousel({
@@ -1186,10 +1186,8 @@
             $this.removeClass( 'animated-dropdown' );
         });
 
-        console.log('before');
         $( '.vertical-menu .menu-item-has-children, .departments-menu-dropdown .menu-item-has-children' ).on({
             mouseenter: function() {
-                console.log('a');
                 var $this = $(this),
                     $dropdown_menu = $this.find( '.dropdown-menu' ),
                     $vertical_menu = $this.parents( '.vertical-menu' ),

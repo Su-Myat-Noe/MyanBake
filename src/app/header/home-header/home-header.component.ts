@@ -1,7 +1,7 @@
 import { CartService, BaseCartItem } from 'ng-shopping-cart';
 import { Category } from './../../services/model/category';
 import { RestApiService } from 'src/app/services/rest-api.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-home-header',
@@ -12,7 +12,8 @@ export class HomeHeaderComponent implements OnInit {
   categories: Category[] = [];
   qty:any;
   carts:any;
-  constructor(private rest: RestApiService,private cartService: CartService<BaseCartItem>) {
+  constructor(private rest: RestApiService,   
+    private cdr: ChangeDetectorRef,private cartService: CartService<BaseCartItem>) {
     new Promise((resolve) => {
       // this.loadScript();
       resolve(true);
@@ -32,7 +33,11 @@ export class HomeHeaderComponent implements OnInit {
           });         
         });
   }
- 
+  removeItem(cart, idx) {
+    this.carts.splice(idx, 1);
+    this.cartService.removeItem(cart.id);   
+    this.cdr.detectChanges();
+  }  
   getCart(){
     this.carts = this.cartService.getItems();
   }

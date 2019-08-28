@@ -189,7 +189,7 @@
                                      <div class="product "*ngFor="let product of products">
                                           <div class="product-outer">
                                               <div class="product-inner">
-                                                  <span class="loop-product-categories"><a routerLink="/itemlist"rel="tag">{{product.productCategory.name}}</a></span>
+                                                  <span class="loop-product-categories"><a routerLink="/itemlist"rel="tag">{{product.category.name}}</a></span>
                                                   <a routerLink="/itemdetail/{{product.id}}">
                                                       <h3>{{product.name}}</h3>
                                                       <div class="product-thumbnail">
@@ -207,7 +207,7 @@
                                                   </div>
                                                   <div class="hover-area">
                                                       <div class="action-buttons">
-                                                          <a href="#" rel="nofollow"class="add_to_wishlist"> Wishlist</a>
+                                                          <a routerLink="/wishlist/{{product.id}}" rel="nofollow"class="add_to_wishlist"> Wishlist</a>
                                                           <a routerLink="/compare" class="add-to-compare-link"> Compare</a>
                                                       </div>
                                                   </div>
@@ -228,7 +228,7 @@
                                       <div class="product "*ngFor="let product of products">
                                           <div class="product-outer">
                                               <div class="product-inner">
-                                                  <span class="loop-product-categories"><a routerLink="/itemlist" rel="tag">{{product.productCategory.name}}</a></span>
+                                                  <span class="loop-product-categories"><a routerLink="/itemlist" rel="tag">{{product.category.name}}</a></span>
                                                   <a routerLink="/itemdetail/{{product.id}}">
                                                       <h3>{{product.name}}</h3>
                                                       <div class="product-thumbnail">
@@ -248,7 +248,7 @@
 
                                                   <div class="hover-area">
                                                       <div class="action-buttons">
-                                                          <a href="#" rel="nofollow"class="add_to_wishlist">Wishlist</a>
+                                                          <a routerLink="/wishlist/{{product.id}}" rel="nofollow"class="add_to_wishlist">Wishlist</a>
                                                           <a routerLink="/compare"class="add-to-compare-link">Compare</a>
                                                       </div>
                                                   </div>
@@ -269,7 +269,7 @@
                                       <div class="product "*ngFor="let pdes of productDesc">
                                           <div class="product-outer">
                                               <div class="product-inner">
-                                                  <span class="loop-product-categories"><a routerLink="/itemlist" rel="tag">{{pdes.productCategory.name}}</a></span>
+                                                  <span class="loop-product-categories"><a routerLink="/itemlist" rel="tag">{{pdes.category.name}}</a></span>
                                                   <a routerLink="/itemdetail/{{pdes.id}}">
                                                       <h3>{{pdes.name}}</h3>
                                                       <div class="product-thumbnail">
@@ -289,7 +289,7 @@
 
                                                   <div class="hover-area">
                                                       <div class="action-buttons">
-                                                          <a href="#" rel="nofollow"class="add_to_wishlist"> Wishlist</a>
+                                                          <a routerLink="/wishlist/{{pdes.id}}" rel="nofollow"class="add_to_wishlist"> Wishlist</a>
                                                           <a routerLink="/compare" class="add-to-compare-link"> Compare</a>
                                                       </div>
                                                   </div>
@@ -334,7 +334,7 @@
                                       <div class="product "*ngFor="let product of products">
                                           <div class="product-outer">
                                               <div class="product-inner">
-                                                  <span class="loop-product-categories"><a routerLink="/itemlist" rel="tag">{{product.productCategory.name}}</a></span>
+                                                  <span class="loop-product-categories"><a routerLink="/itemlist" rel="tag">{{product.category.name}}</a></span>
                                                   <a routerLink="/itemdetail/{{product.id}}">
                                                       <h3>{{product.name}}</h3>
                                                       <div class="product-thumbnail">
@@ -354,7 +354,7 @@
 
                                                   <div class="hover-area">
                                                       <div class="action-buttons">
-                                                          <a href="#" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
+                                                          <a routerLink="/wishlist/{{product.id}}" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
                                                           <a routerLink="/compare" class="add-to-compare-link"> Compare</a>
                                                       </div>
                                                   </div>
@@ -392,7 +392,7 @@
                                       </a>
                                       <div class="media-body">
                                           <span class="loop-product-categories">
-                                              <a routerLink="/itemdetail/{{pl.id}}" rel="tag">{{pl.productCategory.name}}</a>
+                                              <a routerLink="/itemdetail/{{pl.id}}" rel="tag">{{pl.category.name}}</a>
                                           </span>
                                           <a routerLink="/itemdetail/{{pl.id}}">
                                               <h3>{{pl.name}}</h3>
@@ -409,8 +409,8 @@
                                           </div>
                                           <div class="hover-area">
                                               <div class="action-buttons">
-                                                  <a href="#" class="add_to_wishlist">Wishlist</a>
-                                                  <a href="#" class="add-to-compare-link">Compare</a>
+                                                  <a routerLink="/wishlist/{{pl.id}}" class="add_to_wishlist">Wishlist</a>
+                                                  <a routerLink="/compare" class="add-to-compare-link">Compare</a>
                                               </div>
                                           </div>
                                       </div>
@@ -428,7 +428,7 @@
                                               </a>
                                               <div class="media-body">
                                                   <span class="loop-product-categories">
-                                                      <a routerLink="/itemlist" rel="tag">{{pl.productCategory.name}}</a>
+                                                      <a routerLink="/itemlist" rel="tag">{{pl.category.name}}</a>
                                                   </span>
                                                   <a routerLink="/itemdetail/{{pl.id}}">
                                                       <h3>{{pl.name}}</h3>
@@ -445,8 +445,8 @@
                                                   </div>
                                                   <div class="hover-area">
                                                       <div class="action-buttons">
-                                                          <a href="#" class="add_to_wishlist">Wishlist</a>
-                                                          <a href="#" class="add-to-compare-link">Compare</a>
+                                                          <a routerLink="/wishlist/{{pl.id}}" class="add_to_wishlist">Wishlist</a>
+                                                          <a routerLink="/compare" class="add-to-compare-link">Compare</a>
                                                       </div>
                                                   </div>
                                               </div>
@@ -484,7 +484,7 @@
                     <li class="product"*ngFor="let pdesc of productDescLimit">
                       <div class="product-outer">
                         <div class="product-inner">
-                          <span class="loop-product-categories"><a routerLink="/itemlist" rel="tag">{{pdesc.productCategory.name}}</a></span>
+                          <span class="loop-product-categories"><a routerLink="/itemlist" rel="tag">{{pdesc.category.name}}</a></span>
                           <a routerLink="/itemdetail">
                             <h3>{{pdesc.name}}</h3>
                             <div class="/itemdetail/{{pdesc.id}}">
@@ -555,9 +555,7 @@
                           <div class="hover-area">
                             <div class="action-buttons">
 
-                              <a href="http://transvelo.github.io/electro/?add_to_wishlist=2933" rel="nofollow"
-                                class="add_to_wishlist">
-                                Wishlist</a>
+                              <a routerLink="http://transvelo.github.io/electro/?add_to_wishlist=2933" rel="nofollow"class="add_to_wishlist"> Wishlist</a>
 
                               <a routerLink="/compare" class="add-to-compare-link">Compare</a>
                             </div>

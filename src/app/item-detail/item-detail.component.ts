@@ -12,7 +12,7 @@ import { Router, Event, NavigationEnd } from '@angular/router';
 export class ItemDetailComponent implements OnInit {
 
 
-  products: Product[] = [];
+  products: Product[] = [];    
   productdetail: Product;
   item: Product[] = [];
   productLimit: Product[] = [];
@@ -24,6 +24,7 @@ export class ItemDetailComponent implements OnInit {
     private router: Router,
     private cartService: CartService<BaseCartItem>
   ) {
+    
     new Promise((resolve) => {
       this.loadScript();
       resolve(true);      
@@ -109,10 +110,12 @@ export class ItemDetailComponent implements OnInit {
   } 
 
   addToCart() {
+    var detail = [];
+    detail = this.productdetail.productdetail;
     const item = new BaseCartItem(
       {id: this.productdetail.id, 
       name: this.productdetail.name,
-      price: this.productdetail.ProductDetail[0].price, 
+      price: detail[0].price,
       image: this.productdetail.image, 
       quantity: this.qty
       });

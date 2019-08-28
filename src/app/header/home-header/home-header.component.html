@@ -2,8 +2,7 @@
 	<div class="container">
 		<nav>
 			<ul id="menu-top-bar-left" class="nav nav-inline pull-left animate-dropdown flip">
-				<li class="menu-item animate-dropdown"><a title="Welcome to Myan Bake Store" href="#">Welcome to Myan
-						Bake Store</a></li>
+				<li class="menu-item animate-dropdown"><a title="Welcome to Myan Bake Store" href="#">Welcome to Myan Bake Store</a></li>
 			</ul>
 		</nav>
 		<nav>
@@ -14,7 +13,7 @@
 							class="ec ec-transport"></i>Track Your Order</a></li>
 				<li class="menu-item animate-dropdown"><a title="Shop" routerLink="/shop"><i
 							class="ec ec-shopping-bag"></i>Shop</a></li>
-				<li class="menu-item animate-dropdown"><a title="My Account" routerLink="/register"><i
+				<li class="menu-item animate-dropdown"><a title="My Account" routerLink="/login"><i
 							class="ec ec-user"></i>My Account</a></li>
 			</ul>
 		</nav>
@@ -49,40 +48,22 @@
 				<li class="nav-item dropdown">
 					<a routerLink="#" class="nav-link" data-toggle="dropdown">
 						<i class="ec ec-shopping-bag"></i>
-						<span class="cart-items-count count">4</span>
+						<!-- <span class="cart-items-count count">4</span>
 						<span class="cart-items-total-price total-price">
 							<span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">£</span>2,600.00</span>
-						</span>
+						</span> -->
 					</a>
 					<ul class="dropdown-menu dropdown-menu-mini-cart">
 						<li>
 							<div class="widget_shopping_cart_content">
 								<ul class="cart_list product_list_widget ">
 									<li class="mini_cart_item"*ngFor="let cart of carts ;index as i">
-											<a class="remove"(click)="remove(cart.i)"><i class="far fa-times-circle"></i></a>
+											<a class="remove"(click)="removeItem(cart, i)"><i class="far fa-times-circle"></i></a>
 										<a routerLink="/itemdetail">
 											<img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image"src="{{cart.image}}" alt="">{{cart.name}}
 										</a>
-										<span class="quantity">{{qty}}× <span class="amount">${{cart.price}}</span></span>
-									</li>
-									<!-- <li class="mini_cart_item">
-										<a title="Remove this item" class="remove" href="#">×</a>
-										<a routerLink="/itemdetail">
-											<img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image"
-												src="../../assets/images/products/mini-cart2.jpg" alt="">PlayStation 4&nbsp;
-										</a>
-										<span class="quantity">1 × <span class="amount">£399.99</span></span>
-									</li>
-									<li class="mini_cart_item">
-										<a data-product_sku="" data-product_id="34" title="Remove this item"
-											class="remove" href="#">×</a>
-										<a routerLink="/itemdetail">
-											<img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image"
-												src="../../assets/images/products/mini-cart3.jpg" alt="">POV Action Cam
-											HDR-AS100V&nbsp;
-										</a>
-										<span class="quantity">1 × <span class="amount">£269.99</span></span>
-									</li> -->
+										<span class="quantity">{{cart.quantity}}× <span class="amount">${{cart.quantity*cart.price}}</span></span>
+									</li>									
 								</ul>
 								<p class="woocommerce-mini-cart__total total">
 									<strong>Subtotal:</strong>
@@ -155,7 +136,7 @@
 																	<li class="nav-title">
 																		<em><u>{{category.name}}</u></em></li>
 																	<li><a routerLink='/shop'
-																			*ngFor="let subcategory of category.subcategories"><b>{{subcategory.name}}</b></a>
+																			*ngFor="let subcategory of category.subcategory"><b>{{subcategory.name}}</b></a>
 																	</li>
 																</ul>
 															</div>

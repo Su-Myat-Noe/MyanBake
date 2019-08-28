@@ -40,7 +40,7 @@
 
 							<div class="summary entry-summary">
 								<span class="loop-product-categories">
-									<a routerLink="/categories" rel="tag">{{productdetail.productbrand.name}}</a>
+									<a routerLink="/categories" rel="tag">{{productdetail.brand.name}}</a>
 								</span>
 
 								<h1 itemprop="name" class="product_title entry-title">{{productdetail.name}}</h1>
@@ -83,13 +83,13 @@
 
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
 										incididunt.</p>
-									<p><strong>SKU</strong>: {{productdetail.ProductDetail[0].sku}}</p>
+									<p><strong>SKU</strong>: {{productdetail.productdetail[0].sku}}</p>
 								</div>
 
 								<div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
 
 									<p class="price"><span class="electro-price"><ins><span
-													class="amount">${{productdetail.ProductDetail[0].price}}</span></ins> 
+													class="amount">${{productdetail.productdetail[0].price}}</span></ins> 
 													<del><span class="amount">$2,299.00</span></del></span></p>
 
 									<meta itemprop="price" content="1215" />
@@ -166,7 +166,7 @@
 														<div class="product-outer">
 															<div class="product-inner">
 																<span class="loop-product-categories"><a href="product-category.html"
-																		rel="tag">{{product.productCategory.name}}</a></span>
+																		rel="tag">{{product.category.name}}</a></span>
 																<a routerLink="/itemdetail/{{product.id}}">
 																	<h3>{{product.name}}</h3>
 																	<div class="product-thumbnail">
@@ -177,7 +177,7 @@
 																</a>
 
 																<div class="price-add-to-cart"
-																	*ngFor="let pd of product.ProductDetail">
+																	*ngFor="let pd of product.productdetail">
 																	<span class="price">
 																		<span class="electro-price">
 																			<ins><span
@@ -212,7 +212,7 @@
 																<strong>This product: </strong>{{product.name}}
 															</span>
 															-
-															<span class="accessory-price"*ngFor="let pd of product.ProductDetail">
+															<span class="accessory-price"*ngFor="let pd of product.productdetail">
 																<span class="amount">${{pd.price}}</span>
 															</span>
 														</label>
@@ -269,11 +269,11 @@
 									</div>
 
 									<div class="product_meta">
-										<span class="sku_wrapper">SKU:<span class="sku" sitemprop="sku">{{productdetail.ProductDetail[0].sku}}</span></span>
+										<span class="sku_wrapper">SKU:<span class="sku" sitemprop="sku">{{productdetail.productdetail[0].sku}}</span></span>
 
 
 										<span class="posted_in">Category:
-											<a routerLink="/categories" rel="tag">{{productdetail.productCategory.name}}</a>
+											<a routerLink="/categories" rel="tag">{{productdetail.category.name}}</a>
 										</span>
 <!-- 
 										<span class="tagged_as">Tags:
@@ -516,7 +516,7 @@
 									<div class="product-outer">
 										<div class="product-inner">
 											<span class="loop-product-categories"><a href="product-category.html"
-													rel="tag">{{product.productCategory.name}}</a></span>
+													rel="tag">{{product.category.name}}</a></span>
 											<a routerLink="/itemdetail/{{product.id}}">
 												<h3>{{product.name}}</h3>
 												<div class="product-thumbnail">
@@ -524,7 +524,7 @@
 												</div>
 											</a>
 											<div class="price-add-to-cart">
-												<span class="price" *ngFor="let pd of product.ProductDetail">
+												<span class="price" *ngFor="let pd of product.productdetail">
 													<span class="electro-price">
 														<ins><span class="amount">${{pd.price}}</span></ins>
 													</span>

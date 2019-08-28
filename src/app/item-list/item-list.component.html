@@ -3,7 +3,7 @@
     <nav class="woocommerce-breadcrumb">
         <a routerLink="/">Home</a>
         <span class="delimiter"><i class="fa fa-angle-right"></i></span>
-        Laptops &amp; Computers
+        Machine
     </nav>
     <div id="primary" class="content-area">
         <main id="main" class="site-main">
@@ -44,7 +44,7 @@
                                 <div class="product-outer">
                                     <div class="product-inner">
                                         <span class="loop-product-categories"><a routerLink="/itemlist"
-                                                rel="tag">{{product.productCategory.name}}</a></span>
+                                                rel="tag">{{product.category.name}}</a></span>
                                         <a routerLink="/itemdetail/{{product.id}}">
                                             <h3>{{product.name}}</h3>
                                             <div class="product-thumbnail">
@@ -64,7 +64,7 @@
 
                                         <div class="hover-area">
                                             <div class="action-buttons">
-                                                <a href="#" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
+                                                <a routerLink="/wishlist/{{product.id}}" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
                                                 <a routerLink="/compare" class="add-to-compare-link"> Compare</a>
                                             </div>
                                         </div>

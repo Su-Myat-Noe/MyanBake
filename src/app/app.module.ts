@@ -1,5 +1,7 @@
+import { ShoppingCartModule } from 'ng-shopping-cart';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, FormsModule } from '@angular/core';
+import { NgModule } from '@angular/core';
+import { FormsModule }   from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { homeComponent } from './home/home.component';
@@ -33,9 +35,9 @@ import { TrainingDetailComponent } from './training-detail/training-detail.compo
 import { RestApiService } from './services/rest-api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductCategoryComponent } from './product-category/product-category.component';
-import { ShoppingCartModule, CartService } from 'ng-shopping-cart';
-import {CART_ITEM_CLASS, CART_SERVICE_CONFIGURATION, SessionStorageCartService} from 'ng-shopping-cart';
 import { APP_BASE_HREF } from '@angular/common';
+import { LoginComponent } from './login/login.component';
+import { ShippingComponent } from './shipping/shipping.component';
 @NgModule({
     declarations: [
         AppComponent,
@@ -68,7 +70,8 @@ import { APP_BASE_HREF } from '@angular/common';
         TrainingComponent,
         TrainingDetailComponent,
         ProductCategoryComponent,
-
+        LoginComponent,
+        ShippingComponent,
     ],
     imports: [
         BrowserModule,
@@ -144,7 +147,7 @@ import { APP_BASE_HREF } from '@angular/common';
                 component: TermsComponent
             },
             {
-                path: 'wishlist',
+                path: 'wishlist/:id',
                 component: WishlistComponent
             },
             {
@@ -178,6 +181,14 @@ import { APP_BASE_HREF } from '@angular/common';
             {
                 path: 'productcategory/:id',
                 component: ProductCategoryComponent
+            },
+            {
+                path: 'login',
+                component: LoginComponent
+            },
+            {
+                path: 'shipping',
+                component: ShippingComponent
             }
 
         ])

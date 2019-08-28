@@ -1,3 +1,6 @@
+import { Order } from './../services/model/order';
+import { Router, Event, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { RestApiService } from 'src/app/services/rest-api.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,15 +9,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./confirm.component.css']
 })
 export class ConfirmComponent implements OnInit {
-
-  constructor() {
+  checkoutData: any;
+  error: any;
+  user: any;
+  order: Order[]=[];
+  id:any;
+  constructor(  private router: Router,private route: ActivatedRoute,private rest: RestApiService) {
     new Promise((resolve) => {
       this.loadScript();
       resolve(true);
     });
+      this.checkoutData = {};
+      this.getorder(this.id);
   }
 
   ngOnInit() {
+  }
+  getorder(id: number) {
+    this.order = this.rest.getStoreOrder(id); 
+    // this.order.oid=this.order.id;
+    // this.order.email=this.order.email;
+    this.checkoutData.id = this.order[1].id;
+    this.checkoutData.email = this.user.email;  
   }
 
   public loadScript() {

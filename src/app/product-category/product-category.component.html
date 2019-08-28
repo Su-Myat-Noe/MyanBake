@@ -2,7 +2,7 @@
 <div id="content" class="site-content" tabindex="-1">
 	<div class="container">
 		<nav class="woocommerce-breadcrumb"><a routerLink="/">Home</a><span class="delimiter"><i
-					class="fa fa-angle-right"></i></span>Smart Phones &amp; Tablets</nav>
+					class="fa fa-angle-right"></i></span>{{categorydetail.name}}</nav>
 
 		<!-- <div id="primary" class="content-area"> -->
 			<!-- <main id="main" class="site-main"> -->
@@ -35,7 +35,7 @@
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="grid" aria-expanded="true">
 						<ul class="products columns-3">
-							<li class="product" *ngFor="let cat of catdetail.CategoryDetail">
+							<li class="product" *ngFor="let cat of categorydetail.subcategory">
 								<div class="product-outer">
 									<div class="product-inner">
 										<a routerLink="/itemdetail/{{cat.id}}">
@@ -58,8 +58,8 @@
 
 										<div class="hover-area">
 											<div class="action-buttons">
-												<a href="#" rel="nofollow" class="add_to_wishlist">Wishlist</a>
-												<a href="#" class="add-to-compare-link">Compare</a>
+												<a routerLink="#" rel="nofollow" class="add_to_wishlist">Wishlist</a>
+												<a routerLink="/compare" class="add-to-compare-link">Compare</a>
 											</div>
 										</div>
 									</div>
@@ -70,7 +70,7 @@
 
 					<div role="tabpanel" class="tab-pane" id="grid-extended" aria-expanded="true">
 						<ul class="products columns-3">
-							<li class="product" *ngFor="let cat of catdetail.CategoryDetail">
+							<li class="product" *ngFor="let cat of categorydetail.subcategory">
 								<div class="product-outer">
 									<div class="product-inner">
 										<!-- <span class="loop-product-categories">
@@ -83,8 +83,7 @@
 											</div>
 											<div class="product-rating">
 												<div title="Rated 4 out of 5" class="star-rating"><span
-														style="width:80%"><strong class="rating">4</strong> out of
-														5</span></div> (3)
+														style="width:80%"><strong class="rating">4</strong> out of 5</span></div> (3)
 											</div>
 
 											<div class="product-short-description">
@@ -116,8 +115,8 @@
 										</div>
 										<div class="hover-area">
 											<div class="action-buttons">
-												<a href="#" rel="nofollow" class="add_to_wishlist">Wishlist</a>
-												<a href="#" class="add-to-compare-link">Compare</a>
+												<a routerLink="#" rel="nofollow" class="add_to_wishlist">Wishlist</a>
+												<a routerLink="/compare" class="add-to-compare-link">Compare</a>
 											</div>
 										</div>
 									</div>
@@ -128,7 +127,7 @@
 
 					<div role="tabpanel" class="tab-pane" id="list-view" aria-expanded="true">
 						<ul class="products columns-3">
-							<li class="product list-view" *ngFor="let cat of catdetail.CategoryDetail">
+							<li class="product list-view" *ngFor="let cat of categorydetail.subcategory">
 								<div class="media">
 									<div class="media-left">
 										<a routerLink="/itemdetail/{{cat.id}}">
@@ -210,11 +209,11 @@
 
 					<div role="tabpanel" class="tab-pane" id="list-view-small" aria-expanded="true">
 						<ul class="products columns-3">
-							<li class="product list-view list-view-small"*ngFor="let category of catdetail.CategoryDetail">
+							<li class="product list-view list-view-small"*ngFor="let cat of categorydetail.subcategory">
 								<div class="media">
 									<div class="media-left">
-										<a routerLink="/itemdetail/{{category.id}}">
-											<img class="wp-post-image" src="{{category.image}}" alt="">
+										<a routerLink="/itemdetail/{{cat.id}}">
+											<img class="wp-post-image" src="{{cat.image}}" alt="">
 										</a>
 									</div>
 									<div class="media-body media-middle">
@@ -224,7 +223,7 @@
 													<a rel="tag"routerLink="/itemlist">{{category.productCategory.name}}</a>
 												</span> -->
 												<a routerLink="/itemlist">
-													<h3>{{category.name}}</h3>
+													<h3>{{cat.name}}</h3>
 													<div class="product-short-description">
 														<ul style="padding-left: 18px;">
 															<li>4.5 inch HD Screen</li>
@@ -243,7 +242,7 @@
 												<div class="price-add-to-cart">
 													<span class="price">
 														<span class="electro-price">
-															<a routerLink="/itemdetail/{{category.id}}">
+															<a routerLink="/itemdetail/{{cat.id}}">
 																<ins><span class="amount">View Detail</span></ins>
 															</a>
 														</span>
@@ -254,7 +253,7 @@
 												<div class="hover-area">
 													<div class="action-buttons">
 
-														<a href="#" rel="nofollow" class="add_to_wishlist">Wishlist</a>
+														<a routerLink="/wishlist/{{categorydetail.id}}" rel="nofollow" class="add_to_wishlist">Wishlist</a>
 
 														<a routerLink="/compare" class="add-to-compare-link">Compare</a>
 													</div>

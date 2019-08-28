@@ -1,3 +1,4 @@
+import { Subcategory } from 'src/app/services/model/subcategory';
 import { Component, OnInit } from '@angular/core';
 import{ Category } from './../services/model/category';
 import { RestApiService } from 'src/app/services/rest-api.service';
@@ -9,7 +10,7 @@ import { Router, Event,NavigationEnd} from '@angular/router';
   styleUrls: ['./product-category.component.css']
 })
 export class ProductCategoryComponent implements OnInit {
-  catdetail:Category[]=[];
+  categorydetail:Subcategory[]=[];
   id: any;
     constructor(private rest: RestApiService, private route: ActivatedRoute, private router: Router) {
       new Promise((resolve) => {
@@ -28,8 +29,7 @@ export class ProductCategoryComponent implements OnInit {
   getCategoryDetail(id: number) {
     this.rest.getCategoryDetail(id)
       .subscribe(res => {
-        console.log(res);
-        this.catdetail = res;
+        this.categorydetail = res;
         new Promise((resolve) => {
           this.loadScript();
           resolve(true);

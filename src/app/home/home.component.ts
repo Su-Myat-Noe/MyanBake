@@ -33,7 +33,6 @@ export class homeComponent implements OnInit {
   getproducts() {
     this.rest.getProducts()
       .subscribe(res => {
-        console.log(res);
         this.products = res;
         new Promise((resolve) => {
           this.loadScript('recently-added-products-carousel');
@@ -45,7 +44,6 @@ export class homeComponent implements OnInit {
   getCategoryheader() {
     this.rest.getCategoryheader()
       .subscribe(res => {
-        console.log(res);
         this.categories = res;
         new Promise((resolve) => {
           this.loadScript();
@@ -56,7 +54,6 @@ export class homeComponent implements OnInit {
   getProductAsclimit() {
     this.rest.getProductAsclimit()
       .subscribe(res => {
-        console.log(res);
         this.productAsc = res;
         new Promise((resolve) => {
           this.loadScript();
@@ -68,7 +65,6 @@ export class homeComponent implements OnInit {
   getProductDesclimit()  {
     this.rest.getProductDesclimit()  
       .subscribe(res => {
-        console.log(res);
         this.productDesc= res;
         new Promise((resolve) => {
           this.loadScript();
@@ -81,8 +77,6 @@ export class homeComponent implements OnInit {
   getoneProduct() {
     this.rest.getoneProduct()
       .subscribe(res => {
-        console.log(res);
-
         this.oneProduct = res;
         new Promise((resolve) => {
           this.loadScript();
@@ -93,7 +87,6 @@ export class homeComponent implements OnInit {
   getproductlimitDesc() {
     this.rest.getproductlimitDesc()
       .subscribe(res => {
-        console.log(res);
         this.productDescLimit = res;
         new Promise((resolve) => {
           this.loadScript();
@@ -104,7 +97,6 @@ export class homeComponent implements OnInit {
   getproductlimit() {
     this.rest.getproductlimit()
       .subscribe(res => {
-        console.log(res);
         this.product = res;
         new Promise((resolve) => {
           this.loadScript();

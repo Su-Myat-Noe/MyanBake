@@ -1,7 +1,7 @@
 import { CartService, BaseCartItem } from 'ng-shopping-cart';
 import { Brand } from './../../services/model/brand';
 import { Category } from './../../services/model/category';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { RestApiService } from 'src/app/services/rest-api.service';
 @Component({
   selector: 'app-brand-header',
@@ -13,11 +13,12 @@ export class BrandHeaderComponent implements OnInit {
   brands:Brand[]=[];
   qty:any;
   carts:any;
-  constructor(private rest: RestApiService,
+  
+  constructor(private rest: RestApiService,    
+    private cdr: ChangeDetectorRef,
     private cartService: CartService<BaseCartItem>) { 
     this.getCategories();
     this.getbrands();
-    this.qty = 1;
     this.getCart();
   }
   getCategories() {
@@ -27,32 +28,11 @@ export class BrandHeaderComponent implements OnInit {
           this.categories = res;
         });
   }
-  // increment product qty
-  incrementQty() {
-    console.log(this.qty+1);
-    this.qty += 1;
-    }  
-    // decrement product qty
-    decrementQty() 
-    {
-      if(this.qty-1 < 1 )
-        {
-        this.qty = 1
-        console.log('1->'+this.qty);
-        }
-      else
-        {
-        this.qty -= 1;
-        console.log('2->'+this.qty);
-        }
-    } 
-  // getSubCategories() {
-  //   this.rest.getSubCategories()
-  //       .subscribe(res => {
-  //         console.log(res);
-  //         this.subcategories = res;
-  //       });
-  // }
+  removeItem(cart, idx) {
+    this.carts.splice(idx, 1);
+    this.cartService.removeItem(cart.id);   
+    this.cdr.detectChanges();
+  }  
   getbrands(){
     this.rest.getBrand()
       .subscribe(res=>{

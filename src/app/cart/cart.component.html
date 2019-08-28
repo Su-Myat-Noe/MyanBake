@@ -24,11 +24,9 @@
               </tr>
             </thead>
             <tbody>
-
-              <tr class="cart_item"*ngFor="let cart of carts ;index as id">
-
+              <tr class="cart_item removed "*ngFor="let cart of carts ;index as idx">
                 <td class="product-remove">
-                  <a class="remove"(click)="remove()" ><i class="far fa-times-circle"></i></a>
+                  <a class="remove"(click)="removeItem(cart, idx)" ><i class="far fa-times-circle"></i></a>
                 </td>
 
                 <td class="product-thumbnail">
@@ -41,75 +39,54 @@
                 </td>
 
                 <td data-title="Price" class="product-price">
-                  <span class="amount">${{cart.price}}</span>
+                  <span class="amount">{{cart.price}}</span>
                 </td>
                 
                 <td data-title="Quantity" class="product-quantity">
                     <div class="quantity buttons_added">													
-                      <input type="button"(click)="plus(cart.id)" name="quantity" value="1" title="Qty"class="plus" value="+">
+                        <input type="button"(click)="minus(cart)" value="1" title="Qty" class="minus" value="-">
                       <label>Quantity:</label>
-                      <input type="number" name="quantity" [(ngModel)]="cart.quantity" title="Qty" class="input-text qty text"max="29" min="0" step="1" />									
-                      <input type="button"(click)="minus(cart.id)"name="quantity" value="1" title="Qty" class="minus" value="-">
+                      <input type="number" name="quantity[{{idx}}]" [(ngModel)]="cart.quantity" title="Qty" class="input-text qty text"max="29" min="0" step="1" />									
+                      <input type="button"(click)="plus(cart)" value="1" title="Qty"class="plus" value="+">
                     </div>
                 </td>
 
                 <td data-title="Total" class="product-subtotal">
-                  <span class="amount">${{cart.price*quant[id]}}</span>
+                  <span class="amount">{{cart.price*cart.quantity}}</span>
                 </td>
               </tr>
               
-              <tr>
+              <tr>              
                 <td class="actions" colspan="6">
-
                   <div class="coupon">
-
                     <label for="coupon_code">Coupon:</label> <input type="text" placeholder="Coupon code" value=""
                       id="coupon_code" class="input-text" name="coupon_code"> <input type="submit" value="Apply Coupon"
                       name="apply_coupon" class="button">
-
-                  </div>
-
-                  <input type="submit" value="Update Cart" name="update_cart" class="button">
-
-                  <div class="wc-proceed-to-checkout">
-
-                    <a class="checkout-button button alt wc-forward" routerLink="/checkout">Proceed to Checkout</a>
-                  </div>
-
-                  <input type="hidden" value="1eafc42c5e" name="_wpnonce" id="_wpnonce"><input type="hidden"
-                    value="/electro/cart/" name="_wp_http_referer">
+                  </div>                 
                 </td>
               </tr>
             </tbody>
           </table>
         </form>
         <div class="cart-collaterals">
-
           <div class="cart_totals ">
-
             <h2>Cart Totals</h2>
-
             <table class="shop_table shop_table_responsive">
-
               <tbody>
                 <tr class="cart-subtotal">
                   <th>Subtotal</th>
-                  <td data-title="Subtotal"><span class="amount">$3,299.00</span></td>
+                  <td data-title="Subtotal"><span class="amount">{{total}}</span></td>
                 </tr>
-
-
                 <tr class="shipping">
                   <th>Shipping</th>
-                  <td data-title="Shipping">Flat Rate: <span class="amount">$300.00</span> <input type="hidden"
-                      class="shipping_method" value="international_delivery" id="shipping_method_0" data-index="0"
+                  <td data-title="Shipping">Flat Rate: <span class="amount">300.00</span> <input type="hidden" class="shipping_method" value="international_delivery" id="shipping_method_0" data-index="0"
                       name="shipping_method[0]">
-
                     <form method="post" action="http://transvelo.github.io/electro-html/cart.html"
                       class="woocommerce-shipping-calculator">
-
-                      <p><a data-toggle="collapse" aria-controls="calculator" href="#calculator" aria-expanded="false"
-                          class="shipping-calculator-button">Calculate Shipping</a></p>
-
+                      <p>
+                        <a data-toggle="collapse" aria-controls="calculator" href="#calculator" aria-expanded="false"
+                          class="shipping-calculator-button">Calculate Shipping</a>
+                      </p>
                       <div id="calculator" class="shipping-calculator-form collapse">
                         <p id="calc_shipping_country_field" class="form-row form-row-wide">
                           <select rel="calc_shipping_state" class="country_to_state" id="calc_shipping_country"
@@ -411,27 +388,29 @@
                             placeholder="Postcode / ZIP" value="" class="input-text">
                         </p>
 
-                        <p><button class="button" value="1" name="calc_shipping" type="submit">Update Totals</button>
+                        <p><button class="button"(click)="grandtotalCost()"  value="1" name="calc_shipping" type="submit">Update Totals</button>
                         </p>
                         <input type="hidden" value="1eafc42c5e" name="_wpnonce"><input type="hidden"value="/electro/cart/" name="_wp_http_referer">
                       </div>
                     </form>
                   </td>
                 </tr>
-
                 <tr class="order-total">
                   <th>Total</th>
-                  <td data-title="Total"><strong><span class="amount">$3,599.00</span></strong> </td>
+                  <td data-title="Total"><strong><span class="amount">{{grandprice}}</span></strong> </td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>
+                    <a class="checkout-button button alt wc-forward" routerLink="/checkout">Proceed to Checkout</a>
+                  </td>                    
                 </tr>
               </tbody>
-            </table>
-            <div class="wc-proceed-to-checkout">
-              <button><a class="checkout-button button alt wc-forward" routerLink="/checkout">Proceed to Checkout</a></button>
-            </div>
+            </table>           
           </div>
         </div>
       </article>
-    </main><!-- #main -->
-  </div><!-- #primary -->
-</div><!-- .container -->
+    </main>
+  </div>
+</div>
 <app-footer></app-footer>

@@ -141,7 +141,7 @@
                                                 <div class="product-outer">
                                                     <div class="product-inner">
                                                         <span class="loop-product-categories"><a routerLink="/itemlist"
-                                                                rel="tag">{{product.productCategory.name}}</a></span>
+                                                                rel="tag">{{product.category.name}}</a></span>
                                                         <a routerLink="/itemdetail/{{product.id}}">
                                                             <h3>{{product.name}}</h3>
                                                             <div class="product-thumbnail">
@@ -164,7 +164,7 @@
 
                                                         <div class="hover-area">
                                                             <div class="action-buttons">
-                                                                <a href="#" rel="nofollow" class="add_to_wishlist">Wishlist</a>
+                                                                <a routerLink="/wishlist/{{product.id}}" rel="nofollow" class="add_to_wishlist">Wishlist</a>
                                                                 <a routerLink="/compare" class="add-to-compare-link">Compare</a>
                                                             </div>
                                                         </div>
@@ -185,7 +185,7 @@
                                                 <div class="product-outer">
                                                     <div class="product-inner">
                                                         <span class="loop-product-categories"><a routerLink="/itemlist"
-                                                                rel="tag">{{product.productCategory.name}}</a></span>
+                                                                rel="tag">{{product.category.name}}</a></span>
                                                         <a routerLink="/itemdetail/{{product.id}}">
                                                             <h3>{{product.name}}</h3>
                                                             <div class="product-thumbnail">
@@ -206,7 +206,7 @@
 
                                                         <div class="hover-area">
                                                             <div class="action-buttons">
-                                                                <a href="#" rel="nofollow" class="add_to_wishlist">Wishlist</a>
+                                                                <a routerLink="/wishlist/{{product.id}}" rel="nofollow" class="add_to_wishlist">Wishlist</a>
                                                                 <a routerLink="/compare" class="add-to-compare-link">Compare</a>
                                                             </div>
                                                         </div>
@@ -228,7 +228,7 @@
                                                 <div class="product-outer">
                                                     <div class="product-inner">
                                                         <span class="loop-product-categories"><a routerLink="/itemlist"
-                                                                rel="tag">{{product.productCategory.name}}</a></span>
+                                                                rel="tag">{{product.category.name}}</a></span>
                                                         <a routerLink="/itemdetail/{{product.id}}">
                                                             <h3>{{product.name}}</h3>
                                                             <div class="product-thumbnail">
@@ -248,7 +248,7 @@
 
                                                         <div class="hover-area">
                                                             <div class="action-buttons">
-                                                                <a href="#" rel="nofollow" class="add_to_wishlist">Wishlist</a>
+                                                                <a routerLink="/wishlist/{{product.id}}" rel="nofollow" class="add_to_wishlist">Wishlist</a>
                                                                 <a routerLink="/compare" class="add-to-compare-link">Compare</a>
                                                             </div>
                                                         </div>
@@ -462,7 +462,7 @@
 
                                             <div class="media-body">
                                                 <span class="loop-product-categories">
-                                                    <a routerLink="/itemlist" rel="tag">{{product.productCategory.name}}</a>
+                                                    <a routerLink="/itemlist" rel="tag">{{product.category.name}}</a>
                                                 </span>
 
                                                 <a routerLink="/itemdetail/{{product.id}}">
@@ -478,20 +478,15 @@
                                                         </span>
                                                     </span>
 
-                                                    <a routerLink="/cart" class="button add_to_cart_button">Add to
-                                                        cart</a>
+                                                    <a routerLink="/cart" class="button add_to_cart_button">Add to cart</a>
                                                 </div>
 
                                                 <div class="hover-area">
                                                     <div class="action-buttons">
-
-                                                        <a href="#" class="add_to_wishlist">
-                                                            Wishlist</a>
-
-                                                        <a href="#" class="add-to-compare-link">Compare</a>
+                                                        <a routerLink="/wishlist/{{product.id}}" class="add_to_wishlist">Wishlist</a>
+                                                        <a routerLink="/compare" class="add-to-compare-link">Compare</a>
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
@@ -533,7 +528,7 @@
                                     <div class="product-outer">
                                         <div class="product-inner">
                                             <span class="loop-product-categories"><a routerLink="/itemlist"
-                                                    rel="tag">{{product.productCategory.name}}</a></span>
+                                                    rel="tag">{{product.category.name}}</a></span>
                                             <a routerLink="/itemdetail/{{product.id}}">
                                                 <h3>{{product.name}}</h3>
                                                 <div class="product-thumbnail">
@@ -556,7 +551,7 @@
                                             <div class="hover-area">
                                                 <div class="action-buttons">
 
-                                                    <a href="#" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
+                                                    <a routerLink="/wishlist/{{product.id}}" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
 
                                                     <a routerLink="/compare" class="add-to-compare-link"> Compare</a>
                                                 </div>
@@ -671,7 +666,7 @@
                                 </a>
 
                                 <span class="loop-product-categories"><a routerLink="/itemdetail/{{product.id}}"
-                                        rel="tag">{{product.productCategory.name}}</a></span><a routerLink="/itemdetail/{{product.id}}">
+                                        rel="tag">{{product.category.name}}</a></span><a routerLink="/itemdetail/{{product.id}}">
                                     <h3>{{product.name}}</h3>
                                 </a>
                                 <span class="price"*ngFor="let pd of product.ProductDetail"><span class="electro-price"><span

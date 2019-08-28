@@ -87,7 +87,7 @@
               <div class="product"*ngFor="let product of products">
                 <div class="product-outer">
                   <div class="product-inner">
-                    <span class="loop-product-categories"><a routerLink="/itemlist" rel="tag">{{product.productCategory.name}}</a></span>
+                    <span class="loop-product-categories"><a routerLink="/itemlist" rel="tag">{{product.category.name}}</a></span>
                     <a routerLink="/itemdetail/{{product.id}}">
                       <h3>{{product.name}}</h3>
                       <div class="product-thumbnail">
@@ -105,7 +105,7 @@
                     </div>
                      <div class="hover-area">
                       <div class="action-buttons">
-                        <a routerLink="/#" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
+                        <a routerLink="/wishlist/{{product.id}}" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
                         <a routerLink="/compare" class="add-to-compare-link"> Compare</a>
                       </div>
                     </div>

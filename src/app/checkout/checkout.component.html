@@ -1,9 +1,7 @@
 <app-header></app-header>
 <div class="container">
-
   <nav class="woocommerce-breadcrumb"><a routerLink="/">Home</a><span class="delimiter"><i
         class="fa fa-angle-right"></i></span>Checkout</nav>
-
   <div id="primary" class="content-area">
     <main id="main" class="site-main">
       <article class="page type-page status-publish hentry">
@@ -19,70 +17,110 @@
 
                 <h3>Billing Details</h3>
 
-                <p id="billing_first_name_field" class="form-row form-row form-row-first validate-required"><label
-                    class="" for="billing_first_name">First Name <abbr title="required"
-                      class="required">*</abbr></label><input type="text" value="" placeholder=""
-                    id="billing_first_name" name="billing_first_name" class="input-text "></p>
+                <p id="billing_name_field" class="form-row form-row form-row-first validate-required">
+                  <label class="" for="billing_first_name">Name <abbr title="required" class="required">*</abbr></label>
+                  <input type="text" value="" placeholder="" id="billing_name" [(ngModel)]="checkoutData.name"
+                    name="billing_name" class="input-text ">
+                  <span class="errorcolor" *ngIf="error.name">
+                    {{error.name}}
+                  </span>
+                </p>
+                <p id="billing_company_field" class="form-row form-row form-row-last">
+                  <label class="" for="billing_company">Company Name</label>
+                  <input type="text" value="" placeholder="" id="billing_company" [(ngModel)]="checkoutData.company"
+                    name="billing_company" class="input-text ">
 
-                <p id="billing_last_name_field" class="form-row form-row form-row-last validate-required"><label
-                    class="" for="billing_last_name">Last Name <abbr title="required"
-                      class="required">*</abbr></label><input type="text" value="" placeholder="" id="billing_last_name"
-                    name="billing_last_name" class="input-text "></p>
-                <div class="clear"></div>
-
-                <p id="billing_company_field" class="form-row form-row form-row-wide"><label class=""
-                    for="billing_company">Company Name</label><input type="text" value="" placeholder=""
-                    id="billing_company" name="billing_company" class="input-text "></p>
+                </p>
 
                 <p id="billing_email_field" class="form-row form-row form-row-first validate-required validate-email">
                   <label class="" for="billing_email">Email Address <abbr title="required"
-                      class="required">*</abbr></label><input type="email" value="" placeholder="" id="billing_email"
-                    name="billing_email" class="input-text "></p>
+                      class="required">*</abbr></label>
+                  <input type="email" value="" placeholder="" [(ngModel)]="checkoutData.email" id="billing_email"
+                    name="billing_email" class="input-text ">
+                  <span class="errorcolor" *ngIf="error.email">
+                    {{error.Email}}
+                  </span>
+                </p>
 
                 <p id="billing_phone_field" class="form-row form-row form-row-last validate-required validate-phone">
-                  <label class="" for="billing_phone">Phone <abbr title="required"
-                      class="required">*</abbr></label><input type="tel" value="" placeholder="" id="billing_phone"
-                    name="billing_phone" class="input-text "></p>
-                <div class="clear"></div>
-
-                <p id="billing_country_field" class="form-row form-row form-row-wide validate-required validate-email">
-                  <label class="" for="billing_country">Country <abbr title="required"
-                      class="required">*</abbr></label><input type="text" value="" placeholder="" id="billing_country"
-                    name="billing_phone" class="input-text "></p>
-                <div class="clear"></div>
-
+                  <label class="" for="billing_phone">Phone <abbr title="required" class="required">*</abbr></label>
+                  <input type="tel" value="" placeholder="" [(ngModel)]="checkoutData.phone" id="billing_phone"
+                    name="billing_phone" class="input-text ">
+                  <span class="errorcolor" *ngIf="error.phone">
+                    {{error.phone}}
+                  </span>
+                </p>
+                <div class="clear"></div>                
                 <p id="billing_address_1_field" class="form-row form-row form-row-wide address-field validate-required">
-                  <label class="" for="billing_address_1">Address <abbr title="required"
-                      class="required">*</abbr></label><input type="text" value="" placeholder="Street address"
-                    id="billing_address_1" name="billing_address_1" class="input-text "></p>
+                  <label bel class="" for="billing_address_1">Address <abbr title="required"
+                      class="required">*</abbr></label>
+                  <input type="text" value="" placeholder="Street address" id="billing_address_1"
+                    [(ngModel)]="checkoutData.streetaddress" name="billing_address_1" class="input-text ">
+                  <span class="errorcolor" *ngIf="error.streetaddress">
+                    {{error.streetaddress}}
+                  </span>
+                </p>
 
-                <p id="billing_address_2_field" class="form-row form-row form-row-wide address-field"><input type="text"
-                    value="" placeholder="Apartment, suite, unit etc. (optional)" id="billing_address_2"
-                    name="billing_address_2" class="input-text "></p>
+                <p id="billing_address_2_field" class="form-row form-row form-row-wide address-field">
+                  <input type="text" value="" placeholder="Apartment, suite, unit etc. (optional)"
+                    [(ngModel)]="checkoutData.apartment" id="billing_address_2" name="billing_address_2"
+                    class="input-text ">
+                </p>
+                <p id="billing_country_field" class="form-row form-row form-row-first validate-required validate-country">
+                    <label class="" for="billing_country">Country <abbr title="required" class="required">*</abbr></label>                                    
+                      <select class="styled-select  rounded">
+                        <option  value="0">---Please Choose Country---</option>
+                        <option *ngFor ="let country of countries" value="{{country.id}}">{{country.name}}</option>
+                      </select> 
+                    <span class="errorcolor" *ngIf="error.country">
+                      {{error.country}}
+                    </span>                 
+                </p> 
+                    
+                <p id="billing_city_field" class="form-row form-row form-row-last address-field validate-required"
+                  data-o_class="form-row form-row form-row-wide address-field validate-required">
+                  <label class="" for="billing_city">Town<abbr title="required"
+                      class="required">*</abbr></label>
+                  <!-- <input type="text" value="" placeholder="" id="billing_city" [(ngModel)]="checkoutData.city"
+                    name="billing_city" class="input-text "> -->
+                    <select class="styled-select  rounded">
+                        <option value="0">---Please Choose Country---</option>
+                        <option *ngFor ="let town of township" value="{{town.id}}">{{town.name}}</option>
+                      </select> 
+                  <span class="errorcolor" *ngIf="error.city">
+                    {{error.city}}
+                  </span>
+                </p>
 
-                <p id="billing_city_field" class="form-row form-row form-row-wide address-field validate-required"
-                  data-o_class="form-row form-row form-row-wide address-field validate-required"><label class=""
-                    for="billing_city">Town / City <abbr title="required" class="required">*</abbr></label><input
-                    type="text" value="" placeholder="" id="billing_city" name="billing_city" class="input-text "></p>
+               
 
-                <p id="billing_state_field" class="form-row form-row form-row-first validate-required validate-email">
-                  <label class="" for="billing_state">State / County <abbr title="required"
-                      class="required">*</abbr></label><input type="text" value="" placeholder="" id="billing_state"
-                    name="billing_phone" class="input-text "></p>
+                <p id="billing_country_field" class="form-row form-row form-row-first validate-required validate-state">
+                    <label class="" for="billing_country">State <abbr title="required" class="required">*</abbr></label>                                    
+                      <select class="styled-select rounded">
+                        <option value="0">---Please Choose State---</option>
+                        <option *ngFor ="let State of states" value="{{State.id}}">{{State.name}}</option>
+                      </select> 
+                    <span class="errorcolor" *ngIf="error.state">
+                      {{error.state}}
+                    </span>                  
+                </p> 
 
-                <p id="billing_postcode_field"
-                  class="form-row form-row form-row-last address-field validate-postcode validate-required"
+                <p id="billing_postcode_field"class="form-row form-row form-row-last address-field validate-required"
                   data-o_class="form-row form-row form-row-last address-field validate-required validate-postcode">
                   <label class="" for="billing_postcode">Postcode / ZIP <abbr title="required"
-                      class="required">*</abbr></label><input type="text" value="" placeholder="" id="billing_postcode"
-                    name="billing_postcode" class="input-text "></p>
+                      class="required">*</abbr></label>
+                  <input type="text" value="" placeholder="" id="billing_postcode" [(ngModel)]="checkoutData.postcode"
+                    name="billing_postcode" class="input-text ">
+                  <span class="errorcolor" *ngIf="error.postcode">
+                    {{error.postcode}}
+                  </span>
+                </p>
 
                 <div class="clear"></div>
 
                 <p class="form-row form-row-wide create-account"><input type="checkbox" value="1" name="createaccount"
                     id="createaccount" class="input-checkbox"> <label class="checkbox" for="createaccount">Create an
                     account?</label></p>
-
               </div>
             </div>
 
@@ -91,8 +129,8 @@
               <div class="woocommerce-shipping-fields">
                 <h3 id="ship-to-different-address">
                   <label class="checkbox" for="ship-to-different-address-checkbox">Ship to a different address?</label>
-                  <input type="checkbox" value="1" name="ship_to_different_address" class="input-checkbox"
-                    id="ship-to-different-address-checkbox">
+                  <input type="checkbox" value="1" name="ship_to_different_address" routerLink="/shipping"
+                    class="input-checkbox" id="ship-to-different-address-checkbox">
                 </h3>
 
                 <p id="order_comments_field" class="form-row form-row notes"><label class="" for="order_comments">Order
@@ -114,28 +152,21 @@
                 </tr>
               </thead>
               <tbody>
-                <tr class="cart_item">
+                <tr class="cart_item" *ngFor="let cart of carts">
                   <td class="product-name">
-                    Wireless Audio System Multiroom 360&nbsp;
-                    <strong class="product-quantity">× 1</strong> </td>
+                    {{cart.name}}
+                    <strong class="product-quantity">× {{cart.quantity}}</strong> </td>
                   <td class="product-total">
-                    <span class="amount">$1,999.00</span>
+                    <span class="amount">{{cart.quantity*cart.price}}</span>
                   </td>
                 </tr>
-                <tr class="cart_item">
-                  <td class="product-name">
-                    Tablet White EliteBook Revolve 810 G2&nbsp;
-                    <strong class="product-quantity">× 1</strong> </td>
-                  <td class="product-total">
-                    <span class="amount">$1,300.00</span>
-                  </td>
-                </tr>
+
               </tbody>
               <tfoot>
 
                 <tr class="cart-subtotal">
                   <th>Subtotal</th>
-                  <td><span class="amount">$3,299.00</span></td>
+                  <td><span class="amount">{{total}}</span></td>
                 </tr>
 
                 <tr class="shipping">
@@ -147,7 +178,7 @@
 
                 <tr class="order-total">
                   <th>Total</th>
-                  <td><strong><span class="amount">$3,599.00</span></strong> </td>
+                  <td><strong><span class="amount">{{grandprice}}</span></strong> </td>
                 </tr>
               </tfoot>
             </table>
@@ -161,15 +192,6 @@
                   <div class="payment_box payment_method_bacs">
                     <p>Make your payment directly into our bank account. Please use your Order ID as the payment
                       reference. Your order won’t be shipped until the funds have cleared in our account.</p>
-                  </div>
-                </li>
-                <li class="wc_payment_method payment_method_cheque">
-                  <input type="radio" data-order_button_text="" value="cheque" name="payment_method" class="input-radio"
-                    id="payment_method_cheque">
-                  <label for="payment_method_cheque">Cheque Payment </label>
-                  <div style="display:none;" class="payment_box payment_method_cheque">
-                    <p>Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store
-                      Postcode.</p>
                   </div>
                 </li>
                 <li class="wc_payment_method payment_method_cod">
@@ -186,7 +208,7 @@
                     class="input-radio" id="payment_method_paypal">
 
                   <label for="payment_method_paypal">PayPal <img alt="PayPal Acceptance Mark"
-                      src="../../www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg"><a
+                      src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg"><a
                       title="What is PayPal?"
                       onclick="javascript:window.open('https://www.paypal.com/us/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"
                       class="about_paypal" href="https://www.paypal.com/us/webapps/mpp/paypal-popup">What is
@@ -197,15 +219,14 @@
                 </li>
               </ul>
               <div class="form-row place-order">
-
                 <p class="form-row terms wc-terms-and-conditions">
                   <input type="checkbox" id="terms" name="terms" class="input-checkbox">
                   <label class="checkbox" for="terms">I’ve read and accept the <a target="_blank"
-                    routerLink="/terms">terms &amp; conditions</a> <span class="required">*</span></label>
+                      routerLink="/terms">terms &amp; conditions</a> <span class="required">*</span></label>
                   <input type="hidden" value="1" name="terms-field">
                 </p>
-
-                <input type="submit" data-value="Place order" value="Place order" class="button alt">
+                <input type="submit" data-value="Place order" (click)="checkOut()" value="Place order"
+                  class="button alt">
               </div>
             </div>
           </div>

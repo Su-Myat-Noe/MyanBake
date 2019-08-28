@@ -2,8 +2,7 @@
   <div class="container">
     <nav>
       <ul id="menu-top-bar-left" class="nav nav-inline pull-left animate-dropdown flip">
-        <li class="menu-item animate-dropdown"><a title="Welcome to Myan Bake Store" href="#">Welcome to
-            Myan Bake Store</a></li>
+        <li class="menu-item animate-dropdown"><a title="Welcome to Myan Bake Store" href="#">Welcome to Myan Bake Store</a></li>
       </ul>
     </nav>
 
@@ -15,7 +14,7 @@
               class="ec ec-transport"></i>Track Your Order</a></li>
         <li class="menu-item animate-dropdown"><a title="Shop" routerLink="/shop"><i
               class="ec ec-shopping-bag"></i>Shop</a></li>
-        <li class="menu-item animate-dropdown"><a title="My Account" routerLink="/register"><i class="ec ec-user"></i>My
+        <li class="menu-item animate-dropdown"><a title="My Account" routerLink="/login"><i class="ec ec-user"></i>My
             Account</a></li>
       </ul>
     </nav>
@@ -214,8 +213,8 @@
           <li class="nav-item dropdown">
             <a routerLink="#" class="nav-link" data-toggle="dropdown">
               <i class="ec ec-shopping-bag"></i>
-              <span class="cart-items-count count">4</span>
-              <span class="cart-items-total-price total-price"><span class="amount">&#36;1,215.00</span></span>
+              <!-- <span class="cart-items-count count">4</span>
+              <span class="cart-items-total-price total-price"><span class="amount">&#36;1,215.00</span></span> -->
             </a>
             <ul class="dropdown-menu dropdown-menu-mini-cart">
               <li>
@@ -225,13 +224,13 @@
 
 
                     <li class="mini_cart_item"*ngFor="let cart of carts ;index as i">
-                        <a class="remove"(click)="remove(cart.i)"><i class="far fa-times-circle"></i></a>
+                        <a class="remove"(click)="removeItem(cart, i)"><i class="far fa-times-circle"></i></a>
                       <a routerLink="/itemdetail">
                         <img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image"
                           src="{{cart.image}}" alt="">{{cart.name}}
                       </a>
 
-                      <span class="quantity">{{qty}} × <span class="amount">${{cart.price*qty}}</span></span>
+                      <span class="quantity">{{cart.quantity}}× <span class="amount">{{cart.quantity*cart.price}}</span></span>
                     </li>                    
                   </ul><!-- end product list -->
                   <p class="total"><strong>Subtotal:</strong> <span class="amount">£969.98</span></p>

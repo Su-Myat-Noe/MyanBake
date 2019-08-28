@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RestApiService } from './services/rest-api.service';
 import { environment } from 'src/environments/environment';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

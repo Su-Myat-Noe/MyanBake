@@ -3,7 +3,7 @@
 	<div class="container">
 
 		<nav class="woocommerce-breadcrumb"><a routerLink="/">Home</a><span class="delimiter"><i
-					class="fa fa-angle-right"></i></span>Smart Phones &amp; Tablets</nav>
+					class="fa fa-angle-right"></i></span>Shop</nav>
 
 		<div id="primary" class="content-area">
 			<main id="main" class="site-main">
@@ -26,7 +26,7 @@
 									<div class="product-outer">
 										<div class="product-inner">
 											<span class="loop-product-categories"><a routerLink="/itemlist"
-													rel="tag">{{product.productCategory.name}}</a></span>
+													rel="tag">{{product.category.name}}</a></span>
 											<a routerLink="/itemdetail/{{product.id}}">
 												<h3>{{product.name}}</h3>
 												<div class="product-thumbnail">
@@ -48,7 +48,7 @@
 											<div class="hover-area">
 												<div class="action-buttons">
 
-													<a href="#" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
+													<a routerLink="/wishlist/{{product.id}}" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
 
 													<a routerLink="/compare" class="add-to-compare-link"> Compare</a>
 												</div>
@@ -120,7 +120,7 @@
 								<div class="product-outer">
 									<div class="product-inner">
 										<span class="loop-product-categories"><a routerLink="/itemlist"
-												rel="tag">{{product.productCategory.name}}</a></span>
+												rel="tag">{{product.category.name}}</a></span>
 										<a routerLink="/itemdetail">
 											<h3>{{product.name}}</h3>
 											<div class="product-thumbnail">
@@ -139,8 +139,8 @@
 
 										<div class="hover-area">
 											<div class="action-buttons">
-												<a href="#" rel="nofollow" class="add_to_wishlist">Wishlist</a>
-												<a href="#" class="add-to-compare-link">Compare</a>
+												<a routerLink="/wishlist/{{product.id}}" rel="nofollow" class="add_to_wishlist">Wishlist</a>
+												<a routerLink="/compare" class="add-to-compare-link">Compare</a>
 											</div>
 										</div>
 									</div>
@@ -154,7 +154,7 @@
 								<div class="product-outer">
 									<div class="product-inner">
 										<span class="loop-product-categories"><a routerLink="/itemlist"
-												rel="tag">{{product.productCategory.name}}</a></span>
+												rel="tag">{{product.category.name}}</a></span>
 										<a routerLink="/itemdetail/{{product.id}}">
 											<h3>{{product.name}}</h3>
 											<div class="product-thumbnail">
@@ -191,8 +191,8 @@
 										</div>
 										<div class="hover-area">
 											<div class="action-buttons">
-												<a href="#" rel="nofollow" class="add_to_wishlist">Wishlist</a>
-												<a href="#" class="add-to-compare-link">Compare</a>
+												<a routerLink="/wishlist/{{product.id}}" rel="nofollow" class="add_to_wishlist">Wishlist</a>
+												<a routerLink="/compare" class="add-to-compare-link">Compare</a>
 											</div>
 										</div>
 									</div>
@@ -212,7 +212,7 @@
 									<div class="media-body media-middle">
 										<div class="row">
 											<div class="col-xs-12">
-												<span class="loop-product-categories"><a rel="tag" href="#">{{pro.productCategory.name}}</a></span><a routerLink="/itemdetail/{{pro.id}}">
+												<span class="loop-product-categories"><a rel="tag" href="#">{{pro.category.name}}</a></span><a routerLink="/itemdetail/{{pro.id}}">
 													<h3>{{pro.name}}</h3>
 													<div class="product-rating">
 														<div title="Rated 4 out of 5" class="star-rating"><span style="width:80%"><strong class="rating">4</strong>Out of 5</span></div> (3)
@@ -235,21 +235,17 @@
 												<div class="hover-area">
 													<div class="action-buttons">
 														<div class="yith-wcwl-add-to-wishlist add-to-wishlist-2706">
-															<a class="add_to_wishlist" data-product-type="simple"
-																data-product-id="2706" rel="nofollow"
-																href="#">Wishlist</a>
+															<a class="add_to_wishlist" data-product-type="simple"data-product-id="2706" rel="nofollow"routerLink="/wishlist/{{pro.id}}">Wishlist</a>
 
-															<div style="display:none;"
-																class="yith-wcwl-wishlistaddedbrowse hide">
+															<div style="display:none;"class="yith-wcwl-wishlistaddedbrowse hide">
 																<span class="feedback">Product added!</span>
-																<a rel="nofollow" href="#">Wishlist</a>
+																<a rel="nofollow" routerLink="/wishlist/{{pro.id}}">Wishlist</a>
 															</div>
 
 															<div style="display:none"
 																class="yith-wcwl-wishlistexistsbrowse hide">
-																<span class="feedback">The product is already in the
-																	wishlist!</span>
-																<a rel="nofollow" href="#">Wishlist</a>
+																<span class="feedback">The product is already in the wishlist!</span>
+																<a rel="nofollow" routerLink="#">Wishlist</a>
 															</div>
 
 															<div style="clear:both"></div>
@@ -258,7 +254,7 @@
 														</div>
 														<div class="clear"></div>
 														<a data-product_id="2706" class="add-to-compare-link"
-															href="#">Compare</a>
+															routerLink="/compare">Compare</a>
 													</div>
 												</div>
 											</div>
@@ -283,7 +279,7 @@
 										<div class="row">
 											<div class="col-xs-12">
 												<span class="loop-product-categories"><a rel="tag"
-														routerLink="/itemlist">{{product.productCategory.name}}</a></span><a
+														routerLink="/itemlist">{{product.category.name}}</a></span><a
 													routerLink="/itemlist">
 													<h3>{{product.name}}</h3>
 													<div class="product-short-description">
@@ -312,7 +308,7 @@
 												<div class="hover-area">
 													<div class="action-buttons">
 
-														<a href="#" rel="nofollow" class="add_to_wishlist">Wishlist</a>
+														<a routerLink="/wishlist/{{product.id}}" rel="nofollow" class="add_to_wishlist">Wishlist</a>
 
 														<a routerLink="/compare" class="add-to-compare-link">Compare</a>
 													</div>

@@ -3224,9 +3224,12 @@ div.quantity.buttons_added {
     -webkit-appearance: none;
     margin: 0;
     /* Removes leftover margin */ }
-  div.quantity.buttons_added .plus {
+  div.quantity.buttons_added .minus {
     right: 1.965em;
     margin-right: 0.357em; }
+    div.quantity.buttons_added .plus {
+      right: 0em;
+      margin-right: 0.357em; }
 
 /*===================================================================================*/
 /*  MEGA-MENU

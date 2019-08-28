@@ -1,0 +1,65 @@
+<app-header></app-header>
+<div class="container">
+
+  <nav class="woocommerce-breadcrumb">
+    <a routerLink="/">Home</a>
+    <span class="delimiter"><i class="fa fa-angle-right"></i></span>
+    My Account
+  </nav>
+  <div id="loginbox" style="margin-top:20px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main">      
+        <div class="panel panel-info">
+          <article id="post-8" class="hentry">
+            <div class="entry-content">
+              <div class="woocommerce">
+                <div class="customer-login-form">
+                  <div class="col-md-12">
+                    <h2>Login</h2>
+                    <form method="post" class="login">
+                      <p class="before-login-text">
+                        Welcome back! Sign in to your account
+                      </p>
+                      <p class="form-row form-row-wide">
+                        <label for="username">Username or email address
+                          <span class="required">*</span></label>
+                        <input type="text" class="input-text" [(ngModel)]="loginData.email" name="username"id="username" value="" />
+                        <span *ngIf="error.email">
+                            {{error.email}}
+                          </span>
+                      </p>
+
+                      <p class="form-row form-row-wide">
+                        <label for="password">Password
+                          <span class="required">*</span></label>
+                        <input class="input-text" type="password" [(ngModel)]="loginData.password" name="password" id="password" />
+                        <span *ngIf="error.password">
+                            {{error.password}}
+                        </span>
+                      </p>
+
+                      <p class="form-row">
+                        <input class="button" type="submit" (click)="login()" value="Login" name="login">
+                        <label for="rememberme" class="inline">
+                          <input name="rememberme" type="checkbox" id="rememberme" [(ngModel)]="loginData.remember"value="forever" /> Remember me
+                        </label>
+                      </p>
+
+                      <p class="lost_password">
+                        <a routerLink="#">Lost your password?</a>
+                      </p>
+                      <p class="lost_password">
+                        <a routerLink="/register">Click Here to create new account</a>
+                      </p>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>      
+    </main>
+  </div>
+  </div>
+</div>
+<app-footer></app-footer>
