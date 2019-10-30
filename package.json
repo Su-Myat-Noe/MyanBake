@@ -29,7 +29,7 @@
     "bootstrap": "^4.3.1",
     "core-js": "^2.6.9",
     "font-awesome": "^4.7.0",
-    "jquery": "^1.9.1",
+    "jquery": "^3.4.0",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.13",
     "ng-shopping-cart": "^1.0.0",
