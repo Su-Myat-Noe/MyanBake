@@ -353,23 +353,23 @@ getStoreOrder(id:any): any {
         catchError(this.handleError)
       )
   }
-  getState(): Observable<any> {
+  getState(id:number): Observable<any> {
     let httpHeader = {
       Accept: 'application/json',
       Authorization: 'Bearer ' + localStorage.getItem(environment.token_key)
     }
-    return this.http.get<any>(this.apiUrl + '/api/state', { headers: httpHeader })
+    return this.http.get<any>(this.apiUrl + '/api/state'+id, { headers: httpHeader })
       .pipe(
         retry(1),
         catchError(this.handleError)
       )
   }
-  getTown(): Observable<Township[]> {
+  getTown(id:number): Observable<Township[]> {
     let httpHeader = {
       Accept: 'application/json',
       Authorization: 'Bearer ' + localStorage.getItem(environment.token_key)
     }
-    return this.http.get<Township[]>(this.apiUrl + '/api/township', { headers: httpHeader })
+    return this.http.get<Township[]>(this.apiUrl + '/api/township'+id, { headers: httpHeader })
       .pipe(
         retry(1),
         catchError(this.handleError)

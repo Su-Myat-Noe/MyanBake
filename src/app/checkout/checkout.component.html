@@ -68,7 +68,7 @@
                 </p>
                 <p id="billing_country_field" class="form-row form-row form-row-first validate-required validate-country">
                     <label class="" for="billing_country">Country <abbr title="required" class="required">*</abbr></label>                                    
-                      <select class="styled-select  rounded">
+                      <select class="styled-select  rounded"(change)="onChangeCountry($event.target.value)">
                         <option  value="0">---Please Choose Country---</option>
                         <option *ngFor ="let country of countries" value="{{country.id}}">{{country.name}}</option>
                       </select> 
@@ -81,22 +81,20 @@
                   data-o_class="form-row form-row form-row-wide address-field validate-required">
                   <label class="" for="billing_city">Town<abbr title="required"
                       class="required">*</abbr></label>
-                  <!-- <input type="text" value="" placeholder="" id="billing_city" [(ngModel)]="checkoutData.city"
-                    name="billing_city" class="input-text "> -->
-                    <select class="styled-select  rounded">
-                        <option value="0">---Please Choose Country---</option>
-                        <option *ngFor ="let town of township" value="{{town.id}}">{{town.name}}</option>
+                    <select class="styled-select  rounded nextline"(change)="onChangeCountry($event.target.value)">
+                        <option value="0">---Please Choose Township---</option>
+                        <option *ngFor ="let township of townships" value="{{township.id}}">{{township.name}}</option>
                       </select> 
-                  <span class="errorcolor" *ngIf="error.city">
-                    {{error.city}}
+                  <span class="errorcolor" *ngIf="error.townships">
+                    {{error.townships}}
                   </span>
                 </p>
 
                
 
                 <p id="billing_country_field" class="form-row form-row form-row-first validate-required validate-state">
-                    <label class="" for="billing_country">State <abbr title="required" class="required">*</abbr></label>                                    
-                      <select class="styled-select rounded">
+                    <label class="" for="billing_country">State/Region <abbr title="required" class="required">*</abbr></label>                                    
+                      <select class="styled-select rounded nextline"(change)="onChangeCountry($event.target.value)">
                         <option value="0">---Please Choose State---</option>
                         <option *ngFor ="let State of states" value="{{State.id}}">{{State.name}}</option>
                       </select> 

@@ -6,7 +6,7 @@ import { CartService, BaseCartItem } from 'ng-shopping-cart';
 import { RestApiService } from './../services/rest-api.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import 'rxjs/add/operator/filter';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -26,7 +26,7 @@ export class CheckoutComponent implements OnInit {
   shippingRate: number = 500;
   countries:Country[]=[];
   states:State[]=[];
-  township:Township[]=[];
+  townships:Township[]=[];
   constructor(private rest: RestApiService, private router: Router, private cartService: CartService<BaseCartItem>) {
     new Promise((resolve) => {
       this.loadScript();
@@ -51,6 +51,32 @@ export class CheckoutComponent implements OnInit {
   }
   ngOnInit() {
   }
+
+  onChangeCountry(countryId: number) {
+    if (countryId) {
+      this.rest.getState(countryId).subscribe(
+        data => {
+          this.states = data;
+          this.townships = null;
+        }
+      );
+    } else {
+      this.states = null;
+      this.townships = null;
+    }
+  }
+
+  onChangeState(stateId: number) {
+    if (stateId) {
+      this.rest.getTown(stateId).subscribe(
+        data => this.townships = data
+      );
+    } else {
+      this.townships = null;
+    }
+  }
+
+  
   getCart() {
     this.carts = this.cartService.getItems();
   }
@@ -60,6 +86,7 @@ export class CheckoutComponent implements OnInit {
   subTotal() {
     this.total = this.cartService.cost();
   }
+
   getCountry() {
     this.rest.getCountry()
         .subscribe(res => {
@@ -67,28 +94,30 @@ export class CheckoutComponent implements OnInit {
           new Promise((resolve) => {
             this.loadScript();
             resolve(true);       
-          });
+          });         
         });
   }
+
   getState() {
-    this.rest.getState()
-        .subscribe(res => {
-          this.states = res;
-          new Promise((resolve) => {
-            this.loadScript();
-            resolve(true);         
-          });
-        });
+    // this.rest.getState()
+    //     .subscribe(res => {
+    //       this.states = res;
+    //       new Promise((resolve) => {
+    //         this.loadScript();
+    //         resolve(true);         
+    //       });
+    //     });
   }
+
   getTown() {
-    this.rest.getTown()
-        .subscribe(res => {
-          this.township = res;
-          new Promise((resolve) => {
-            this.loadScript();
-            resolve(true);         
-          });
-        });
+    // this.rest.getTown()
+    //     .subscribe(res => {
+    //       this.township = res;
+    //       new Promise((resolve) => {
+    //         this.loadScript();
+    //         resolve(true);         
+    //       });
+    //     });
   }
   getLogin() {
     this.user = this.rest.getStoreUser();
