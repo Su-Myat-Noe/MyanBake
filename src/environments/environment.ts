@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
-  token_key: 'app_access_token'
+  token_key: 'app_access_token',
+  buyNowKey: 'checkout-Place order'
 };
 

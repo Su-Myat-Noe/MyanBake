@@ -1,3 +1,6 @@
+import { Router } from '@angular/router';
+import { ShoppingCartService } from './../services/cart.service';
+import { BaseCartItem, CartService } from 'ng-shopping-cart';
 import { Category } from './../services/model/category';
 import { Product } from './../services/model/product';
 import { RestApiService } from 'src/app/services/rest-api.service';
@@ -15,8 +18,14 @@ export class homeComponent implements OnInit {
   oneProduct:Product;
   productDesc:Product[]=[];
   categories:Category[]=[];
-
-  constructor(private rest: RestApiService) {
+  loading: any;
+  product1: any = {};
+  user: any;
+  constructor(
+    private rest: RestApiService,
+    private shoppingCart: ShoppingCartService,
+    private router: Router,
+    private cartService: CartService<BaseCartItem>) {
     
     new Promise((resolve) => {
       // this.loadScript();
@@ -105,6 +114,37 @@ export class homeComponent implements OnInit {
       });
   }
 
+  addToCart(id) {
+    this.loading = true;
+    if (this.user) {
+        // this.loading = false;
+        this.rest.getItemID(id)
+            .subscribe(results => {
+                this.loading = false;
+                this.product = results;
+                const item = new BaseCartItem();
+                item.setId(this.product1.id);
+                item.setName(this.product1.name);
+                item.setPrice(this.product1.price);
+                item.setQuantity(1);
+                item.setImage(this.product1.image);
+                item.setData({
+                    itemdt_id: this.product1.itemdt.length > 0 ? this.product1.itemdt[0].id : null,
+                    itemdt_name: this.product1.itemdt.length > 0 ? this.product1.itemdt[0].name : null,
+                    itemdt_price: this.product1.itemdt.length > 0 ? this.product1.itemdt[0].price : null,
+                    itemdt_image: this.product1.itemdt.length > 0 ? this.product1.itemdt[0].image : null,
+                    shop_id: this.product1.shop_id,
+                });
+                this.cartService.addItem(item);
+                this.shoppingCart.changedCartService$.next(true);
+                alert('Successfully added to the cart');
+            });
+    } else {
+        this.router.navigateByUrl('/login?return=' + this.router.url);
+    }
+
+}
+ 
   ngOnInit() {  
     
 }

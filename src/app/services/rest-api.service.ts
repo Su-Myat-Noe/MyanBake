@@ -106,6 +106,18 @@ export class RestApiService {
         catchError(this.handleError)
       )
   }
+
+  getItemID(id: number): Observable<any> {
+    let httpHeader = {
+      Accept: 'application/json',
+      Authorization: 'Bearer ' + localStorage.getItem(environment.token_key)
+    }
+    return this.http.get<any>(this.apiUrl + '/api/product/' + id, { headers: httpHeader })
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
   //4 records
   getProductlimit(): Observable<Product[]> {
     let httpHeader = {
@@ -273,6 +285,18 @@ export class RestApiService {
         catchError(this.handleError)
       )
   }
+
+  saveShipping(data): Observable<any> {
+    let httpHeader = {
+      Accept: 'application/json',
+      Authorization: 'Bearer ' + localStorage.getItem(environment.token_key)
+    }
+    return this.http.post(this.apiUrl + '/api/shipping', data, { headers: httpHeader })
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+}
   save(data): Observable<any> {
     let httpHeader = {
       Accept: 'application/json',
@@ -284,6 +308,7 @@ export class RestApiService {
         catchError(this.handleError)
       )
 }
+
 getOrders(): Observable<Order[]> {
   let httpHeader = {
     Accept: 'application/json',
@@ -313,6 +338,18 @@ getStoreOrder(id:any): any {
         catchError(this.handleError)
       )
   }
+  search(search: string): Observable<any[]> {
+    let httpHeader = {
+      Accept: 'application/json',
+      Authorization: 'Bearer ' + localStorage.getItem(environment.token_key)
+    }
+    return this.http.get<any[]>(this.apiUrl + `/api/users?search=${search}`, { headers: httpHeader })
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+}
+
   getuser(id: number): Observable<any> {
     let httpHeader = {
       Accept: 'application/json',
@@ -342,39 +379,55 @@ getStoreOrder(id:any): any {
     return JSON.parse(localStorage.getItem("loginUser"));
   }
   //-------------------------------------country/city/township------------------------------------------------------------------------------
-  getCountry(): Observable<Country[]> {
+
+  get(): Observable<any[]> {
     let httpHeader = {
       Accept: 'application/json',
       Authorization: 'Bearer ' + localStorage.getItem(environment.token_key)
     }
-    return this.http.get<Country[]>(this.apiUrl + '/api/country', { headers: httpHeader })
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      )
+    return this.http.get<any[]>(this.apiUrl + '/api/country', { headers: httpHeader })
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+}
+
+getByCity(cityID): Observable<any[]> {
+  let httpHeader = {
+    Accept: 'application/json',
+    Authorization: 'Bearer ' + localStorage.getItem(environment.token_key)
   }
-  getState(id:number): Observable<any> {
-    let httpHeader = {
-      Accept: 'application/json',
-      Authorization: 'Bearer ' + localStorage.getItem(environment.token_key)
-    }
-    return this.http.get<any>(this.apiUrl + '/api/state'+id, { headers: httpHeader })
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      )
+  return this.http.get<any[]>(this.apiUrl + `/api/township?search=city_id:equal:${cityID}|`, { headers: httpHeader })
+  .pipe(
+    retry(1),
+    catchError(this.handleError)
+  )
+}
+
+getByTownship(TownshipID): Observable<any> {
+  let httpHeader = {
+    Accept: 'application/json',
+    Authorization: 'Bearer ' + localStorage.getItem(environment.token_key)
   }
-  getTown(id:number): Observable<Township[]> {
-    let httpHeader = {
-      Accept: 'application/json',
-      Authorization: 'Bearer ' + localStorage.getItem(environment.token_key)
-    }
-    return this.http.get<Township[]>(this.apiUrl + '/api/township'+id, { headers: httpHeader })
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      )
+  return this.http.get<any>(this.apiUrl + `/api/township/${TownshipID}`, { headers: httpHeader })
+  .pipe(
+    retry(1),
+    catchError(this.handleError)
+  )
+}
+
+getByCountry(countryID): Observable<any[]> {
+  let httpHeader = {
+    Accept: 'application/json',
+    Authorization: 'Bearer ' + localStorage.getItem(environment.token_key)
   }
+  return this.http.get<any[]>(this.apiUrl  + `/api/city?search=country_id:equal:${countryID}|`, { headers: httpHeader })
+  .pipe(
+    retry(1),
+    catchError(this.handleError)
+  )
+}
+
   // ---------------------------------------------------------------------------------------------------------------------------
   handleError(error) {
     let errormessage = '';

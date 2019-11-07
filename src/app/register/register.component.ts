@@ -21,43 +21,71 @@ export class RegisterComponent implements OnInit {
   register() {
     if (this.validForm()) {
       this.disableSubmit = true;
-      this.registerData.first_name = 'a';
-      this.registerData.last_name = 'b';
-      this.registerData.active = 1;
-      this.registerData.phone = this.registerData.country + ' ' + (this.registerData.phone) ? this.registerData.phone : '';
-      this.rest.register(this.registerData).subscribe((results) => {
-        // this.storage.set('remember', true);
-        // this.storage.set('user', results);
-        alert('You have successfully register and log-in');
-        this.disableSubmit = false;
-        this.router.navigateByUrl('');
-      },
+      let data = {
+          username: this.registerData.username,
+          email: this.registerData.email,
+          phone: this.registerData.phone,         
+          password: this.registerData.password,
+          password_confirmation: this.registerData.confirmpassword
+      }
+      this.rest.register(data).subscribe((results) => {
+        alert("Signup Successfully, Please verify your account ");
+    },
         error => {
-          this.disableSubmit = false;
-          this.error = error.error.message_list;
-          console.log(error);
+            this.disableSubmit = false;
+            this.error = error.error.message_list;
+            alert("Signup Fail");
         });
-    }
+        alert ("Signup Fail with error");
   }
   
+}
+verifyPhone(user: any) {
+  // (<any>window).AccountKitPlugin.logout();
+  // (<any>window).AccountKitPlugin.loginWithPhoneNumber({
+  //     useAccessToken: true,
+  //     defaultCountryCode: "MM",
+  //     initialPhoneNumber: [this.registerData.country, this.registerData.phone],
+  //     facebookNotificationsEnabled: true
+  // }, (successdata) => {
+  //     (<any>window).AccountKitPlugin.getAccount((result) => {
+  //         var searchPhone = result.phoneNumber.replace('+', '');
+  //         this.rest.search(`phone:like:${searchPhone}|`).subscribe((results) => {
+  //             if (results.length == 0) {
+  //                 this.rest.register(user).subscribe((results) => {
+  //                   alert("Hello")
+  //                 },
+  //                     error => {
+  //                         this.disableSubmit = false;
+  //                         this.error.login = JSON.stringify(error.error.message_list);
+  //                         alert(JSON.stringify(error.error.message_list));
+  //                     });
+  //             }
+  //             else {
+  //                 alert(results[0]);
+  //             }
+  //         });
+  //     });
+  // }, (err) => {
+  // })
+}
+
+ 
   validForm() {
     var valid = true;
-    this.error = [];
+    this.error.username = '';
+    this.error.email = '';
 
-    if(this.registerData.username == '' || this.registerData.username == null){
+    if(this.registerData.username == undefined || this.registerData.username == ""){
       this.error.username = 'The username field is require';
       valid = false
     }
-    else if(this.registerData.phone=='' || this.registerData.phone==null){
-      this.error.phone = 'The phone field is require';
+    else if(this.registerData.email == undefined || this.registerData.email == ""){
+      this.error.email = 'The email field is require';
       valid = false
     }
-    else if(this.registerData.country=='' || this.registerData.country==null){
-      this.error.country = 'The country field is require';
-      valid = false
-    }    
-    else if(this.registerData.email=='' || this.registerData.email==null){
-      this.error.email = 'The email field is require';
+    else if(this.registerData.phone == undefined || this.registerData.phone == ""){
+      this.error.phone = 'The phone field is require';
       valid = false
     }
     else if(this.registerData.password=='' || this.registerData.password==null ){
@@ -67,12 +95,7 @@ export class RegisterComponent implements OnInit {
     else if(this.registerData.confirmpassword=='' || this.registerData.confirmpassword==null ){
       this.error.confirmpassword = 'The confirmpassword field is require';
       valid = false
-    }
-    else if(this.registerData.password!==this.registerData.confirmpassword){
-      this.error.confirmpassword = 'The password and confirm password must be same';
-      valid = false
-    }  
-
+    }   
     return valid;
   }
 

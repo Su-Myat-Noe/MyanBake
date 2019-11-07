@@ -66,59 +66,66 @@
                     [(ngModel)]="checkoutData.apartment" id="billing_address_2" name="billing_address_2"
                     class="input-text ">
                 </p>
-                <p id="billing_country_field" class="form-row form-row form-row-first validate-required validate-country">
-                    <label class="" for="billing_country">Country <abbr title="required" class="required">*</abbr></label>                                    
-                      <select class="styled-select  rounded"(change)="onChangeCountry($event.target.value)">
-                        <option  value="0">---Please Choose Country---</option>
-                        <option *ngFor ="let country of countries" value="{{country.id}}">{{country.name}}</option>
-                      </select> 
-                    <span class="errorcolor" *ngIf="error.country">
-                      {{error.country}}
-                    </span>                 
-                </p> 
-                    
-                <p id="billing_city_field" class="form-row form-row form-row-last address-field validate-required"
-                  data-o_class="form-row form-row form-row-wide address-field validate-required">
-                  <label class="" for="billing_city">Town<abbr title="required"
-                      class="required">*</abbr></label>
-                    <select class="styled-select  rounded nextline"(change)="onChangeCountry($event.target.value)">
-                        <option value="0">---Please Choose Township---</option>
-                        <option *ngFor ="let township of townships" value="{{township.id}}">{{township.name}}</option>
-                      </select> 
-                  <span class="errorcolor" *ngIf="error.townships">
-                    {{error.townships}}
-                  </span>
-                </p>
 
-               
 
-                <p id="billing_country_field" class="form-row form-row form-row-first validate-required validate-state">
-                    <label class="" for="billing_country">State/Region <abbr title="required" class="required">*</abbr></label>                                    
-                      <select class="styled-select rounded nextline"(change)="onChangeCountry($event.target.value)">
+
+<!-------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+                <p id="billing_email_field" class="form-row form-row form-row-first validate-required validate-email">
+                    <label class="" for="billing_email">Country <abbr title="required"
+                        class="required">*</abbr></label>
+                        <select class="styled-select  rounded" name="country" [(ngModel)]="checkoutData.country_id" okText="OK" cancelText="Cancel" (change)="countryChoose()" [compareWith]="compareCountry">
+                          <option  value="0">---Please Choose Country---</option>
+                          <option *ngFor ="let country of countries" value="{{country.id}}">{{country.name}}</option>
+                        </select> 
+                        <span class="errorcolor" *ngIf="error.country">
+                          {{error.country}}
+                        </span> 
+                  </p>
+  
+                  <p id="billing_phone_field" class="form-row form-row form-row-last validate-required validate-phone">                    
+                      <label class="" for="billing_country">State/Region <abbr title="required" class="required">*</abbr></label>                                    
+                      <select class="styled-select rounded nextline"[disabled]="cities.length==0" name="city" [(ngModel)]="checkoutData.city_id" okText="OK" cancelText="Cancel" (change)="cityChoose()" [compareWith]="compareCity">
                         <option value="0">---Please Choose State---</option>
-                        <option *ngFor ="let State of states" value="{{State.id}}">{{State.name}}</option>
+                        <option value="{{city.id}}" *ngFor="let city of cities">{{city.name}}</option>
                       </select> 
-                    <span class="errorcolor" *ngIf="error.state">
-                      {{error.state}}
-                    </span>                  
-                </p> 
+                    <span class="errorcolor" *ngIf="error.city">
+                      {{error.city}}
+                    </span> 
+                  </p>
+
+                  <p id="billing_email_field" class="form-row form-row form-row-first validate-required validate-email">
+                      <label class="" for="billing_email">Town <abbr title="required"
+                          class="required">*</abbr></label>
+                          <select class="styled-select  rounded nextline" name="township" [(ngModel)]="checkoutData.township_id" okText="OK" (change)="zipcode()"cancelText="Cancel" [compareWith]="compareTownship">
+                            <option  value="0">---Please Choose Country---</option>
+                            <option *ngFor ="let township of townships" value="{{township.id}}">{{township.name}}</option>
+                          </select>  
+                          <span class="errorcolor" *ngIf="error.township">
+                              {{error.township}}
+                          </span> 
+                    </p>
+
 
                 <p id="billing_postcode_field"class="form-row form-row form-row-last address-field validate-required"
                   data-o_class="form-row form-row form-row-last address-field validate-required validate-postcode">
                   <label class="" for="billing_postcode">Postcode / ZIP <abbr title="required"
                       class="required">*</abbr></label>
-                  <input type="text" value="" placeholder="" id="billing_postcode" [(ngModel)]="checkoutData.postcode"
+                  <input type="text" value="" placeholder="" name="zip_code" #zip_code [(ngModel)]="checkoutData.zip_code"
                     name="billing_postcode" class="input-text ">
-                  <span class="errorcolor" *ngIf="error.postcode">
-                    {{error.postcode}}
+                  <span class="errorcolor" *ngIf="error.zip_code">
+                    {{error.zip_code}}
                   </span>
                 </p>
-
+<!-------------------------------------------------------------------------------------------------------------------------------------------------------------------->
                 <div class="clear"></div>
 
-                <p class="form-row form-row-wide create-account"><input type="checkbox" value="1" name="createaccount"
+                <p class="form-row form-row-wide create-account">
+                  <!-- <input type="checkbox" value="1" name="createaccount"
                     id="createaccount" class="input-checkbox"> <label class="checkbox" for="createaccount">Create an
-                    account?</label></p>
+                    account?</label> -->
+                    <button (click)="saveShipping()">Create an account</button>
+                </p>
               </div>
             </div>
 
@@ -225,6 +232,7 @@
                 </p>
                 <input type="submit" data-value="Place order" (click)="checkOut()" value="Place order"
                   class="button alt">
+                  <!-- <p type="submit" class="checkoutcss" (click)="checkOut()">Place Order</p> -->
               </div>
             </div>
           </div>
