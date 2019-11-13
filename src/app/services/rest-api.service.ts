@@ -286,6 +286,19 @@ export class RestApiService {
       )
   }
 
+  getData(id): Observable<any> {
+    let httpHeader = {
+      Accept: 'application/json',
+      Authorization: 'Bearer ' + localStorage.getItem(environment.token_key)
+    }
+    return this.http.get<any>(this.apiUrl + '/api/shipping/' + id, { headers: httpHeader })
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+}
+
+
   saveShipping(data): Observable<any> {
     let httpHeader = {
       Accept: 'application/json',

@@ -1,3 +1,7 @@
+import { map } from 'rxjs/operators';
+import { currentUser } from './../core/auth/_selectors/auth.selectors';
+import { AppState } from './../core/reducers/index';
+import { AuthService } from './../services/auth.service';
 import { environment } from 'src/environments/environment';
 import { ShoppingCartService } from './../services/cart.service';
 import { Shipping } from './../services/model/shipping';
@@ -5,7 +9,7 @@ import { CartService, BaseCartItem } from 'ng-shopping-cart';
 import { RestApiService } from './../services/rest-api.service';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import 'rxjs/add/operator/filter';
+import {select, Store} from '@ngrx/store';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -29,6 +33,10 @@ export class CheckoutComponent implements OnInit {
   saveData:any;
   isInit: boolean = true;
   checkoutType = 'addToCart';
+  currentRoute: any;
+  isEdit: boolean = true;
+  id: number;
+  postcode:any[]=[];
 
   constructor(
     private rest: RestApiService, 
@@ -36,7 +44,10 @@ export class CheckoutComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private activatedRoute: ActivatedRoute,
     private shoppingCart: ShoppingCartService,
-    private cartService: CartService<BaseCartItem>) 
+    private authService: AuthService,
+    private cartService: CartService<BaseCartItem>,
+    private store: Store<AppState>
+    ) 
     {
       new Promise((resolve) => {
         this.loadScript();
@@ -49,6 +60,7 @@ export class CheckoutComponent implements OnInit {
       this.error = {};
       this.getCountry();
       this.getLogin();
+      this.new_edit();
       this.rest.getOrders().subscribe((results) => {
         console.log('results');
         console.log(results);
@@ -95,13 +107,29 @@ export class CheckoutComponent implements OnInit {
   subTotal() {
     this.total = this.cartService.cost();
   }
-  getLogin() {
-    this.user = this.rest.getStoreUser();
-    this.checkoutData.userid = this.user.id;
-    this.checkoutData.name = this.user.username;
-    this.checkoutData.email = this.user.email;  
+  // getLogin() {
+  //   this.user = this.rest.getStoreUser();
+  //   this.checkoutData.userid = this.user.id;
+  //   this.checkoutData.name = this.user.username;
+  //   this.checkoutData.email = this.user.email;  
     
-  }
+  // }
+
+  getLogin() {
+    this.isLogin = this.authService.isAuthenticated();
+    if (this.isLogin) {
+        // this.user = JSON.parse(this.authService.getLoginUser());
+        this.store
+            .pipe(
+                select(currentUser),
+                map((result: any) => {
+                    return result;
+                })).subscribe(x => this.user = x);
+    }
+}
+
+
+
   checkValidateForm() {
     var valid = true;
     this.error = [];
@@ -141,25 +169,59 @@ export class CheckoutComponent implements OnInit {
     return valid;
   }
 
-  saveShipping(){
+  save() {
     this.disableSubmit = true;
-        if (this.checkValidateForm()) {
-            this.saveData['user_id'] = this.user.id;
-            // this.order.customer_id = this.user.id;
-            this.rest.saveShipping(this.saveData).subscribe((results) => {
-                    alert('You have successfully save address');
-                    this.disableSubmit = false;
-                    // this.router.navigateByUrl('/check-out?address=' + results.id);
-                },
-                error => {
-                    this.disableSubmit = false;
-                    alert("Error");
-                });
-        }
-        this.disableSubmit = false;
-        alert("Fill Your Data");
-  }
+    if (this.checkValidateForm()) {
+        this.saveData['user_id'] = this.user.id;
+        this.rest.save(this.saveData).subscribe((results) => {
+                alert('You have successfully save address');
+                this.disableSubmit = false;
+                this.router.navigateByUrl('/check-out' + results.id);
+            },
+            error => {
+                this.disableSubmit = false;
+                alert("Error");
+            });
+    }
+    this.disableSubmit = false;
+    alert("Fill Your Data");
+}
+
   
+  new_edit() {
+    this.currentRoute = this.router.url;
+    if (this.currentRoute == '/checkout') {
+        this.isEdit = false;
+        this.id = 0;
+    } else {
+        this.isEdit = true;
+        this.id = this.activatedRoute.snapshot.params.id;
+        this.rest.getData(this.id)
+            .subscribe(results => {
+                this.saveData = results;
+                // For Get City
+                this.cities = [];
+                this.rest.getByCountry(this.saveData.country_id)
+                    .subscribe(results => {
+                        this.cities = results;
+                        // For Get Township
+                        this.townships = [];
+                        this.rest.getByCity(this.saveData.city_id)
+                            .subscribe(results => {
+                                this.townships = results;
+                                this.isInit = false;
+                            });
+                        this.postcode = [];
+                        this.rest.getByTownship(this.saveData.TownshipID)
+                            .subscribe(results => {
+                                this.postcode = results;
+                                this.isInit = false;
+                            });
+                    });
+            });
+    }
+}
+
 
   checkOut() {
     if (this.checkValidateForm()) {

@@ -1,3 +1,6 @@
+import { State } from './services/model/state';
+import { AuthService } from './services/auth.service';
+import { Store } from '@ngrx/store';
 import { ShoppingCartModule } from 'ng-shopping-cart';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -38,6 +41,7 @@ import { ProductCategoryComponent } from './product-category/product-category.co
 import { APP_BASE_HREF } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { ShippingComponent } from './shipping/shipping.component';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -72,6 +76,7 @@ import { ShippingComponent } from './shipping/shipping.component';
         ProductCategoryComponent,
         LoginComponent,
         ShippingComponent,
+        
     ],
     imports: [
         BrowserModule,
@@ -195,6 +200,9 @@ import { ShippingComponent } from './shipping/shipping.component';
     ],
     providers: [
         RestApiService,
+        Store,
+        AuthService,
+        State,
         {provide: APP_BASE_HREF, useValue: '/'}
     ],
     bootstrap: [AppComponent]

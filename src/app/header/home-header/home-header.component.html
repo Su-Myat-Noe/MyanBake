@@ -48,10 +48,11 @@
 				<li class="nav-item dropdown">
 					<a routerLink="#" class="nav-link" data-toggle="dropdown">
 						<i class="ec ec-shopping-bag"></i>
-						<!-- <span class="cart-items-count count">4</span>
-						<span class="cart-items-total-price total-price">
+						<span class="cart-items-count count">{{carts.length !== 0 ? carts.length : '' }}</span>
+						<!-- <span class="cart-items-total-price total-price">
 							<span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">£</span>2,600.00</span>
-						</span> -->
+						</span>  -->
+						<!-- <ion-badge color="light">{{carts.length !== 0 ? carts.length : '' }}</ion-badge> -->
 					</a>
 					<ul class="dropdown-menu dropdown-menu-mini-cart">
 						<li>

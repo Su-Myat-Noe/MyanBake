@@ -51,6 +51,7 @@
                 <li class="nav-item dropdown">
                     <a routerLink="#" class="nav-link" data-toggle="dropdown">
                         <i class="ec ec-shopping-bag"></i>
+                        <span class="cart-items-count count">{{carts.length !== 0 ? carts.length : '' }}</span>
                         <!-- <span class="cart-items-count count">1</span>
                         <span class="cart-items-total-price total-price"><span
                                 class="amount">200</span></span> -->

@@ -116,7 +116,7 @@ export class homeComponent implements OnInit {
 
   addToCart(id) {
     this.loading = true;
-    if (this.user) {
+    // if (this.user) {
         // this.loading = false;
         this.rest.getItemID(id)
             .subscribe(results => {
@@ -139,9 +139,10 @@ export class homeComponent implements OnInit {
                 this.shoppingCart.changedCartService$.next(true);
                 alert('Successfully added to the cart');
             });
-    } else {
-        this.router.navigateByUrl('/login?return=' + this.router.url);
-    }
+    // } 
+    // else {
+    //     this.router.navigateByUrl('/login?return=' + this.router.url);
+    // }
 
 }
  
