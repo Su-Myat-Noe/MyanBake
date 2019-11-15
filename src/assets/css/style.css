@@ -3212,7 +3212,7 @@ div.quantity.buttons_added {
     text-align: center;
     line-height: 1.429em;
     position: absolute;
-    bottom: 0.536em;
+    bottom: 0.87em;
     right: 0.536em;
     display: inline-block; }
     div.quantity.buttons_added .minus:hover, div.quantity.buttons_added .plus:hover {

@@ -345,11 +345,7 @@ getStoreOrder(id:any): any {
       Accept: 'application/json',
       Authorization: 'Bearer ' + localStorage.getItem(environment.token_key)
     }
-    return this.http.post<any>(this.apiUrl + '/api/user', data, { headers: httpHeader })
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      )
+    return this.http.post<any>(this.apiUrl + '/api/user', data, { headers: httpHeader });
   }
   search(search: string): Observable<any[]> {
     let httpHeader = {
@@ -379,11 +375,7 @@ getStoreOrder(id:any): any {
       Accept: 'application/json',
       Authorization: 'Bearer ' + localStorage.getItem(environment.token_key)
     }
-    return this.http.post<any>(this.apiUrl + '/api/login', data, { headers: httpHeader })
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      )
+    return this.http.post<any>(this.apiUrl + '/api/login', data, { headers: httpHeader });
   }
   storeUser(user: any): void {
     localStorage.setItem("loginUser", JSON.stringify(user));

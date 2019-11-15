@@ -1,69 +1,66 @@
 // Actions
 import { AuthActions, AuthActionTypes } from '../_actions/auth.actions';
-// Models
-import { User } from '../_models/user.model';
+
 
 export interface AuthState {
     loggedIn: boolean;
-    vertify:boolean,
-    authToken: string;
-    user: User;
-    isUserLoaded: boolean;
+    verify: boolean,
+    user_id: number,
+    user: any
 }
 
 export const initialAuthState: AuthState = {
     loggedIn: false,
-    vertify:false,
-    authToken: undefined,
-    user: undefined,
-    isUserLoaded: false
+    verify: false,
+    user_id: -1,
+    user: null
 };
 
 export function authReducer(state = initialAuthState, action: AuthActions): AuthState {
     switch (action.type) {
         case AuthActionTypes.Login: {
-            const _token: string = action.payload.authToken;
+            const _user_id: number = action.payload.user_id;
             const _vertify: boolean = action.payload.isVertify;
+            const _user: any = action.payload.user;
+            const loggedIn: boolean = action.payload.loggedIn;
             return {
-                loggedIn: true,
-                vertify:_vertify,
-                authToken: _token,
-                user: undefined,
-                isUserLoaded: false
+                ...state,
+                loggedIn: loggedIn,
+                verify: _vertify,
+                user_id: _user_id,
+                user: _user,
             };
         }
 
         case AuthActionTypes.Register: {
-            const _token: string = action.payload.authToken;
+            const _user: any = action.payload.user;
             return {
+                ...state,
                 loggedIn: true,
-                vertify:false,
-                authToken: _token,
-                user: undefined,
-                isUserLoaded: false
+                verify: false,
+                user_id: _user.id,
+                user: _user,
             };
         }
 
         case AuthActionTypes.UserVerify: {
             const isVertify: boolean = action.payload.is_verify;
-            let obj= {
+            return {
                 ...state,
-               vertify:isVertify
+                verify: isVertify
             };
-            return obj;
+        }
+
+        case AuthActionTypes.UpdateUser: {
+            const _user: any = action.payload.user;
+            return {
+                ...state,
+                user: _user
+            };
         }
 
         case AuthActionTypes.Logout:
             return initialAuthState;
-
-        case AuthActionTypes.UserLoaded: {
-            const _user: User = action.payload.user;
-            return {
-                ...state,
-                user: _user,
-                isUserLoaded: true
-            };
-        }
 
         default:
             return state;

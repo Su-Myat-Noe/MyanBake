@@ -54,7 +54,7 @@
 						</span>  -->
 						<!-- <ion-badge color="light">{{carts.length !== 0 ? carts.length : '' }}</ion-badge> -->
 					</a>
-					<ul class="dropdown-menu dropdown-menu-mini-cart">
+					<ul class="dropdown-menu dropdown-menu-mini-cart" *ngIf="carts.length>0">
 						<li>
 							<div class="widget_shopping_cart_content">
 								<ul class="cart_list product_list_widget ">

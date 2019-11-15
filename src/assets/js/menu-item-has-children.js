@@ -38,7 +38,8 @@ $( '.vertical-menu .menu-item-has-children, .departments-menu-dropdown .menu-ite
 
         $dropdown_menu.css( {
             visibility: 'visible',
-            display:    'block'
+            display:    'block',
+            border: none
         } );
 
         if ( ! $container.hasClass( 'animated-dropdown' ) ) {

@@ -1,6 +1,11 @@
 import { Router } from '@angular/router';
 import { RestApiService } from 'src/app/services/rest-api.service';
 import { Component, OnInit } from '@angular/core';
+import { environment } from '../../environments/environment';
+import { Login } from './../core/auth/_actions/auth.actions';
+import { Store } from '@ngrx/store';
+import { AppState } from '../core/reducers';
+import { catchError, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +17,10 @@ export class LoginComponent implements OnInit {
   disableSubmit: boolean = false;
   error: any;
   redirect: string;
-  constructor(private rest: RestApiService,private router: Router) { 
+  constructor(
+    private rest: RestApiService,
+    private router: Router,
+    private store: Store<AppState>) {
     this.loginData = {};
     this.error = {};
   }
@@ -23,7 +31,7 @@ export class LoginComponent implements OnInit {
   goToRegister() {
     this.router.navigate(['/register']);
   }
- 
+
   checkValidateForm() {
     var valid = true;
     this.error.email = '';
@@ -49,48 +57,38 @@ export class LoginComponent implements OnInit {
 
     return valid;
   }
-
-  // login(){
-  //   if (this.checkValidateForm()){
-  //     this.disableSubmit = true;
-  //     this.rest.login(this.loginData).subscribe((results) => {        
-  //       localStorage.setItem('remember', this.loginData.remember);
-  //       localStorage.setItem('user', results);
-  //         alert('You have successfully log-in');
-  //         this.disableSubmit = false;
-  //         this.router.navigateByUrl('');      
-  //     },
-  //       error => {          
-  //         this.disableSubmit = false;
-  //         this.error = error.error.message_list;
-  //         console.log(this.error);
-  //       });
-  //   }
-    
-  // }
   login() {
     if (this.checkValidateForm()) {
-        this.disableSubmit = true;
-        this.doLogin(this.loginData.email, this.loginData.password);
+      this.disableSubmit = true;
+      this.doLogin(this.loginData.email, this.loginData.password);
     }
-}
+  }
 
-doLogin(email: string, password: string): void {
-    this.rest.login({ email, password }).subscribe((results) => {
-        alert('You have successfully log-in');
-        this.rest.storeUser(results);
-        this.disableSubmit = false;
-        if(this.redirect) {
-            this.router.navigateByUrl(this.redirect);
-        } else {
-            this.router.navigateByUrl('');
-        }
+  doLogin(email: string, password: string): void {
+    this.rest.login({ email, password }).pipe(
+      catchError(err => {
+        this.error.login = err.error.message;
+        return [];
+      })
+    ).subscribe((user) => {
+      localStorage.setItem(environment.appPersonalAuthTokenKey, user.access_token);
+      localStorage.setItem(environment.loginUserKey, JSON.stringify(user));
+      localStorage.setItem('loginUser', JSON.stringify(user));
+      this.store.dispatch(new Login({ user_id: user.id, user: user, isVertify: true, loggedIn: true, profileLoaded: true }));
+      alert('You have successfully log-in');
+      this.rest.storeUser(user);
+      this.disableSubmit = false;
+      if (this.redirect) {
+        this.router.navigateByUrl(this.redirect);
+      } else {
+        this.router.navigateByUrl('');
+      }
     },
-        error => {
-            this.disableSubmit = false;
-            this.error.login = error.error.message;
-        });
-}
+      error => {
+        this.disableSubmit = false;
+        this.error.login = error.error.message;
+      });
+  }
 
 
   public loadScript(script: string = 'electro') {
@@ -103,7 +101,7 @@ doLogin(email: string, password: string): void {
     }
 
     if (!isFound) {
-      var dynamicScripts = ["../assets/js/"+script+".js"];
+      var dynamicScripts = ["../assets/js/" + script + ".js"];
       for (var i = 0; i < dynamicScripts.length; i++) {
         let node = document.createElement('script');
         node.src = dynamicScripts[i];

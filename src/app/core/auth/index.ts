@@ -1,14 +1,12 @@
-
 // ACTIONS
 export {
     Login,
     Logout,
     Register,
-    UserRequested,
-    UserLoaded,
     UserVerify,
     AuthActionTypes,
-    AuthActions
+    AuthActions,
+    UpdateUser,
 } from './_actions/auth.actions';
 
 // REDUCERS
@@ -18,12 +16,8 @@ export { authReducer } from './_reducers/auth.reducers';
 export {
     isLoggedIn,
     isLoggedOut,
-    isUserLoaded,
-    currentAuthToken,
     currentUser,
-    currentUserRoleIds
+    isVerify
 } from './_selectors/auth.selectors';
 
-
-// MODELS
-export { User } from './_models/user.model';
+export {AuthEffects} from './_effects/auth.effects';

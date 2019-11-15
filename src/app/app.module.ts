@@ -41,6 +41,11 @@ import { ProductCategoryComponent } from './product-category/product-category.co
 import { APP_BASE_HREF } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { ShippingComponent } from './shipping/shipping.component';
+import {StoreModule} from '@ngrx/store'; // npm i @ngrx/store
+import {metaReducers, reducers} from './core/reducers';
+import {authReducer} from './core/auth';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './core/auth/_effects/auth.effects';
 
 @NgModule({
     declarations: [
@@ -82,6 +87,10 @@ import { ShippingComponent } from './shipping/shipping.component';
         BrowserModule,
         HttpClientModule,
         FormsModule,
+        StoreModule.forRoot(reducers, {metaReducers}),
+        StoreModule.forFeature('auth', authReducer),
+        EffectsModule.forRoot([]),
+        EffectsModule.forFeature([AuthEffects]),
         ShoppingCartModule.forRoot({
             serviceType: 'localStorage',
             serviceOptions: { storageKey: 'MyanBakeAppCart', clearOnError: true }

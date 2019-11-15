@@ -2,6 +2,10 @@ import { CartService, BaseCartItem } from 'ng-shopping-cart';
 import { Category } from './../../services/model/category';
 import { RestApiService } from 'src/app/services/rest-api.service';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import { AppState } from '../../core/reducers';
+import {currentUser} from './../../core/auth/_selectors/auth.selectors';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-home-header',
@@ -12,15 +16,32 @@ export class HomeHeaderComponent implements OnInit {
   categories: Category[] = [];
   qty:any;
   carts:any;
-  constructor(private rest: RestApiService,   
-    private cdr: ChangeDetectorRef,private cartService: CartService<BaseCartItem>) {
+  user: any;
+  constructor(
+    private rest: RestApiService,   
+    private cdr: ChangeDetectorRef,
+    private cartService: CartService<BaseCartItem>,
+    private store: Store<AppState>) {
     new Promise((resolve) => {
       // this.loadScript();
       resolve(true);
     });
+    this.getCurrentUser();
     this.getCart();
     this.qty = 1;
     this.getCategoryheader();
+  }
+  getCurrentUser() {
+    this.store
+      .pipe(
+        select(currentUser),
+        map((result: any) => {
+          return result;
+        })).subscribe((user) => {
+          this.user = user; // user;
+          console.log('this.login.user');
+          console.log(this.user);
+        });
   }
   getCategoryheader() {
     this.rest.getCategoryheader()

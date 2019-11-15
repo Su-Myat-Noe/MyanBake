@@ -1,18 +1,17 @@
 import { Action } from '@ngrx/store';
-import { User } from '../_models/user.model';
 
 export enum AuthActionTypes {
     Login = '[Login] Action',
     Logout = '[Logout] Action',
     Register = '[Register] Action',
-    UserRequested = '[Request User] Action',
-    UserLoaded = '[Load User] Auth API',
-    UserVerify = '[Verify] Auth API'
+    UserVerify = '[UserVerify] Action',
+    UpdateUser = '[UpdateUser] Action', 
 }
 
 export class Login implements Action {
     readonly type = AuthActionTypes.Login;
-    constructor(public payload: { authToken: string ,isVertify:boolean}) { }
+    constructor(public payload: { user_id: number, user: any, isVertify: boolean, loggedIn: boolean,profileLoaded:boolean
+    }) { }
 }
 
 export class Logout implements Action {
@@ -21,17 +20,7 @@ export class Logout implements Action {
 
 export class Register implements Action {
     readonly type = AuthActionTypes.Register;
-    constructor(public payload: { authToken: string }) { }
-}
-
-
-export class UserRequested implements Action {
-    readonly type = AuthActionTypes.UserRequested;
-}
-
-export class UserLoaded implements Action {
-    readonly type = AuthActionTypes.UserLoaded;
-    constructor(public payload: { user: User }) { }
+    constructor(public payload: { user: any }) { }
 }
 
 export class UserVerify implements Action {
@@ -39,4 +28,9 @@ export class UserVerify implements Action {
     constructor(public payload: { is_verify: boolean }) { }
 }
 
-export type AuthActions = Login | Logout | Register | UserRequested | UserLoaded | UserVerify;
+export class UpdateUser implements Action {
+    readonly type = AuthActionTypes.UpdateUser;
+    constructor(public payload: { user: any }) { }
+}
+
+export type AuthActions = Login | Logout | Register | UserVerify | UpdateUser ;
