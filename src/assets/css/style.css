@@ -344,7 +344,7 @@ input[type="submit"] {
   padding: 1.036em 2.134em;
   border-width: 0;
   display: inline-block;
-  color: #333e48;
+  color: black;
   background-color: #f0c07c;
   border-color: #f0c07c; }
   .btn:hover, .hero-action-btn:hover,
@@ -353,7 +353,7 @@ input[type="submit"] {
   input[type="button"]:hover,
   input[type="reset"]:hover,
   input[type="submit"]:hover {
-    color: #f0c07c;
+    color: black;
     background-color: #f0c07c;
     border-color: black; }
   .btn:focus, .hero-action-btn:focus, .btn.focus, .focus.hero-action-btn,

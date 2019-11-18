@@ -19,7 +19,6 @@ import { FooterComponent } from './footer/footer.component';
 import { RegisterComponent } from './register/register.component';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
-import { CompareComponent } from './compare/compare.component';
 import { FaqComponent } from './faq/faq.component';
 import { StoredirectoryComponent } from './storedirectory/storedirectory.component';
 import { TermsComponent } from './terms/terms.component';
@@ -62,7 +61,6 @@ import { AuthEffects } from './core/auth/_effects/auth.effects';
         RegisterComponent,
         ContactComponent,
         AboutComponent,
-        CompareComponent,
         FaqComponent,
         StoredirectoryComponent,
         TermsComponent,
@@ -119,10 +117,6 @@ import { AuthEffects } from './core/auth/_effects/auth.effects';
             {
                 path: 'checkout',
                 component: CheckoutComponent
-            },
-            {
-                path: 'compare',
-                component: CompareComponent
             },
             {
                 path: 'confirm',

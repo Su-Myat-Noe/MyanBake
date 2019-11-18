@@ -153,8 +153,8 @@ input[type="submit"] {
   .customer-login-form .button:hover,
   .btn-primary:hover,
   input[type="submit"]:hover {
-    color: #fff;
-    background-color:#fdf3e5;
+    color: black;
+    background-color:#f5a946;
     border-color: black; }
   .widget_price_filter .price_slider_amount .button:focus, .widget_price_filter .price_slider_amount .button.focus,
   .dropdown-menu-mini-cart .wc-forward.checkout:focus,

@@ -34,7 +34,7 @@ export class AuthEffects {
             Object.keys(localStorage)
                 .filter(x => x != environment.token_key)
                 .map(y => localStorage.removeItem(y));
-            this.router.navigateByUrl('/tabs/home');
+            this.router.navigateByUrl('/');
         })
     );
 
@@ -59,7 +59,7 @@ export class AuthEffects {
         ofType<Register>(AuthActionTypes.Register),
         tap(action => {
             localStorage.setItem(environment.loginUserKey, JSON.stringify(action.payload.user));
-            this.router.navigate(['manage-profile']);
+            this.router.navigate(['/']);
         })
     );
 

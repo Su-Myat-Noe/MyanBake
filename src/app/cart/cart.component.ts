@@ -1,3 +1,4 @@
+import { ShoppingCartService } from './../services/cart.service';
 import { Product } from './../services/model/product';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestApiService } from 'src/app/services/rest-api.service';
@@ -16,6 +17,10 @@ export class CartComponent implements OnInit {
   grandprice:any;
   total:any=0;
   id: any;
+  subtotal = 0;
+  shipping = 0;
+  tax = 0;
+  discount = 0;
   quant: any[];
  
 
@@ -23,6 +28,7 @@ export class CartComponent implements OnInit {
     private rest: RestApiService,
     private route: ActivatedRoute,
     private router: Router,
+    private shoppingCart: ShoppingCartService,
     private cdr: ChangeDetectorRef,
     private cartService: CartService<BaseCartItem>
   ) {   
@@ -37,19 +43,37 @@ export class CartComponent implements OnInit {
   ngOnInit() {
   }
  
-  minus(cart) {
-    cart.quantity = cart.quantity - 1;
-    this.cartService.addItem(cart);
-    this.subTotal();
-    this.grandtotalCost();
-  }
+  // minus(cart) {
+  //   cart.quantity = cart.quantity - 1;
+  //   this.cartService.addItem(cart);
+  //   this.subTotal();
+  //   this.grandtotalCost();
+  // }
 
-  plus(cart) {
+  // plus(cart) {
+  //   cart.quantity = cart.quantity + 1;
+  //   this.cartService.addItem(cart);
+  //   this.subTotal();
+  //   this.grandtotalCost();
+  // }
+
+  minus(cart) {
+    var qty = cart.quantity - 1;
+    if(qty > 0){
+        cart.quantity = qty;
+        this.cartService.addItem(cart);
+        this.subTotal();
+        this.grandtotalCost();
+    }
+    
+}
+
+plus(cart) {
     cart.quantity = cart.quantity + 1;
     this.cartService.addItem(cart);
     this.subTotal();
     this.grandtotalCost();
-  }
+}
 
   removeItem(cart, idx) {
     this.carts.splice(idx, 1);
@@ -62,11 +86,9 @@ export class CartComponent implements OnInit {
 
   grandtotalCost(){
     this.grandprice=this.cartService.totalCost()+this.cartService.getShipping();
-    console.log(this.grandprice);
   }
   subTotal(){
-    this.total=this.cartService.cost();
-    console.log(this.total);
+    this.total+=this.cartService.cost();    
   }
 
   getCart() {

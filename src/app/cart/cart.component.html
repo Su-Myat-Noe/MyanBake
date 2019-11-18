@@ -26,7 +26,7 @@
             <tbody>
               <tr class="cart_item removed "*ngFor="let cart of carts ;index as idx">
                 <td class="product-remove">
-                  <a class="remove"(click)="removeItem(cart, idx)" ><i class="far fa-times-circle"></i></a>
+                  <a class="remove"(click)="removeItem(cart.idx)" ><i class="far fa-times-circle"></i></a>
                 </td>
 
                 <td class="product-thumbnail">
@@ -388,7 +388,7 @@
                             placeholder="Postcode / ZIP" value="" class="input-text">
                         </p>
 
-                        <p><button class="button"(click)="grandtotalCost()"  value="1" name="calc_shipping" type="submit">Update Totals</button>
+                        <p><button class="button"  value="1" name="calc_shipping" type="submit">Update Totals</button>
                         </p>
                         <input type="hidden" value="1eafc42c5e" name="_wpnonce"><input type="hidden"value="/electro/cart/" name="_wp_http_referer">
                       </div>
