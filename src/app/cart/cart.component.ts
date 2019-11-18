@@ -43,20 +43,6 @@ export class CartComponent implements OnInit {
   ngOnInit() {
   }
  
-  // minus(cart) {
-  //   cart.quantity = cart.quantity - 1;
-  //   this.cartService.addItem(cart);
-  //   this.subTotal();
-  //   this.grandtotalCost();
-  // }
-
-  // plus(cart) {
-  //   cart.quantity = cart.quantity + 1;
-  //   this.cartService.addItem(cart);
-  //   this.subTotal();
-  //   this.grandtotalCost();
-  // }
-
   minus(cart) {
     var qty = cart.quantity - 1;
     if(qty > 0){
@@ -74,16 +60,15 @@ plus(cart) {
     this.subTotal();
     this.grandtotalCost();
 }
-
-  removeItem(cart, idx) {
-    this.carts.splice(idx, 1);
-
-    this.cartService.removeItem(cart.id);
+  
+  removeItem(id) {
+    this.cartService.removeItem(id);
+    this.shoppingCart.changedCartService$.next(true);
+    this.cdr.detectChanges();
+    this.getCart();
     this.subTotal();
     this.grandtotalCost();
-    this.cdr.detectChanges();
-  }
-
+}
   grandtotalCost(){
     this.grandprice=this.cartService.totalCost()+this.cartService.getShipping();
   }
@@ -93,7 +78,6 @@ plus(cart) {
 
   getCart() {
     this.carts = this.cartService.getItems();
-    console.log(this.carts);
   }
 
   public loadScript() {

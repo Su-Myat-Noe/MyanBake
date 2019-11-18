@@ -10,15 +10,15 @@
 								<div class="container">
 									<div class="row">
 										<div class="col-md-offset-3 col-md-5">
-												<!-- <div class="caption vertical-center text-left">
-													<div class="hero-1 fadeInDown-1">The New <br> Standard</div>
-													<div class="hero-subtitle fadeInDown-2">under favorable smartwatches
-													</div>
-													<div class="hero-v2-price fadeInDown-3">from <br><span>749</span></div>
-													<div class="hero-action-btn fadeInDown-4">
-														<a routerLink="/shop" class="big le-button ">Start Buying</a>
-													</div>
-												</div> -->
+											<!-- <div class="caption vertical-center text-left">
+												<div class="hero-1 fadeInDown-1">The New <br> Standard</div>
+												<div class="hero-subtitle fadeInDown-2">under favorable smartwatches
+												</div>
+												<div class="hero-v2-price fadeInDown-3">from <br><span>749</span></div>
+												<div class="hero-action-btn fadeInDown-4">
+												<a routerLink="/shop" class="big le-button ">Start Buying</a>
+												</div>
+											</div> -->
 										</div>
 									</div>
 								</div>
@@ -32,9 +32,9 @@
 												<div class="hero-subtitle-v2 fadeInDown-1">shop to get what you loves
 												</div>
 												<div class="hero-2 fadeInDown-2">Timepieces that make a statement up to
-													<strong>40% Off</strong></div>
+												<strong>40% Off</strong></div>
 												<div class="hero-action-btn fadeInDown-3">
-													<a routerLink="/shop" class="big le-button ">Start Buying</a>
+												<a routerLink="/shop" class="big le-button ">Start Buying</a>
 												</div>
 											</div> -->
 										</div>
@@ -46,13 +46,13 @@
 									<div class="row">
 										<div class="col-md-offset-3 col-md-5">
 											<!-- <div class="caption vertical-center text-left">
-												<div class="hero-subtitle-v2 fadeInLeft-1">shop to get what you loves
-												</div>
-												<div class="hero-2 fadeInRight-1">Timepieces that make a statement up to
+													<div class="hero-subtitle-v2 fadeInLeft-1">shop to get what you loves
+													</div>
+													<div class="hero-2 fadeInRight-1">Timepieces that make a statement up to
 													<strong>40% Off</strong></div>
-												<div class="hero-action-btn fadeInLeft-2"><a routerLink="/shop"
-														class="big le-button ">Start Buying</a></div>
-											</div> -->
+													<div class="hero-action-btn fadeInLeft-2"><a routerLink="/shop"
+													class="big le-button ">Start Buying</a></div>
+												</div> -->
 										</div>
 									</div>
 								</div>
@@ -208,38 +208,28 @@
 												<li class="product " *ngFor="let product of productAsc">
 													<div class="product-outer">
 														<div class="product-inner">
-															<span class="loop-product-categories"><a
-																	routerLink="/itemlist"
-																	rel="tag">{{product.category[0].name}}</a></span>
+															<span class="loop-product-categories">
+																<a routerLink="/itemlist" rel="tag">{{product.category[0].name}}</a></span>
 															<a routerLink="/itemdetail/{{product.id}}">
 																<h3>{{product.name}}</h3>
 																<div class="product-thumbnail">
-																	<img src="{{product.image}}" class="img-responsive"
-																		alt="">
+																	<img src="{{product.image}}"class="img-responsive" alt="">
 																</div>
 															</a>
 
 															<div class="price-add-to-cart">
-																<span class="price"
-																	*ngFor="let pd of product.productdetail">
+																<span class="price" *ngFor="let pd of product.productdetail">
 																	<span class="electro-price">
-																		<ins><span
-																				class="amount">{{pd.price}}</span></ins>
+																		<ins><span class="amount">{{pd.price}}</span></ins>
 																		<del><span class="amount">2,299.00</span></del>
 																		<span class="amount"> </span>
 																	</span>
 																</span>
-																<a rel="nofollow"
-																	routerLink="/itemdetail/{{product.id}}"
-																	class="button add_to_cart_button">Add to cart</a>
+																<button rel="nofollow" (click)="addToCart(product.id)"class="button add_to_cart_button">Add to cart</button>
 															</div>
 															<div class="hover-area">
 																<div class="action-buttons">
-																	<a routerLink="/wishlist/{{product.id}}"
-																		rel="nofollow"
-																		class="add_to_wishlist">Wishlist</a>
-																	<!-- <a routerLink="/compare"
-																		class="add-to-compare-link">Compare</a> -->
+																	<a routerLink="/wishlist/{{product.id}}"rel="nofollow"class="add_to_wishlist">Wishlist</a>
 																</div>
 															</div>
 														</div>
@@ -255,36 +245,27 @@
 												<li class="product" *ngFor="let product of productAsc">
 													<div class="product-outer">
 														<div class="product-inner">
-															<span class="loop-product-categories"><a
-																	routerLink="/itemlist"
-																	rel="tag">{{product.category[0].name}}</a></span>
+															<span class="loop-product-categories">
+																<a routerLink="/itemlist"rel="tag">{{product.category[0].name}}</a></span>
 															<a routerLink="/itemdetail/{{product.id}}">
 																<h3>{{product.name}}</h3>
 																<div class="product-thumbnail">
-																	<img src="{{product.image}}" alt="">
+																	<img src="{{product.image}}"alt="">
 																</div>
 															</a>
 															<div class="price-add-to-cart">
 																<span class="price"
 																	*ngFor="let pd of product.productdetail">
 																	<span class="electro-price">
-																		<ins><span
-																				class="amount">{{pd.price}}</span></ins>
-																		<del><span
-																				class="amount">&#036;2,299.00</span></del>
+																		<ins><span class="amount">{{pd.price}}</span></ins>
+																		<del><span class="amount">&#036;2,299.00</span></del>
 																	</span>
 																</span>
-																<a rel="nofollow"
-																	routerLink="/itemdetail/{{product.id}}"
-																	class="button add_to_cart_button">Add to cart</a>
+																<button rel="nofollow" (click)="addToCart(product.id)" class="button add_to_cart_button">Add to cart</button>
 															</div>
 															<div class="hover-area">
 																<div class="action-buttons">
-																	<a routerLink="/wishlist/{{product.id}}"
-																		rel="nofollow"
-																		class="add_to_wishlist">Wishlist</a>
-																	<!-- <a routerLink="/compare"
-																		class="add-to-compare-link">Compare</a> -->
+																	<a routerLink="/wishlist/{{product.id}}" rel="nofollow" class="add_to_wishlist">Wishlist</a>
 																</div>
 															</div>
 														</div>
@@ -300,38 +281,29 @@
 												<li class="product" *ngFor="let product of productDesc">
 													<div class="product-outer">
 														<div class="product-inner">
-															<span class="loop-product-categories"><a
-																	routerLink="/itemlist"
+															<span class="loop-product-categories">
+																<a routerLink="/itemlist"
 																	rel="tag">{{product.category[0].name}}</a></span>
 															<a routerLink="/itemdetail/{{product.id}}">
 																<h3>{{product.name}}</h3>
 																<div class="product-thumbnail">
-																	<img src="{{product.image}}" class="img-responsive"
-																		alt="">
+																	<img src="{{product.image}}"class="img-responsive" alt="">
 																</div>
 															</a>
 															<div class="price-add-to-cart">
-																<span class="price"
-																	*ngFor="let pd of product.productdetail">
+																<span class="price" *ngFor="let pd of product.productdetail">
 																	<span class="electro-price">
-																		<ins><span
-																				class="amount">{{pd.price}}</span></ins>
+																		<ins><span class="amount">{{pd.price}}</span></ins>
 																		<del><span class="amount">2,299.00</span></del>
 																		<span class="amount"></span>
 																	</span>
 																</span>
-																<a rel="nofollow"
-																	routerLink="/itemdetail/{{product.id}}"
-																	class="button add_to_cart_button">Add to cart</a>
+																<button rel="nofollow" (click)="addToCart(product.id)" class="button add_to_cart_button">Add to cart</button>
 															</div>
 
 															<div class="hover-area">
 																<div class="action-buttons">
-																	<a routerLink="/wishlist/{{product.id}}"
-																		rel="nofollow"
-																		class="add_to_wishlist">Wishlist</a>
-																	<!-- <a routerLink="/compare"
-																		class="add-to-compare-link">Compare</a> -->
+																	<a routerLink="/wishlist/{{product.id}}" rel="nofollow" class="add_to_wishlist">Wishlist</a>
 																</div>
 															</div>
 														</div>
@@ -348,17 +320,13 @@
 					<section class="products-2-1-2 animate-in-view fadeIn animated" data-animation="fadeIn">
 						<h2 class="sr-only">Products Grid</h2>
 						<div class="container">
-
-
 							<ul class="nav nav-inline nav-justified">
-
 								<li class="nav-item"><a routerLink="/shop" class="active nav-link">Best Deals</a></li>
-								<li class="nav-item" *ngFor="let category of categories"><a class="nav-link"
-										routerLink="/productcategory/{{category.id}}">{{category.name}}</a></li>
+								<li class="nav-item" *ngFor="let category of categories">
+									<a class="nav-link"
+										routerLink="/productcategory/{{category.id}}">{{category.name}}</a>
+								</li>
 							</ul>
-
-
-
 							<div class="columns-2-1-2">
 								<ul class="products exclude-auto-height">
 									<li class="product" *ngFor="let p of product">
@@ -369,9 +337,7 @@
 												<a routerLink="/itemdetail/{{p.id}}">
 													<h3>{{p.name}}</h3>
 													<div class="product-thumbnail">
-
 														<img src="{{p.image}}" alt="">
-
 													</div>
 												</a>
 												<div class="price-add-to-cart">
@@ -381,23 +347,17 @@
 															<del><span class="amount">2,299.00</span></del>
 														</span>
 													</span>
-													<a rel="nofollow" routerLink="/itemdetail/{{p.id}}"
-														class="button add_to_cart_button">Add to cart</a>
+													<button rel="nofollow" (click)="addToCart(p.id)"class="button add_to_cart_button">Add to cart</button>
 												</div>
-
 												<div class="hover-area">
 													<div class="action-buttons">
-														<a routerLink="/wishlist/{{p.id}}" rel="nofollow"
-															class="add_to_wishlist">Wishlist</a>
-														<!-- <a routerLink="/compare" class="add-to-compare-link">Compare</a> -->
+														<a routerLink="/wishlist/{{p.id}}" rel="nofollow"class="add_to_wishlist">Wishlist</a>
 													</div>
 												</div>
 											</div>
 										</div>
 									</li>
-
 								</ul>
-
 								<ul class="products exclude-auto-height product-main-2-1-2">
 									<li class="last product">
 										<div class="product-outer">
@@ -408,33 +368,27 @@
 												<a routerLink="/itemdetail/{{oneProduct.id}}">
 													<h3>{{oneProduct.name}}</h3>
 													<div class="product-thumbnail">
-														<img class="wp-post-image" src="{{oneProduct.image}}" alt="">
+														<img class="wp-post-image"src="{{oneProduct.image}}" alt="">
 													</div>
 												</a>
 												<div class="price-add-to-cart">
 													<span class="price">
 														<span class="electro-price">
-															<ins><span
-																	class="amount">{{oneProduct.productdetail[0].price}}</span></ins>
+															<ins><span class="amount">{{oneProduct.productdetail[0].price}}</span></ins>
 															<del><span class="amount">2,299.00</span></del>
 														</span>
 													</span>
-													<a rel="nofollow" routerLink="/itemdetail/{{oneProduct.id}}"
-														class="button add_to_cart_button">Add to cart</a>
+													<button rel="nofollow" (click)="addToCart(oneProduct.id)" class="button add_to_cart_button">Add to cart</button>
 												</div>
 												<div class="hover-area">
 													<div class="action-buttons">
-														<a routerLink="/wishlist/{{oneProduct.id}}" rel="nofollow"
-															class="add_to_wishlist">Wishlist</a>
-														<!-- <a routerLink="/compare" class="add-to-compare-link">Compare</a> -->
+														<a routerLink="/wishlist/{{oneProduct.id}}" rel="nofollow"class="add_to_wishlist">Wishlist</a>
 													</div>
 												</div>
 											</div>
 										</div>
 									</li>
-
 								</ul>
-
 								<ul class="products exclude-auto-height">
 									<li class="product" *ngFor="let pdes of productDescLimit">
 										<div class="product-outer">
@@ -455,14 +409,11 @@
 															<del><span class="amount">2,299.00</span></del>
 														</span>
 													</span>
-													<a rel="nofollow" routerLink="/itemdetail/{{pdes.id}}"
-														class="button add_to_cart_button">Add to cart</a>
+													<button rel="nofollow" (click)="addToCart(pdes.id)" class="button add_to_cart_button">Add to cart</button>
 												</div>
 												<div class="hover-area">
 													<div class="action-buttons">
-														<a routerLink="/wishlist/{{pdes.id}}" rel="nofollow"
-															class="add_to_wishlist">Wishlist</a>
-														<!-- <a routerLink="/compare" class="add-to-compare-link">Compare</a> -->
+														<a routerLink="/wishlist/{{pdes.id}}" rel="nofollow" class="add_to_wishlist">Wishlist</a>
 													</div>
 												</div>
 											</div>
@@ -492,17 +443,14 @@
 
 												<a class="media-left" routerLink="/itemdetail/{{product.id}}"
 													title="Pendrive USB 3.0 Flash 64 GB">
-													<img class="media-object wp-post-image img-responsive"
-														src="{{product.image}}" routerLink="/itemdetail/{{product.id}}"alt="">
+													<img class="media-object wp-post-image img-responsive"src="{{product.image}}" alt="">
 												</a>
-
 												<div class="media-body">
 													<span class="loop-product-categories">
-														<a routerLink="/itemlist"
-															rel="tag">{{product.category[0].name}}</a>
+														<a routerLink="/itemlist" rel="tag">{{product.category[0].name}}</a>
 													</span>
 
-													<a >
+													<a routerLink="/itemdetail/{{product.id}}">
 														<h3>{{product.name}}</h3>
 													</a>
 
@@ -513,16 +461,11 @@
 																<span class="amount"> {{pd.price}}</span>
 															</span>
 														</span>
-
-														<a  class="button add_to_cart_button">Add to
-															cart</a>
+														<button class="button add_to_cart_button" (click)="addToCart(product.id)">Add to cart</button>
 													</div>
 													<div class="hover-area">
 														<div class="action-buttons">
-															<a routerLink="/wishlist/{{product.id}}"
-																class="add_to_wishlist">Wishlist</a>
-															<!-- <a routerLink="/compare"
-																class="add-to-compare-link">Compare</a> -->
+															<a routerLink="/wishlist/{{product.id}}" class="add_to_wishlist">Wishlist</a>
 														</div>
 													</div>
 												</div>
@@ -530,57 +473,11 @@
 										</div>
 									</li>
 								</ul>
-								<!-- <ul class="products columns-3">
-									<li class="product product-card " *ngFor="let product of products">
-
-										<div class="product-outer">
-											<div class="media product-inner">
-
-												<a class="media-left" routerLink="/itemdetail/{{product.id}}"
-													title="Pendrive USB 3.0 Flash 64 GB">
-													<img class="media-object wp-post-image img-responsive"
-														src="{{product.image}}" alt="">
-												</a>
-
-												<div class="media-body">
-													<span class="loop-product-categories">
-														<a routerLink="/itemlist" rel="tag">Headphone Cases</a>
-													</span>
-
-													<a routerLink="/itemdetail/{{product.id}}">
-														<h3>{{product.name}}00000000</h3>
-													</a>
-
-													<div class="price-add-to-cart">
-														<span class="price" *ngFor="let pd of product.productdetail">
-															<span class="electro-price">
-																<ins><span class="amount"> </span></ins>
-																<span class="amount"> {{pd.price}}</span>
-															</span>
-														</span>
-
-														<a routerLink="/cart" class="button add_to_cart_button">Add to cart</a>
-													</div>
-
-													<div class="hover-area">
-														<div class="action-buttons">
-															<a routerLink="/wishlist/{{product.id}}"
-																class="add_to_wishlist">Wishlist</a>
-															<a routerLink="/compare"
-																class="add-to-compare-link">Compare</a>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</li>
-								</ul> -->
 							</div>
 						</div>
 					</section>
 
 					<div class="home-v1-banner-block animate-in-view fadeIn animated" data-animation="fadeIn">
-
 						<div class="home-v1-fullbanner-ad fullbanner-ad" style="margin-bottom: 70px">
 							<a href="#">
 								<img src="../../assets/images/blank.gif"
@@ -613,7 +510,8 @@
 												<a routerLink="/itemdetail/{{product.id}}">
 													<h3>{{product.name}}</h3>
 													<div class="product-thumbnail">
-														<img src="{{product.image}}" class="img-responsive" alt=""routerLink="/itemdetail/{{product.id}}">
+														<img src="{{product.image}}" class="img-responsive" alt=""
+															routerLink="/itemdetail/{{product.id}}">
 													</div>
 												</a>
 
@@ -624,16 +522,11 @@
 															<span class="amount"> {{pd.price}}</span>
 														</span>
 													</span>
-													<p rel="nofollow" class="button add_to_cart_button"(click)="addToCart(product.id)">Add to cart</p>
+													<button rel="nofollow" class="button add_to_cart_button" (click)="addToCart(product.id)">Add to cart</button>
 												</div>
-
 												<div class="hover-area">
 													<div class="action-buttons">
-
-														<a routerLink="/wishlist/{{product.id}}" rel="nofollow"
-															class="add_to_wishlist"> Wishlist</a>
-
-														<!-- <a routerLink="/compare" class="add-to-compare-link">Compare</a> -->
+														<a routerLink="/wishlist/{{product.id}}" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
 													</div>
 												</div>
 											</div>

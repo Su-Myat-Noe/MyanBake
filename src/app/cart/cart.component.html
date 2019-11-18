@@ -26,7 +26,7 @@
             <tbody>
               <tr class="cart_item removed "*ngFor="let cart of carts ;index as idx">
                 <td class="product-remove">
-                  <a class="remove"(click)="removeItem(cart.idx)" ><i class="far fa-times-circle"></i></a>
+                  <a class="remove"(click)="removeItem(cart.getId())" ><i class="far fa-times-circle"></i></a>
                 </td>
 
                 <td class="product-thumbnail">

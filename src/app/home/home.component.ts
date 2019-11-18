@@ -14,6 +14,7 @@ import { Component, OnInit } from '@angular/core';
 export class homeComponent implements OnInit {
   products: Product[] = [];
   product: Product[] = [];
+  productcart: Product;
   productDescLimit: Product[] = [];
   productAsc: Product[] = [];
   oneProduct: Product;
@@ -114,39 +115,25 @@ export class homeComponent implements OnInit {
         });
       });
   }
-
   addToCart(id) {
+    var detail = [];
+    
     this.loading = true;
-    // if (this.user) {
-    // this.loading = false;
-    this.rest.getItemID(id)
-      .subscribe(results => {
-        this.loading = false;
-        this.product = results;
-        const item = new BaseCartItem();
-        item.setId(this.product1.id);
-        item.setName(this.product1.name);
-        item.setPrice(this.product1.price);
-        item.setQuantity(1);
-        item.setImage(this.product1.image);
-        item.setData({
-          itemdt_id: this.product1.itemdt.length > 0 ? this.product1.itemdt[0].id : null,
-          itemdt_name: this.product1.itemdt.length > 0 ? this.product1.itemdt[0].name : null,
-          itemdt_price: this.product1.itemdt.length > 0 ? this.product1.itemdt[0].price : null,
-          itemdt_image: this.product1.itemdt.length > 0 ? this.product1.itemdt[0].image : null,
-          shop_id: this.product1.shop_id,
+    this.rest.getProductDetail(id)
+        .subscribe(results => {
+            this.loading = false;
+            this.productcart = results;
+            detail = this.productcart.productdetail;
+            const item = new BaseCartItem();
+            item.setId(this.productcart.id);
+            item.setName(this.productcart.name);
+            item.setPrice(detail[0].price);
+            item.setQuantity(1);
+            item.setImage(this.productcart.image);
+            this.cartService.addItem(item);
+            this.shoppingCart.changedCartService$.next(true);
         });
-        this.cartService.addItem(item);
-        this.shoppingCart.changedCartService$.next(true);
-        alert('Successfully added to the cart');
-      });
-    // } 
-    // else {
-    //     this.router.navigateByUrl('/login?return=' + this.router.url);
-    // }
-
-  }
-
+}
   ngOnInit() {
 
   }
@@ -172,28 +159,4 @@ export class homeComponent implements OnInit {
       }
     }
   }
-
-  // public loadScript() {
-  //   var isFound = false;
-  //   var scripts = document.getElementsByTagName("script")
-  //   for (var i = 0; i < scripts.length; ++i) {
-  //     if (scripts[i].getAttribute('src') != null && scripts[i].getAttribute('src').includes("electro")) {
-  //       isFound = true;
-  //     }
-  //   }
-
-  //   if (!isFound) {
-  //     var dynamicScripts = ["../assets/js/electro.js"];
-
-  //     for (var i = 0; i < dynamicScripts.length; i++) {
-  //       let node = document.createElement('script');
-  //       node.src = dynamicScripts[i];
-  //       node.type = 'text/javascript';
-  //       node.async = false;
-  //       node.charset = 'utf-8';
-  //       document.getElementsByTagName('head')[0].appendChild(node);
-  //     }
-
-  //   }
-  // }
 }

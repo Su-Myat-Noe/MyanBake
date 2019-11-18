@@ -70,6 +70,7 @@ export class HeaderComponent implements OnInit {
     this.carts.splice(idx, 1);
     this.cartService.removeItem(cart.id);   
     this.cdr.detectChanges();
+    this.getCart();
   }
   ngOnInit() {
   }

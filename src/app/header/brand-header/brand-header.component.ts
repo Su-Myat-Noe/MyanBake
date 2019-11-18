@@ -32,6 +32,7 @@ export class BrandHeaderComponent implements OnInit {
     this.carts.splice(idx, 1);
     this.cartService.removeItem(cart.id);   
     this.cdr.detectChanges();
+    this.getCart();
   }  
   getbrands(){
     this.rest.getBrand()
@@ -45,7 +46,8 @@ export class BrandHeaderComponent implements OnInit {
   }
   remove(){
     const item = new BaseCartItem(this.carts);
-        this.cartService.removeItem(item.id);
+    this.cartService.removeItem(item.id);
+    this.cdr.detectChanges();
   }
   ngOnInit() {
   }

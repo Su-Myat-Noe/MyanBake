@@ -1,3 +1,4 @@
+import { ShoppingCartService } from './../services/cart.service';
 import { CartService, BaseCartItem } from 'ng-shopping-cart';
 import { Component, OnInit } from '@angular/core';
 import { Product } from './../services/model/product';
@@ -18,10 +19,13 @@ export class ItemDetailComponent implements OnInit {
   productLimit: Product[] = [];
   id: any;
   qty:any;
+  productcart: Product;
+  loading: any;
   constructor(
     private rest: RestApiService,
     private route: ActivatedRoute,
     private router: Router,
+    private shoppingCart: ShoppingCartService,
     private cartService: CartService<BaseCartItem>
   ) {
     
@@ -122,6 +126,26 @@ export class ItemDetailComponent implements OnInit {
     this.cartService.addItem(item);
     console.log(this.cartService.getItems());
   }
+
+//   addToCart(id) {
+//     var detail = [];
+    
+//     this.loading = true;
+//     this.rest.getProductDetail(id)
+//         .subscribe(results => {
+//             this.loading = false;
+//             this.productcart = results;
+//             detail = this.productcart.productdetail;
+//             const item = new BaseCartItem();
+//             item.setId(this.productcart.id);
+//             item.setName(this.productcart.name);
+//             item.setPrice(detail[0].price);
+//             item.setQuantity(1);
+//             item.setImage(this.productcart.image);
+//             this.cartService.addItem(item);
+//             this.shoppingCart.changedCartService$.next(true);
+//         });
+// }
 // ---------------------------------------------------------------------------------------
   public loadScript() {
     var isFound = false;

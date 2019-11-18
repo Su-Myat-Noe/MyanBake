@@ -43,6 +43,7 @@ export class StyleHeaderComponent implements OnInit {
     this.carts.splice(idx, 1);
     this.cartService.removeItem(cart.id);   
     this.cdr.detectChanges();
+    this.getCart();
   }  
   getCart(){
     this.carts = this.cartService.getItems();
@@ -50,6 +51,7 @@ export class StyleHeaderComponent implements OnInit {
   remove(){
     const item = new BaseCartItem(this.carts);
         this.cartService.removeItem(item.id);
+
   }
   ngOnInit() {
   }

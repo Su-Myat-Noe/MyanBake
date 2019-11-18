@@ -158,14 +158,12 @@
                                                                     <span class="amount"> ${{pd.price}}</span>
                                                                 </span>
                                                             </span>
-                                                            <a rel="nofollow" routerLink="/itemdetail/{{product.id}}"
-                                                                class="button add_to_cart_button">Add to cart</a>
+                                                            <button rel="nofollow" (click)="addToCart(product.id)"class="button add_to_cart_button">Add to cart</button>
                                                         </div>
 
                                                         <div class="hover-area">
                                                             <div class="action-buttons">
                                                                 <a routerLink="/wishlist/{{product.id}}" rel="nofollow" class="add_to_wishlist">Wishlist</a>
-                                                                <!-- <a routerLink="/compare" class="add-to-compare-link">Compare</a> -->
                                                             </div>
                                                         </div>
                                                     </div>
@@ -201,13 +199,12 @@
                                                                     <span class="amount"> </span>
                                                                 </span>
                                                             </span>
-                                                            <a rel="nofollow" routerLink="/itemdetail/{{product.id}}" class="button add_to_cart_button">Add to cart</a>
+                                                            <button (click)="addToCart(product.id)" rel="nofollow"class="button add_to_cart_button">Add to cart</button>
                                                         </div>
 
                                                         <div class="hover-area">
                                                             <div class="action-buttons">
                                                                 <a routerLink="/wishlist/{{product.id}}" rel="nofollow" class="add_to_wishlist">Wishlist</a>
-                                                                <!-- <a routerLink="/compare" class="add-to-compare-link">Compare</a> -->
                                                             </div>
                                                         </div>
                                                     </div>
@@ -243,13 +240,12 @@
                                                                     <span class="amount"> ${{pd.price}}</span>
                                                                 </span>
                                                             </span>
-                                                            <a rel="nofollow" routerLink="/itemdetail/{{product.id}}" class="button add_to_cart_button">Add to cart</a>
+                                                            <button rel="nofollow"(click)="addToCart(product.id)"  class="button add_to_cart_button">Add to cart</button>
                                                         </div>
 
                                                         <div class="hover-area">
                                                             <div class="action-buttons">
                                                                 <a routerLink="/wishlist/{{product.id}}" rel="nofollow" class="add_to_wishlist">Wishlist</a>
-                                                                <!-- <a routerLink="/compare" class="add-to-compare-link">Compare</a> -->
                                                             </div>
                                                         </div>
                                                     </div>
@@ -430,7 +426,7 @@
 
                         <h2 class="h1">Best Sellers</h2>
 
-                        <ul class="nav nav-inline">
+                        <!-- <ul class="nav nav-inline">
 
                             <li class="nav-item active"><span class="nav-link">Top 20</span></li>
 
@@ -441,7 +437,7 @@
                             </li>
 
                             <li class="nav-item"><a class="nav-link" routerLink="/itemlist">Video Cameras</a></li>
-                        </ul>
+                        </ul> -->
                     </header>
 
                     <div id="home-v1-product-cards-careousel">
@@ -455,7 +451,7 @@
                                         <div class="media product-inner">
 
                                             <a class="media-left" routerLink="/itemdetail/{{product.id}}"
-                                                title="Pendrive USB 3.0 Flash 64 GB">
+                                                title="{{product.name}}">
                                                 <img class="media-object wp-post-image img-responsive"src="{{product.image}}"alt="">
 
                                             </a>
@@ -478,13 +474,12 @@
                                                         </span>
                                                     </span>
 
-                                                    <a routerLink="/cart" class="button add_to_cart_button">Add to cart</a>
+                                                    <button (click)="addToCart(product.id)"class="button add_to_cart_button">Add to cart</button>
                                                 </div>
 
                                                 <div class="hover-area">
                                                     <div class="action-buttons">
                                                         <a routerLink="/wishlist/{{product.id}}" class="add_to_wishlist">Wishlist</a>
-                                                        <!-- <a routerLink="/compare" class="add-to-compare-link">Compare</a> -->
                                                     </div>
                                                 </div>
                                             </div>
@@ -530,7 +525,7 @@
                                             <span class="loop-product-categories"><a routerLink="/itemlist"
                                                     rel="tag">{{product.category.name}}</a></span>
                                             <a routerLink="/itemdetail/{{product.id}}">
-                                                <h3>{{product.name}}</h3>
+                                                <h3>@@{{product.name}}</h3>
                                                 <div class="product-thumbnail">
                                                     <img src="{{product.image}}"class="img-responsive" alt="">
                                                 </div>
@@ -544,16 +539,12 @@
                                                         <span class="amount"> </span>
                                                     </span>
                                                 </span>
-                                                <a rel="nofollow" routerLink="/itemdetail/{{product.id}}"
-                                                    class="button add_to_cart_button">Add to cart</a>
+                                                <button rel="nofollow" (click)="addToCart(product.id)"class="button add_to_cart_button">Add to cart</button>
                                             </div>
 
                                             <div class="hover-area">
                                                 <div class="action-buttons">
-
                                                     <a routerLink="/wishlist/{{product.id}}" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
-
-                                                    <!-- <a routerLink="/compare" class="add-to-compare-link"> Compare</a> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -658,10 +649,8 @@
 
                             <div class="product-carousel-alt"*ngFor="let product of products">
                                 <a routerLink="/itemdetail/{{product.id}}">
-                                    <div class="product-thumbnail"><img width="250" height="232"
-                                            src="{{product.image}}"
-                                            class="attachment-shop_catalog size-shop_catalog wp-post-image"
-                                            alt="Smartwatch2" />
+                                    <div class="product-thumbnail">
+                                        <img width="250" height="232"src="{{product.image}}"class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="Smartwatch2" />
                                     </div>
                                 </a>
 
@@ -669,8 +658,11 @@
                                         rel="tag">{{product.category.name}}</a></span><a routerLink="/itemdetail/{{product.id}}">
                                     <h3>{{product.name}}</h3>
                                 </a>
-                                <span class="price"*ngFor="let pd of product.ProductDetail"><span class="electro-price"><span
-                                            class="amount">${{pd.price}}</span></span></span>
+                                <span class="price"*ngFor="let pd of product.ProductDetail">
+                                    <span class="electro-price">
+                                        <span class="amount">${{pd.price}}</span>
+                                    </span>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -679,7 +671,6 @@
             <aside class="widget electro_posts_carousel_widget">
                 <section class="section-posts-carousel">
                     <header>
-
                         <h3 class="widget-title">From the Blog</h3>
                         <div class="owl-nav">
                             <a href="#posts-carousel-prev" data-target="#posts-carousel-57176fb2e4a7f"
@@ -687,7 +678,6 @@
                             <a href="#posts-carousel-next" data-target="#posts-carousel-57176fb2e4a7f"
                                 class="slider-next"><i class="fa fa-angle-right"></i></a>
                         </div>
-
                     </header>
 
                     <div id="posts-carousel-57176fb2e4a7f" class="blog-carousel-homev2">

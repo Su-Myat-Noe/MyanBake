@@ -58,13 +58,16 @@ export class HomeHeaderComponent implements OnInit {
     this.carts.splice(idx, 1);
     this.cartService.removeItem(cart.id);   
     this.cdr.detectChanges();
+    this.getCart();
   }  
   getCart(){
     this.carts = this.cartService.getItems();
   }
   remove(){
     const item = new BaseCartItem(this.carts);
-        this.cartService.removeItem(item.id);
+    this.cartService.removeItem(item.id);
+    this.cdr.detectChanges();
+    this.getCart();
   }
   ngOnInit() {
   }

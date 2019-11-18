@@ -1,3 +1,5 @@
+import { CartService, BaseCartItem } from 'ng-shopping-cart';
+import { ShoppingCartService } from './../services/cart.service';
 import { Component, OnInit } from '@angular/core';
 import { Product } from './../services/model/product';
 import { RestApiService } from 'src/app/services/rest-api.service';
@@ -8,7 +10,10 @@ import { RestApiService } from 'src/app/services/rest-api.service';
 })
 export class SuperDealComponent implements OnInit {
   products: Product[]=[];
-  constructor(private rest: RestApiService) {
+  loading: any;
+  productcart: Product;
+  constructor(private rest: RestApiService, private cartService: CartService<BaseCartItem>,
+    private shoppingCart: ShoppingCartService) {
     new Promise((resolve) => {
       // this.loadScript();
       resolve(true);
@@ -29,6 +34,26 @@ export class SuperDealComponent implements OnInit {
       });
   }
 
+  addToCart(id) {
+    var detail = [];
+    
+    this.loading = true;
+    this.rest.getProductDetail(id)
+        .subscribe(results => {
+            this.loading = false;
+            this.productcart = results;
+            detail = this.productcart.productdetail;
+            const item = new BaseCartItem();
+            item.setId(this.productcart.id);
+            item.setName(this.productcart.name);
+            item.setPrice(detail[0].price);
+            item.setQuantity(1);
+            item.setImage(this.productcart.image);
+            this.cartService.addItem(item);
+            this.shoppingCart.changedCartService$.next(true);
+        });
+  alert("success");
+}
   ngOnInit() {
   }
   public loadScript(script: string = 'electro') {

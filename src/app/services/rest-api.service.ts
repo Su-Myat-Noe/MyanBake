@@ -143,12 +143,12 @@ export class RestApiService {
       )
   }
   // product detail page
-  getProductDetail(id: number): Observable<any> {
+  getProductDetail(id: number): Observable<Product> {
     let httpHeader = {
       Accept: 'application/json',
       Authorization: 'Bearer ' + localStorage.getItem(environment.token_key)
     }
-    return this.http.get<any>(this.apiUrl + '/api/product/' + id, { headers: httpHeader })
+    return this.http.get<Product>(this.apiUrl + '/api/product/'+ id, { headers: httpHeader })
       .pipe(
         retry(1),
         catchError(this.handleError)
