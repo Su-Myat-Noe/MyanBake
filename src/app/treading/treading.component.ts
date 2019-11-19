@@ -1,3 +1,5 @@
+import { CartService, BaseCartItem } from 'ng-shopping-cart';
+import { ShoppingCartService } from './../services/cart.service';
 import { RestApiService } from 'src/app/services/rest-api.service';
 import { Product } from './../services/model/product';
 import { Component, OnInit } from '@angular/core';
@@ -13,7 +15,11 @@ export class TreadingComponent implements OnInit {
   productLimit:Product[]=[];
   productDescLimit:Product[]=[];
   categoryLimit:Category[]=[];
-  constructor(private rest: RestApiService) {
+  productcart: Product;
+  loading: any;
+  constructor(private rest: RestApiService,
+    private shoppingCart: ShoppingCartService,    
+    private cartService: CartService<BaseCartItem>) {
     new Promise((resolve) => {
       // this.loadScript();
       resolve(true);
@@ -83,6 +89,25 @@ export class TreadingComponent implements OnInit {
   }
   ngOnInit() {
   }
+  addToCart(id) {
+    var detail = [];
+    
+    this.loading = true;
+    this.rest.getProductDetail(id)
+        .subscribe(results => {
+            this.loading = false;
+            this.productcart = results;
+            detail = this.productcart.productdetail;
+            const item = new BaseCartItem();
+            item.setId(this.productcart.id);
+            item.setName(this.productcart.name);
+            item.setPrice(detail[0].price);
+            item.setQuantity(1);
+            item.setImage(this.productcart.image);
+            this.cartService.addItem(item);
+            this.shoppingCart.changedCartService$.next(true);
+        });
+}
 
   public loadScript(script: string = 'electro') {
     var isFound = false;

@@ -155,7 +155,7 @@ import { AuthEffects } from './core/auth/_effects/auth.effects';
                 component: TermsComponent
             },
             {
-                path: 'wishlist/:id',
+                path: 'wishlist',
                 component: WishlistComponent
             },
             {

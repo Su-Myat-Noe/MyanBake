@@ -52,7 +52,6 @@ export class SuperDealComponent implements OnInit {
             this.cartService.addItem(item);
             this.shoppingCart.changedCartService$.next(true);
         });
-  alert("success");
 }
   ngOnInit() {
   }

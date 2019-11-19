@@ -105,47 +105,32 @@ export class ItemDetailComponent implements OnInit {
   // decrement product qty
   decrementQty() {
   if(this.qty-1 < 1 ){
-  this.qty = 1
-  console.log('1->'+this.qty);
+  this.qty = 1;
   }else{
   this.qty -= 1;
-  console.log('2->'+this.qty);
   }
   } 
 
-  addToCart() {
-    var detail = [];
-    detail = this.productdetail.productdetail;
-    const item = new BaseCartItem(
-      {id: this.productdetail.id, 
-      name: this.productdetail.name,
-      price: detail[0].price,
-      image: this.productdetail.image, 
-      quantity: this.qty
-      });
-    this.cartService.addItem(item);
-    console.log(this.cartService.getItems());
-  }
 
-//   addToCart(id) {
-//     var detail = [];
+  addToCart(id) {
+    var detail = [];
     
-//     this.loading = true;
-//     this.rest.getProductDetail(id)
-//         .subscribe(results => {
-//             this.loading = false;
-//             this.productcart = results;
-//             detail = this.productcart.productdetail;
-//             const item = new BaseCartItem();
-//             item.setId(this.productcart.id);
-//             item.setName(this.productcart.name);
-//             item.setPrice(detail[0].price);
-//             item.setQuantity(1);
-//             item.setImage(this.productcart.image);
-//             this.cartService.addItem(item);
-//             this.shoppingCart.changedCartService$.next(true);
-//         });
-// }
+    this.loading = true;
+    this.rest.getProductDetail(id)
+        .subscribe(results => {
+            this.loading = false;
+            this.productcart = results;
+            detail = this.productcart.productdetail;
+            const item = new BaseCartItem();
+            item.setId(this.productcart.id);
+            item.setName(this.productcart.name);
+            item.setPrice(detail[0].price);
+            item.setQuantity(1);
+            item.setImage(this.productcart.image);
+            this.cartService.addItem(item);
+            this.shoppingCart.changedCartService$.next(true);
+        });
+}
 // ---------------------------------------------------------------------------------------
   public loadScript() {
     var isFound = false;

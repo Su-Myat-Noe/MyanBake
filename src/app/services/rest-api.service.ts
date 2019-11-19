@@ -95,6 +95,9 @@ export class RestApiService {
         catchError(this.handleError)
       )
   }
+
+  
+
   getProductID(id: number): Observable<Product[]> {
     let httpHeader = {
       Accept: 'application/json',
@@ -432,6 +435,66 @@ getByCountry(countryID): Observable<any[]> {
     catchError(this.handleError)
   )
 }
+
+// -------------------------------------------------------------------------------------------------------------------------------------
+getMyWishList(user_id: any): Observable<any[]> {
+  let httpHeader = {
+    Accept: 'application/json',
+    Authorization: 'Bearer ' + localStorage.getItem(environment.token_key)
+  }
+  return this.http.get<any[]>(this.apiUrl + '/api/wishlist?search=user_id:equal:' + user_id + '&rows=9999', { headers: httpHeader })
+  .pipe(
+    retry(1),
+    catchError(this.handleError)
+  )
+}
+viewWishList(page: number = 1, id): Observable<any[]> {
+  let httpHeader = {
+    Accept: 'application/json',
+    Authorization: 'Bearer ' + localStorage.getItem(environment.token_key)
+  }
+  return this.http.get<any[]>(this.apiUrl + '/api/wishlist?search=user_id:equal:' + id + '&page=' + page + '&rows=12', { headers: httpHeader })
+  .pipe(
+    retry(1),
+    catchError(this.handleError)
+  )
+}
+
+postWishList(data: any): Observable<any> {
+  let httpHeader = {
+    Accept: 'application/json',
+    Authorization: 'Bearer ' + localStorage.getItem(environment.token_key)
+  }
+  return this.http.post<any>(this.apiUrl + '/api/wishlist', data, { headers: httpHeader })
+  .pipe(
+    retry(1),
+    catchError(this.handleError)
+  )
+}
+
+checkWishList(data: any): Observable<any[]> {
+  let httpHeader = {
+    Accept: 'application/json',
+    Authorization: 'Bearer ' + localStorage.getItem(environment.token_key)
+  }
+  return this.http.get<any[]>(this.apiUrl + '/api/wishlist?search=user_id:equal:' + data.user_id + '|product_id:equal:' + data.item_id, { headers: httpHeader })
+  .pipe(
+    retry(1),
+    catchError(this.handleError)
+  )
+}
+deleteWishList(id: number): Observable<any> {
+  let httpHeader = {
+    Accept: 'application/json',
+    Authorization: 'Bearer ' + localStorage.getItem(environment.token_key)
+  }
+  return this.http.delete<any>(this.apiUrl + '/api/wishlist/' + id, { headers: httpHeader })
+  .pipe(
+    retry(1),
+    catchError(this.handleError)
+  )
+}
+
 
   // ---------------------------------------------------------------------------------------------------------------------------
   handleError(error) {

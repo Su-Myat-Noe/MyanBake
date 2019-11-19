@@ -1,6 +1,8 @@
+import { RestApiService } from './../services/rest-api.service';
+import { ShoppingCartService } from './../services/cart.service';
 import { Product } from './../services/model/product';
 import { CartService, BaseCartItem } from 'ng-shopping-cart';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-wishlist',
@@ -9,25 +11,69 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WishlistComponent implements OnInit {
   productdetail: Product;
-  constructor(private cartService: CartService<BaseCartItem>) {
+  myWishList: any[] = [];
+  loadMore = true;
+  carts: any;
+  loading = false;
+  page = 1;
+  user: any;
+  productcart: Product;
+  constructor(
+    private rest: RestApiService,
+    private cartService: CartService<BaseCartItem>,
+    private shoppingCart: ShoppingCartService,
+    private cdr: ChangeDetectorRef,) {
     new Promise((resolve) => {
       this.loadScript();
       resolve(true);
     });
+    
   }
 
   ngOnInit() {
   }
-  addToWishlist() {
-    const item = new BaseCartItem(
-      {id: this.productdetail.id, 
-      name: this.productdetail.name,
-      // price: this.productdetail.ProductDetail[0].price, 
-      image: this.productdetail.image,
+viewWishList() {
+  this.loading = true;
+  this.rest.viewWishList(this.page, this.user.id)
+      .subscribe(result => {
+          this.myWishList = result;
+          this.loading = false;
+          if (result.length < 12) {
+              this.loadMore = false;
+          }
       });
-    this.cartService.addItem(item);
-    console.log(this.cartService.getItems());
-  }
+}
+
+deleteWishList(wishlist) {
+  this.rest.deleteWishList(wishlist.id).subscribe(results => {
+      alert('Remove from your wishlist');
+      const idx = this.myWishList.indexOf(wishlist);
+      if (idx >= 0) {
+          this.myWishList.splice(idx, 1);
+          this.cdr.detectChanges();
+      }
+  });
+}
+
+addToCart(id) {
+  var detail = [];
+  
+  this.loading = true;
+  this.rest.getProductDetail(id)
+      .subscribe(results => {
+          this.loading = false;
+          this.productcart = results;
+          detail = this.productcart.productdetail;
+          const item = new BaseCartItem();
+          item.setId(this.productcart.id);
+          item.setName(this.productcart.name);
+          item.setPrice(detail[0].price);
+          item.setQuantity(1);
+          item.setImage(this.productcart.image);
+          this.cartService.addItem(item);
+          this.shoppingCart.changedCartService$.next(true);
+      });
+}
   public loadScript() {
     var isFound = false;
     var scripts = document.getElementsByTagName("script")

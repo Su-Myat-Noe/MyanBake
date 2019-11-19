@@ -229,7 +229,8 @@
 															</div>
 															<div class="hover-area">
 																<div class="action-buttons">
-																	<a routerLink="/wishlist/{{product.id}}"rel="nofollow"class="add_to_wishlist">Wishlist</a>
+																	<a *ngIf="!wish_list.includes(product.id)"(click)="postWishList(product.id)"><i class="far fa-heart"></i>Wishlist</a>
+																	<a *ngIf="wish_list.includes(product.id)"(click)="postWishList(product.id)"><i class="fas fa-heart"></i>Wishlist</a>
 																</div>
 															</div>
 														</div>
@@ -265,7 +266,8 @@
 															</div>
 															<div class="hover-area">
 																<div class="action-buttons">
-																	<a routerLink="/wishlist/{{product.id}}" rel="nofollow" class="add_to_wishlist">Wishlist</a>
+																	<a *ngIf="!wish_list.includes(product.id)"(click)="postWishList(product.id)"><i class="far fa-heart"></i>Wishlist</a>
+																	<a *ngIf="wish_list.includes(product.id)"(click)="postWishList(product.id)"><i class="fas fa-heart"></i>Wishlist</a>
 																</div>
 															</div>
 														</div>
@@ -303,7 +305,8 @@
 
 															<div class="hover-area">
 																<div class="action-buttons">
-																	<a routerLink="/wishlist/{{product.id}}" rel="nofollow" class="add_to_wishlist">Wishlist</a>
+																	<a *ngIf="!wish_list.includes(product.id)"(click)="postWishList(product.id)"><i class="far fa-heart"></i>Wishlist</a>
+																	<a *ngIf="wish_list.includes(product.id)"(click)="postWishList(product.id)"><i class="fas fa-heart"></i>Wishlist</a>
 																</div>
 															</div>
 														</div>
@@ -351,7 +354,8 @@
 												</div>
 												<div class="hover-area">
 													<div class="action-buttons">
-														<a routerLink="/wishlist/{{p.id}}" rel="nofollow"class="add_to_wishlist">Wishlist</a>
+														<a *ngIf="!wish_list.includes(p.id)"(click)="postWishList(p.id)"><i class="far fa-heart"></i>Wishlist</a>
+														<a *ngIf="wish_list.includes(p.id)"(click)="postWishList(p.id)"><i class="fas fa-heart"></i>Wishlist</a>
 													</div>
 												</div>
 											</div>
@@ -382,7 +386,8 @@
 												</div>
 												<div class="hover-area">
 													<div class="action-buttons">
-														<a routerLink="/wishlist/{{oneProduct.id}}" rel="nofollow"class="add_to_wishlist">Wishlist</a>
+														<a *ngIf="!wish_list.includes(oneProduct.id)"(click)="postWishList(oneProduct.id)"><i class="far fa-heart"></i>Wishlist</a>
+														<a *ngIf="wish_list.includes(oneProduct.id)"(click)="postWishList(oneProduct.id)"><i class="fas fa-heart"></i>Wishlist</a>
 													</div>
 												</div>
 											</div>
@@ -413,7 +418,8 @@
 												</div>
 												<div class="hover-area">
 													<div class="action-buttons">
-														<a routerLink="/wishlist/{{pdes.id}}" rel="nofollow" class="add_to_wishlist">Wishlist</a>
+														<a *ngIf="!wish_list.includes(pdes.id)"(click)="postWishList(pdes.id)"><i class="far fa-heart"></i>Wishlist</a>
+														<a *ngIf="wish_list.includes(pdes.id)"(click)="postWishList(pdes.id)"><i class="fas fa-heart"></i>Wishlist</a>
 													</div>
 												</div>
 											</div>
@@ -465,7 +471,8 @@
 													</div>
 													<div class="hover-area">
 														<div class="action-buttons">
-															<a routerLink="/wishlist/{{product.id}}" class="add_to_wishlist">Wishlist</a>
+															<a *ngIf="!wish_list.includes(product.id)"(click)="postWishList(product.id)"><i class="far fa-heart"></i>Wishlist</a>
+															<a *ngIf="wish_list.includes(product.id)"(click)="postWishList(product.id)"><i class="fas fa-heart"></i>Wishlist</a>
 														</div>
 													</div>
 												</div>
@@ -510,8 +517,7 @@
 												<a routerLink="/itemdetail/{{product.id}}">
 													<h3>{{product.name}}</h3>
 													<div class="product-thumbnail">
-														<img src="{{product.image}}" class="img-responsive" alt=""
-															routerLink="/itemdetail/{{product.id}}">
+														<img src="{{product.image}}" class="img-responsive" alt="">
 													</div>
 												</a>
 
@@ -526,7 +532,8 @@
 												</div>
 												<div class="hover-area">
 													<div class="action-buttons">
-														<a routerLink="/wishlist/{{product.id}}" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
+														<a *ngIf="!wish_list.includes(product.id)"(click)="postWishList(product.id)"><i class="far fa-heart"></i>Wishlist</a>
+														<a *ngIf="wish_list.includes(product.id)"(click)="postWishList(product.id)"><i class="fas fa-heart"></i>Wishlist</a>
 													</div>
 												</div>
 											</div>

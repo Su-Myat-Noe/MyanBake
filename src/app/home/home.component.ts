@@ -1,3 +1,7 @@
+import { map } from 'rxjs/operators';
+import { currentUser } from './../core/auth/_selectors/auth.selectors';
+import { AppState } from './../core/reducers/index';
+import { Store, select } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { ShoppingCartService } from './../services/cart.service';
 import { BaseCartItem, CartService } from 'ng-shopping-cart';
@@ -13,20 +17,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class homeComponent implements OnInit {
   products: Product[] = [];
-  product: Product[] = [];
-  productcart: Product;
+  product: Product[] = [];  
   productDescLimit: Product[] = [];
   productAsc: Product[] = [];
   oneProduct: Product;
   productDesc: Product[] = [];
   categories: Category[] = [];
+  productcart: Product;
   loading: any;
+  user: any;
   product1: any = {};
+  wish_list: any[] = [];
+  carts: BaseCartItem[] = [];
+  loadMore = true;
+  page = 1;
   constructor(
     private rest: RestApiService,
-    private shoppingCart: ShoppingCartService,
     private router: Router,
-    private cartService: CartService<BaseCartItem>) {
+    private store: Store<AppState>,
+    private shoppingCart: ShoppingCartService,    
+    private cartService: CartService<BaseCartItem>,
+    // private events: Events
+   ) {
 
     new Promise((resolve) => {
       // this.loadScript();
@@ -39,6 +51,16 @@ export class homeComponent implements OnInit {
     this.getProductAsclimit();
     this.getProductDesclimit();
     this.getCategoryheader();    
+    this.carts = this.cartService.getItems();
+    this.shoppingCart.changedCartService$.subscribe((changed) => {
+        if (changed) {
+            this.carts = this.cartService.getItems();
+        }
+    });
+  //   this.events.subscribe('change_wish_list', (state) => {
+  //     this.wish_list = JSON.parse(localStorage.getItem('wish_list'));
+  // });
+    this.getCurrentUser();
   }
 
   getproducts() {
@@ -51,6 +73,7 @@ export class homeComponent implements OnInit {
         });
       });
   }
+  
 
   getCategoryheader() {
     this.rest.getCategoryheader()
@@ -115,6 +138,79 @@ export class homeComponent implements OnInit {
         });
       });
   }
+
+  getCurrentUser() {
+    this.store
+        .pipe(
+            select(currentUser),
+            map((result: any) => {
+                return result;
+            })).subscribe((user) => {
+                this.user = user;
+                this.getMyWishList();
+            });
+}
+getMyWishList() {
+  this.loading = true;
+  this.wish_list = [];
+  localStorage.setItem("wish_list", JSON.stringify(this.wish_list));
+  if (this.user) {
+      this.rest.getMyWishList(this.user.id).subscribe(data => {
+          if (data.length > 0) {
+              for (const wish of data) {
+                  this.wish_list.push(wish.item_id);
+              }
+              localStorage.setItem("wish_list", JSON.stringify(this.wish_list));
+              this.loading = false;
+          }
+          else {
+              this.loading = false;
+          }
+      });
+  }
+  else{
+      this.loading = false;
+  }
+}
+arrayRemove(arr, value) {
+  return arr.filter(function (ele) {
+      return ele != value;
+  });
+}
+
+
+postWishList(id) {
+  if (this.user) {
+      this.loading = true;
+      this.rest.checkWishList({
+          item_id: id,
+          user_id: this.user.id
+      }).subscribe(result => {
+          if (result.length > 0) {
+              this.rest.deleteWishList(result[0].id).subscribe(data => {
+                  this.wish_list = this.arrayRemove(this.wish_list, id);
+                  localStorage.setItem("wish_list", JSON.stringify(this.wish_list));
+                  this.loading = false;
+                  // this.events.publish('change_wish_list');
+                  // alert('Remove wish list');
+              });
+          } else {
+              this.rest.postWishList({
+                  item_id: id,
+                  user_id: this.user.id
+              }).subscribe(data => {
+                  this.wish_list.push(id);
+                  localStorage.setItem("wish_list", JSON.stringify(this.wish_list));
+                  this.loading = false;
+                  // this.events.publish('change_wish_list');
+                //  alert('Successfully added to your wish list.');
+              });
+          }
+      });
+  } else {
+      this.router.navigateByUrl('/login?return=' + this.router.url);
+  }
+}
   addToCart(id) {
     var detail = [];
     

@@ -1,3 +1,5 @@
+import { CartService, BaseCartItem } from 'ng-shopping-cart';
+import { ShoppingCartService } from './../services/cart.service';
 import { Category } from './../services/model/category';
 import { Component, OnInit } from '@angular/core';
 import { Product } from './../services/model/product';
@@ -8,7 +10,8 @@ import { RestApiService } from 'src/app/services/rest-api.service';
   styleUrls: ['./feature-brands.component.css']
 })
 export class FeatureBrandsComponent implements OnInit {
-
+  loading: any;
+  productcart: Product;
   products: Product[]=[];
   categories:Category[]=[];
   categoryLimit:Category[]=[];
@@ -16,7 +19,9 @@ export class FeatureBrandsComponent implements OnInit {
   productDescLimit:Product[]=[];
   productDesc:Product[]=[];
   
-  constructor(private rest: RestApiService) {
+  constructor(private rest: RestApiService,
+    private shoppingCart: ShoppingCartService,
+    private cartService: CartService<BaseCartItem>) {
     new Promise((resolve) => {
       // this.loadScript();
       resolve(true);
@@ -94,7 +99,25 @@ export class FeatureBrandsComponent implements OnInit {
         });
       });
   }
-
+  addToCart(id) {
+    var detail = [];
+    
+    this.loading = true;
+    this.rest.getProductDetail(id)
+        .subscribe(results => {
+            this.loading = false;
+            this.productcart = results;
+            detail = this.productcart.productdetail;
+            const item = new BaseCartItem();
+            item.setId(this.productcart.id);
+            item.setName(this.productcart.name);
+            item.setPrice(detail[0].price);
+            item.setQuantity(1);
+            item.setImage(this.productcart.image);
+            this.cartService.addItem(item);
+            this.shoppingCart.changedCartService$.next(true);
+        });
+}
   ngOnInit() {
   }
   public loadScript(script: string = 'electro') {

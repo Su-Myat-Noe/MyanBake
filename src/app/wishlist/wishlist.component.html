@@ -46,11 +46,10 @@
                             </thead>
 
                             <tbody>
-                                <tr>
+                                <tr *ngFor="let wishList of myWishList">
                                     <td class="product-remove">
                                         <div>
-                                            <a title="Remove this product" class="remove remove_from_wishlist"
-                                                href="#">×</a>
+                                            <a class="remove"(click)="deleteWishList(wishList)" ><i class="far fa-times-circle"></i></a>
                                         </div>
                                     </td>
 
@@ -61,11 +60,11 @@
                                     </td>
 
                                     <td class="product-name">
-                                        <a routerLink="/itemdetail">White Solo 2 Wireless</a>
+                                        <a >{{wishList.item.name}}</a>
                                     </td>
 
                                     <td class="product-price">
-                                        <span class="electro-price"><span class="amount">$248.99</span></span>
+                                        <span class="electro-price"><span class="amount">{{wishList.item.price}}</span></span>
                                     </td>
 
                                     <td class="product-stock-status">
@@ -76,86 +75,13 @@
                                         <!-- Date added -->
 
                                         <!-- Add to cart button -->
-                                        <a href="#" class="button"> Add to Cart</a>
+                                        <button (click)="addToCart(wishList.item.id)" class="button"> Add to Cart</button>
                                         <!-- Change wishlist -->
 
                                         <!-- Remove from wishlist -->
                                     </td>
                                 </tr>
-                                <tr>
-
-                                    <td class="product-remove">
-                                        <div>
-                                            <a title="Remove this product" class="remove remove_from_wishlist"
-                                                href="#">×</a>
-                                        </div>
-                                    </td>
-
-                                    <td class="product-thumbnail">
-                                        <a routerLink="/itemdetail">
-                                            <img width="180" height="180" alt="Ultrabooks" class="wp-post-image"
-                                                src="../../assets/images/products/3.jpg"></a>
-                                    </td>
-
-                                    <td class="product-name">
-                                        <a routerLink="/itemdetail">Tablet Red EliteBook Revolve 810 G2</a>
-                                    </td>
-
-                                    <td class="product-price">
-                                        <span class="electro-price"><span class="amount">$1200.00</span></span>
-                                    </td>
-
-                                    <td class="product-stock-status">
-                                        <span class="in-stock">In stock</span>
-                                    </td>
-
-                                    <td class="product-add-to-cart">
-                                        <!-- Date added -->
-
-                                        <!-- Add to cart button -->
-
-                                        <a href="#" class="button"> Add to Cart</a>
-                                        <!-- Change wishlist -->
-
-                                        <!-- Remove from wishlist -->
-                                    </td>
-                                </tr>
-                                <tr>
-
-                                    <td class="product-remove">
-                                        <div>
-                                            <a title="Remove this product" class="remove remove_from_wishlist"
-                                                href="#">×</a>
-                                        </div>
-                                    </td>
-
-                                    <td class="product-thumbnail">
-                                        <a routerLink="/itemdetail"><img width="180" height="180" alt="GameStation"
-                                                class=" wp-post-image" src="../../assets/images/products/1.jpg"></a>
-                                    </td>
-
-                                    <td class="product-name">
-                                        <a routerLink="/itemdetail">GameConsole Destiny Special Edition</a>
-                                    </td>
-
-                                    <td class="product-price">
-                                        <span class="electro-price"><span class="amount">$789.00</span></span>
-                                    </td>
-
-                                    <td class="product-stock-status">
-                                        <span class="in-stock">In stock</span>
-                                    </td>
-
-                                    <td class="product-add-to-cart">
-                                        <!-- Date added -->
-
-                                        <!-- Add to cart button -->
-                                        <a href="#" class="button"> Add to Cart</a>
-                                        <!-- Change wishlist -->
-
-                                        <!-- Remove from wishlist -->
-                                    </td>
-                                </tr>
+                                
                             </tbody>
 
                             <tfoot>

@@ -126,7 +126,7 @@
 												<input type="number"name="quantity" value={{qty}} title="Qty" class="input-text qty text"max="29" min="0" step="1" />									
 												<input type="button"(click)="decrementQty()"name="quantity" value="1" title="Qty" class="minus" value="-">
 											</div>
-											<button type="button" (click)="addToCart()"  class="single_add_to_cart_button button">Add to cart</button>
+											<button type="button" (click)="addToCart(id)"  class="single_add_to_cart_button button">Add to cart</button>
 											<input type="hidden" name="add-to-cart" value="2452" />
 											<input type="hidden" name="product_id" value="2452" />
 											<input type="hidden" name="variation_id" class="variation_id" value="0" />
@@ -186,16 +186,13 @@
 																					class="amount">$2,299.00</span></del>
 																		</span>
 																	</span>
-																	<a rel="nofollow" routerLink="/itemdetail/{{product.id}}"
-																		class="button add_to_cart_button">Add to cart</a>
+																	<button rel="nofollow" (click)="addToCart(product.id)"
+																		class="button add_to_cart_button">Add to cart</button>
 																</div>
 
 																<div class="hover-area">
 																	<div class="action-buttons">
-																		<a routerLink="/wishlist/{{product.id}}" rel="nofollow"
-																			class="add_to_wishlist">Wishlist</a>
-																		<!-- <a href="#"
-																			class="add-to-compare-link">Compare</a> -->
+																		<a routerLink="/wishlist/{{product.id}}" rel="nofollow"class="add_to_wishlist">Wishlist</a>
 																	</div>
 																</div>
 															</div>
@@ -358,8 +355,7 @@
 												<div id="review_form_wrapper">
 													<div id="review_form">
 														<div id="respond" class="comment-respond">
-															<h3 id="reply-title" class="comment-reply-title">Add a
-																review
+															<h3 id="reply-title" class="comment-reply-title">Add a review
 																<small><a rel="nofollow" id="cancel-comment-reply-link"
 																		href="#" style="display:none;">Cancel reply</a>
 																</small>
@@ -529,12 +525,11 @@
 														<ins><span class="amount">${{pd.price}}</span></ins>
 													</span>
 												</span>
-												<a rel="nofollow" routerLink="/itemdetail/{{product.id}}"class="button add_to_cart_button">Add to cart</a>
+												<button rel="nofollow" (click)="addToCart(product.id)"class="button add_to_cart_button">Add to cart</button>
 											</div>
 											<div class="hover-area">
 												<div class="action-buttons">
 													<a href="#" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
-													<!-- <a href="#" class="add-to-compare-link">Compare</a> -->
 												</div>
 											</div>
 										</div>

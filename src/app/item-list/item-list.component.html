@@ -59,13 +59,12 @@
                                                     <span class="amount"> ${{pd.price}}</span>
                                                 </span>
                                             </span>
-                                            <a rel="nofollow" routerLink="/itemdetail/{{product.id}}"class="button add_to_cart_button">Add to cart</a>
+                                            <a rel="nofollow" (click)="addToCart(product.id)"class="button add_to_cart_button">Add to cart</a>
                                         </div>
 
                                         <div class="hover-area">
                                             <div class="action-buttons">
                                                 <a routerLink="/wishlist/{{product.id}}" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
-                                                <!-- <a routerLink="/compare" class="add-to-compare-link"> Compare</a> -->
                                             </div>
                                         </div>
                                     </div>
@@ -74,7 +73,7 @@
                         </div>
                     </div>
                 </div>
-            </section><!-- /.section-products-carousel -->
+            </section>
 
             <div class="tab-content">
                 <div id="grid" class="tab-pane active" role="tabpanel">
@@ -102,9 +101,7 @@
                     </ul>
                 </div>
             </div>
-
-        </main><!-- #main -->
-    </div><!-- #primary -->
-
-</div><!-- .col-full -->
+        </main>
+    </div>
+</div>
 <app-footer></app-footer>

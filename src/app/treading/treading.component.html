@@ -203,12 +203,11 @@
                                                               <span class="amount"> ${{pd.price}}</span>
                                                           </span>
                                                       </span>
-                                                      <a rel="nofollow" routerLink="/itemdetail/{{product.id}}"class="button add_to_cart_button">Add to cart</a>
+                                                      <button rel="nofollow"(click)="addToCart(product.id)"class="button add_to_cart_button">Add to cart</button>
                                                   </div>
                                                   <div class="hover-area">
                                                       <div class="action-buttons">
                                                           <a routerLink="/wishlist/{{product.id}}" rel="nofollow"class="add_to_wishlist"> Wishlist</a>
-                                                          <!-- <a routerLink="/compare" class="add-to-compare-link"> Compare</a> -->
                                                       </div>
                                                   </div>
                                               </div>
@@ -243,13 +242,12 @@
                                                               <span class="amount"> </span>
                                                           </span>
                                                       </span>
-                                                      <a rel="nofollow" routerLink="/itemdetail/{{product.id}}"class="button add_to_cart_button">Add to cart</a>
+                                                      <a rel="nofollow" (click)="addToCart(product.id)"class="button add_to_cart_button">Add to cart</a>
                                                   </div>
 
                                                   <div class="hover-area">
                                                       <div class="action-buttons">
                                                           <a routerLink="/wishlist/{{product.id}}" rel="nofollow"class="add_to_wishlist">Wishlist</a>
-                                                          <!-- <a routerLink="/compare"class="add-to-compare-link">Compare</a> -->
                                                       </div>
                                                   </div>
                                               </div>
@@ -284,13 +282,12 @@
                                                               <span class="amount"> ${{pd.price}}</span>
                                                           </span>
                                                       </span>
-                                                      <a rel="nofollow" routerLink="/itemdetail/{{pdes.id}}"class="button add_to_cart_button">Add to cart</a>
+                                                      <a rel="nofollow" (click)="addToCart(pdes.id)"class="button add_to_cart_button">Add to cart</a>
                                                   </div>
 
                                                   <div class="hover-area">
                                                       <div class="action-buttons">
                                                           <a routerLink="/wishlist/{{pdes.id}}" rel="nofollow"class="add_to_wishlist"> Wishlist</a>
-                                                          <!-- <a routerLink="/compare" class="add-to-compare-link"> Compare</a> -->
                                                       </div>
                                                   </div>
                                               </div>
@@ -349,13 +346,12 @@
                                                               <span class="amount"> </span>
                                                           </span>
                                                       </span>
-                                                      <a rel="nofollow" routerLink="/itemdetail/{{product.id}}" class="button add_to_cart_button">Add to cart</a>
+                                                      <a rel="nofollow" (click)="addToCart(product.id)" class="button add_to_cart_button">Add to cart</a>
                                                   </div>
 
                                                   <div class="hover-area">
                                                       <div class="action-buttons">
                                                           <a routerLink="/wishlist/{{product.id}}" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
-                                                          <!-- <a routerLink="/compare" class="add-to-compare-link"> Compare</a> -->
                                                       </div>
                                                   </div>
                                               </div>
@@ -405,12 +401,11 @@
                                                       <span class="amount"> </span>
                                                   </span>
                                               </span>
-                                              <a routerLink="/cart" class="button add_to_cart_button">Add to cart</a>
+                                              <a (click)="addToCart(pl.id)" class="button add_to_cart_button">Add to cart</a>
                                           </div>
                                           <div class="hover-area">
                                               <div class="action-buttons">
                                                   <a routerLink="/wishlist/{{pl.id}}" class="add_to_wishlist">Wishlist</a>
-                                                  <!-- <a routerLink="/compare" class="add-to-compare-link">Compare</a> -->
                                               </div>
                                           </div>
                                       </div>
@@ -441,12 +436,11 @@
                                                               <span class="amount"> </span>
                                                           </span>
                                                       </span>
-                                                      <a routerLink="/cart" class="button add_to_cart_button">Add to cart</a>
+                                                      <button (click)="addToCart(pl.id)" class="button add_to_cart_button">Add to cart</button>
                                                   </div>
                                                   <div class="hover-area">
                                                       <div class="action-buttons">
                                                           <a routerLink="/wishlist/{{pl.id}}" class="add_to_wishlist">Wishlist</a>
-                                                          <!-- <a routerLink="/compare" class="add-to-compare-link">Compare</a> -->
                                                       </div>
                                                   </div>
                                               </div>
@@ -498,12 +492,11 @@
                                 <del><span class="amount">$2,299.00</span></del>
                               </span>
                             </span>
-                            <a rel="nofollow" routerLink="/itemdetail" class="button add_to_cart_button">Add to cart</a>
+                            <a rel="nofollow" (click)="addToCart(pdesc.id)" class="button add_to_cart_button">Add to cart</a>
                           </div>
                           <div class="hover-area">
                             <div class="action-buttons">
                               <a href="http://transvelo.github.io/electro/?add_to_wishlist=2933" rel="nofollow"class="add_to_wishlist"> Wishlist</a>
-                              <!-- <a routerLink="/compare" class="add-to-compare-link">Compare</a> -->
                             </div>
                           </div>
                         </div>
@@ -556,8 +549,6 @@
                             <div class="action-buttons">
 
                               <a routerLink="http://transvelo.github.io/electro/?add_to_wishlist=2933" rel="nofollow"class="add_to_wishlist"> Wishlist</a>
-
-                              <!-- <a routerLink="/compare" class="add-to-compare-link">Compare</a> -->
                             </div>
                           </div>
                         </div>
