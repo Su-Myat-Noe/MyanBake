@@ -3,13 +3,13 @@ import { currentUser } from './../core/auth/_selectors/auth.selectors';
 import { AppState } from './../core/reducers/index';
 import { Store, select } from '@ngrx/store';
 import { Router } from '@angular/router';
+
 import { ShoppingCartService } from './../services/cart.service';
 import { BaseCartItem, CartService } from 'ng-shopping-cart';
 import { Category } from './../services/model/category';
 import { Product } from './../services/model/product';
 import { RestApiService } from 'src/app/services/rest-api.service';
 import { Component, OnInit } from '@angular/core';
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -183,7 +183,7 @@ postWishList(id) {
   if (this.user) {
       this.loading = true;
       this.rest.checkWishList({
-          item_id: id,
+          product_id: id,
           user_id: this.user.id
       }).subscribe(result => {
           if (result.length > 0) {
@@ -196,7 +196,7 @@ postWishList(id) {
               });
           } else {
               this.rest.postWishList({
-                  item_id: id,
+                  product_id: id,
                   user_id: this.user.id
               }).subscribe(data => {
                   this.wish_list.push(id);

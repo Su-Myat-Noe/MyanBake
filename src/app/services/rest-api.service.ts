@@ -300,7 +300,17 @@ export class RestApiService {
       catchError(this.handleError)
     )
 }
-
+addressSearch(search): Observable<any[]> {
+  let httpHeader = {
+    Accept: 'application/json',
+    Authorization: 'Bearer ' + localStorage.getItem(environment.token_key)
+  }
+  return this.http.get<any[]>(this.apiUrl + `/api/shipping?search=${search}`, { headers: httpHeader })
+  .pipe(
+    retry(1),
+    catchError(this.handleError)
+  )
+}
 
   saveShipping(data): Observable<any> {
     let httpHeader = {
@@ -318,7 +328,7 @@ export class RestApiService {
       Accept: 'application/json',
       Authorization: 'Bearer ' + localStorage.getItem(environment.token_key)
     }    
-    return this.http.post<any>(this.apiUrl + '/api/order', data, { headers: httpHeader })
+    return this.http.post<any>(this.apiUrl + '/api/shipping', data, { headers: httpHeader })
       .pipe(
         retry(1),
         catchError(this.handleError)

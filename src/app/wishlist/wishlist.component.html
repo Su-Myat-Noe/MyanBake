@@ -15,16 +15,14 @@
                             name="_wp_http_referer">
                         <!-- TITLE -->
                         <div class="wishlist-title ">
-                            <h2>My wishlist on Electro</h2>
+                            <h2>My wishlist</h2>
                         </div>
 
                         <!-- WISHLIST TABLE -->
                         <table data-token="" data-id="" data-page="1" data-per-page="5" data-pagination="no"
                             class="shop_table cart wishlist_table">
-
                             <thead>
                                 <tr>
-
                                     <th class="product-remove"></th>
 
                                     <th class="product-thumbnail"></th>
@@ -36,9 +34,9 @@
                                     <th class="product-price">
                                         <span class="nobr">Unit Price</span>
                                     </th>
-                                    <th class="product-stock-stauts">
+                                    <!-- <th class="product-stock-stauts">
                                         <span class="nobr">Stock Status</span>
-                                    </th>
+                                    </th> -->
 
                                     <th class="product-add-to-cart"></th>
 
@@ -54,9 +52,9 @@
                                     </td>
 
                                     <td class="product-thumbnail">
-                                        <a routerLink="/itemdetail">
+                                        <a routerLink="/itemdetail/{{wishList.id}}">
                                             <img width="180" height="180" alt="1" class="wp-post-image"
-                                                src="../../assets/images/products/2.jpg"></a>
+                                                src="{{wishList.item.image}}"></a>
                                     </td>
 
                                     <td class="product-name">
@@ -67,9 +65,9 @@
                                         <span class="electro-price"><span class="amount">{{wishList.item.price}}</span></span>
                                     </td>
 
-                                    <td class="product-stock-status">
+                                    <!-- <td class="product-stock-status">
                                         <span class="in-stock">In stock</span>
-                                    </td>
+                                    </td> -->
 
                                     <td class="product-add-to-cart">
                                         <!-- Date added -->

@@ -1,6 +1,11 @@
-import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
+import { currentUser } from './../core/auth/_selectors/auth.selectors';
+import { AppState } from './../core/reducers/index';
+import { Store, select } from '@ngrx/store';
+import { AuthService } from './../services/auth.service';
+import { Router, ActivatedRoute } from '@angular/router';
 import { RestApiService } from './../services/rest-api.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-shipping',
@@ -8,83 +13,98 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./shipping.component.css']
 })
 export class ShippingComponent implements OnInit {
+  id: number;
   saveData: any;
-  disableSubmit: boolean = false;
+  user: any;
   error: any;
-  user:any;
-  constructor(private rest: RestApiService, private router: Router) {
+  isLogin: boolean = false;
+  disableSubmit: boolean = false;
+  constructor(
+    private rest: RestApiService,
+    private authService: AuthService,
+    private cdr: ChangeDetectorRef,
+    private store:Store<AppState>,
+    private activatedRoute: ActivatedRoute,
+    private router: Router) {
     new Promise((resolve) => {
       this.loadScript();
       resolve(true);
     });
     this.saveData = {};
+    this.new_edit();
     this.error = {};
     this.getLogin();
   }
-  getLogin() 
-  {
-    this.user = this.rest.getStoreUser();
-    this.saveData.userid=this.user.id;
+  
+  new_edit(){
+      this.id = this.activatedRoute.snapshot.params.id;
+      this.rest.getData(this.id)
+        .subscribe(results => {
+          this.saveData = results;         
+            
+        });
+    // }
   }
-  register() {
-    if (this.validForm()) {
-      this.disableSubmit = true;
-      this.saveData.first_name = 'a';
-      this.saveData.last_name = 'b';
-      this.saveData.active = 1;
-      this.saveData.phone = this.saveData.country + ' ' + (this.saveData.phone) ? this.saveData.phone : '';
-      this.rest.register(this.saveData).subscribe((results) => {
-        // this.storage.set('remember', true);
-        // this.storage.set('user', results);
-        alert('You have successfully register and log-in');
+
+  checkValidateForm() {
+    var valid = true;
+    this.error.name = '';
+    this.error.phone = '';
+    this.error.email = '';
+    this.error.address = '';
+
+    if (this.saveData.name == undefined || this.saveData.name == "") {
+      this.error.name = 'The name field is required';
+      valid = false
+    }
+    if (this.saveData.phone == undefined || this.saveData.phone == "") {
+      this.error.phone = 'The phone field is required';
+      valid = false
+    }
+    if (this.saveData.email == undefined || this.saveData.email == "") {
+      this.error.email = 'The email field is required';
+      valid = false
+    }
+    else {
+      var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if (!re.test(this.saveData.email)) {
+        this.error.email = 'The email format is invalid';
+        valid = false
+      }
+    }
+    if (this.saveData.address == undefined || this.saveData.address == "") {
+      this.error.address = 'The address field is required';
+      valid = false
+    }    
+    return valid;
+  }
+  getLogin() {    
+    this.isLogin = this.authService.isAuthenticated();
+    if (this.isLogin) {
+      this.user = JSON.parse(this.authService.getLoginUser());
+      this.store
+            .pipe(
+                select(currentUser),
+                map((result: any) => {
+                    return result
+                })).subscribe(x => this.user = x);
+    }
+  }
+  save() {
+    this.disableSubmit = true;
+    if (this.checkValidateForm()) {
+      this.saveData['Userid'] = this.user.id;
+      this.rest.save(this.saveData).subscribe((results) => {
+        alert('You have successfully save address');
         this.disableSubmit = false;
-        this.router.navigateByUrl('');
+        this.router.navigateByUrl('/checkout' + results.id);
       },
         error => {
           this.disableSubmit = false;
-          this.error = error.error.message_list;
-          console.log(error);
-        });
+        }); 
     }
+    this.disableSubmit = false;    
   }
-  
-  validForm() {
-    var valid = true;
-    this.error = [];
-
-    if(this.saveData.username == '' || this.saveData.username == null){
-      this.error.username = 'The username field is require';
-      valid = false
-    }
-    else if(this.saveData.phone=='' || this.saveData.phone==null){
-      this.error.phone = 'The phone field is require';
-      valid = false
-    }
-    else if(this.saveData.country=='' || this.saveData.country==null){
-      this.error.country = 'The country field is require';
-      valid = false
-    }    
-    else if(this.saveData.email=='' || this.saveData.email==null){
-      this.error.email = 'The email field is require';
-      valid = false
-    }
-    else if(this.saveData.password=='' || this.saveData.password==null ){
-      this.error.password = 'The password field is require';
-      valid = false
-    }
-    else if(this.saveData.confirmpassword=='' || this.saveData.confirmpassword==null ){
-      this.error.confirmpassword = 'The confirmpassword field is require';
-      valid = false
-    }
-    else if(this.saveData.password!==this.saveData.confirmpassword){
-      this.error.confirmpassword = 'The password and confirm password must be same';
-      valid = false
-    }  
-
-    return valid;
-  }
-
-
   ngOnInit() {
     
   }

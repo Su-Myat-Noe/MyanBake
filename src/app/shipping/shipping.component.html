@@ -28,72 +28,45 @@
                     <p class="form-row form-row-wide">
                       <label for="name">Name
                         <span class="required">*</span></label>
-                      <input type="text" class="input-text" name="name" [(ngModel)]="registerData.username" id="uname"
+                      <input type="text" class="input-text" name="name" #name [(ngModel)]="saveData.name" id="uname"
                         value="" />
-                      <span class="errorcolor" *ngIf="error.username">
-                        {{error.username}}
+                      <span class="errorcolor" *ngIf="error.name">
+                        {{error.name}}
                       </span>
                     </p>
                     <p class="form-row form-row-wide">
                       <label for="phone">Phone Number
                         <span class="required">*</span></label>
-                      <input type="text" class="input-text" name="ph" [(ngModel)]="registerData.phone" id="phone"
+                      <input type="text" class="input-text" name="ph" #phone [(ngModel)]="saveData.phone" id="phone"
                         value="" />
                       <span class="errorcolor" *ngIf="error.phone">
                         {{error.phone}}
                       </span>
                     </p>
-                    <p class="form-row form-row-wide">
-                      <label for="phone">Country
-                        <span class="required">*</span></label>
-                      <input type="text" class="input-text" name="country" [(ngModel)]="registerData.country" id="country"value="" />
-                      <span class="errorcolor" *ngIf="error.country">
-                        {{error.country}}
-                      </span>
-                    </p>
+                    
                     <p class="form-row form-row-wide">
                       <label for="reg_email">Email address
                         <span class="required">*</span></label>
-                      <input type="email" class="input-text" [(ngModel)]="registerData.email" name="email"
+                      <input type="email" class="input-text" #email [(ngModel)]="saveData.email" name="email"
                         id="reg_email" value="" />
                       <span class="errorcolor" *ngIf="error.email">
                         {{error.email}}
                       </span>
                     </p>
+
                     <p class="form-row form-row-wide">
-                      <label for="password">Password
+                      <label for="reg_email">Address
                         <span class="required">*</span></label>
-                      <input type="password" class="input-text" [(ngModel)]="registerData.password" name="pw" id="pw"
-                        value="" />
-                      <span class="errorcolor" *ngIf="error.password">
-                        {{error.password}}
-                      </span>
-                    </p>
-                    <p class="form-row form-row-wide">
-                      <label for="password">Confirm Password
-                        <span class="required">*</span></label>
-                      <input type="password" class="input-text" [(ngModel)]="registerData.confirmpassword" name="cpw"
-                        id="compw" compare="pw" value="" />
-                      <span class="errorcolor" *ngIf="error.confirmpassword">
-                        {{error.confirmpassword}}
+                      <input type="email" class="input-text" #address [(ngModel)]="saveData.address" name="address"
+                        id="reg_email" value="" />
+                      <span class="errorcolor" *ngIf="error.address">
+                        {{error.address}}
                       </span>
                     </p>
                     <p class="form-row">
-                      <input type="submit" class="button" name="register" (click)="register()"
-                        [disabled]="disableSubmit" value="Register" />
+                      <input type="submit" class="button" name="register" (click)="save()"
+                        [disabled]="disableSubmit" value="Save" />
                     </p>
-                    <p>
-                      <a routerLink='/login'>Already register? Click to Login.</a>
-                    </p>
-
-                    <div class="register-benefits">
-                      <h3>Sign up today and you will be able to :</h3>
-                      <ul>
-                        <li>Speed your way through checkout</li>
-                        <li>Track your orders easily</li>
-                        <li>Keep a record of all your purchases</li>
-                      </ul>
-                    </div>
                   </form>
                 </div>
               </div>

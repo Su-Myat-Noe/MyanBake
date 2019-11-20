@@ -1,3 +1,8 @@
+import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
+import { currentUser } from './../core/auth/_selectors/auth.selectors';
+import { AppState } from './../core/reducers/index';
+import { Store, select } from '@ngrx/store';
 import { RestApiService } from './../services/rest-api.service';
 import { ShoppingCartService } from './../services/cart.service';
 import { Product } from './../services/model/product';
@@ -22,16 +27,48 @@ export class WishlistComponent implements OnInit {
     private rest: RestApiService,
     private cartService: CartService<BaseCartItem>,
     private shoppingCart: ShoppingCartService,
-    private cdr: ChangeDetectorRef,) {
+    private store: Store<AppState>,
+    private router: Router,
+    private cdr: ChangeDetectorRef,) 
+    {
     new Promise((resolve) => {
       this.loadScript();
       resolve(true);
     });
-    
+    console.log(this.user);
   }
 
   ngOnInit() {
+    this.store
+            .pipe(
+                select(currentUser),
+                map((result: any) => {
+                    return result;
+                })).subscribe(user => {
+            if (user) {
+                this.user = user;
+                this.viewWishList();
+            } else {
+                this.router.navigateByUrl('/login?return=' + this.router.url);
+            }
+        });
   }
+  loadData(event) {
+    if (this.loadMore) {
+        this.page += 1;
+        this.rest.viewWishList(this.page, this.user.id)
+            .subscribe(results => {
+                for (const wish of results) {
+                    this.myWishList.push(wish);
+                }
+                event.target.complete();
+                if (results.length < 12) {
+                    this.loadMore = false;
+                    event.target.disabled = true;
+                }
+            });
+    }
+}
 viewWishList() {
   this.loading = true;
   this.rest.viewWishList(this.page, this.user.id)
@@ -42,11 +79,12 @@ viewWishList() {
               this.loadMore = false;
           }
       });
+      
 }
 
 deleteWishList(wishlist) {
   this.rest.deleteWishList(wishlist.id).subscribe(results => {
-      alert('Remove from your wishlist');
+      // alert('Remove from your wishlist');
       const idx = this.myWishList.indexOf(wishlist);
       if (idx >= 0) {
           this.myWishList.splice(idx, 1);

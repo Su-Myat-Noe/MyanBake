@@ -16,8 +16,23 @@
               <div class="woocommerce-billing-fields">
 
                 <h3>Billing Details</h3>
-
                 <p id="billing_name_field" class="form-row form-row form-row-first validate-required">
+                  <label  for="billing_first_name"> <i class="far fa-address-card"></i></label>
+                  Hello
+                </p>
+                <p id="billing_name_field" class="form-row form-row form-row-first validate-required">
+                  <label  for="billing_first_name"> <i class="fas fa-mobile-alt"></i></label>
+                  Hello
+                </p>
+                <p id="billing_name_field" class="form-row form-row form-row-first validate-required">
+                  <label  for="billing_first_name"> <i class="fas fa-at"></i></label>
+                  Hello
+                </p>
+                <p id="billing_name_field" class="form-row form-row form-row-first validate-required">
+                  <label  for="billing_first_name"> <i class="fas fa-map-marked-alt"></i></label>
+                  Hello
+                </p> 
+                <!-- <p id="billing_name_field" class="form-row form-row form-row-first validate-required">
                   <label class="" for="billing_first_name">Name <abbr title="required" class="required">*</abbr></label>
                   <input type="text" value="" placeholder="" id="billing_name" [(ngModel)]="checkoutData.name"
                     name="billing_name" class="input-text ">
@@ -65,13 +80,13 @@
                   <input type="text" value="" placeholder="Apartment, suite, unit etc. (optional)"
                     [(ngModel)]="checkoutData.apartment" id="billing_address_2" name="billing_address_2"
                     class="input-text ">
-                </p>
+                </p> -->
 
 
 
 <!-------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 
-                <p id="billing_email_field" class="form-row form-row form-row-first validate-required validate-email">
+                <!-- <p id="billing_email_field" class="form-row form-row form-row-first validate-required validate-email">
                     <label class="" for="billing_email">Country <abbr title="required"
                         class="required">*</abbr></label>
                         <select class="styled-select  rounded" name="country" [(ngModel)]="checkoutData.country_id" okText="OK" cancelText="Cancel" (change)="countryChoose()" [compareWith]="compareCountry">
@@ -116,16 +131,16 @@
                   <span class="errorcolor" *ngIf="error.zip_code">
                     {{error.zip_code}}
                   </span>
-                </p>
+                </p> -->
 <!-------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-                <div class="clear"></div>
+                <!-- <div class="clear"></div>
 
-                <p class="form-row form-row-wide create-account">
+                <p class="form-row form-row-wide create-account"> -->
                   <!-- <input type="checkbox" value="1" name="createaccount"
                     id="createaccount" class="input-checkbox"> <label class="checkbox" for="createaccount">Create an
                     account?</label> -->
-                    <button (click)="new_edit()">Create an account</button>
-                </p>
+                    <!-- <button (click)="new_edit()">Create an account</button>
+                </p> -->
               </div>
             </div>
 
@@ -133,7 +148,7 @@
               <h3>Shipping Details</h3>
               <div class="woocommerce-shipping-fields">
                 <h3 id="ship-to-different-address">
-                  <label class="checkbox" for="ship-to-different-address-checkbox">Ship to a different address?</label>
+                  <label class="checkbox" for="ship-to-different-address-checkbox">Add Shipping address</label>
                   <input type="checkbox" value="1" name="ship_to_different_address" routerLink="/shipping"
                     class="input-checkbox" id="ship-to-different-address-checkbox">
                 </h3>
